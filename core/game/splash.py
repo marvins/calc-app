@@ -19,6 +19,7 @@ import pygame
 #  Project Libraries
 from screen import get_resolution
 
+WHITE = (255,255,255)
 BLACK = (0,0,0)
 
 #  Display splash screen
@@ -45,11 +46,12 @@ def display_splash( session ):
     text_tl = ( max( win_size[0]/2 - text_size[0]/2, 0 ), 
                 logo_tl[1] + logo_size[1] + 50 )
 
-    white = 255, 255, 255
-    session.screen.fill( white )  # Black background
+    #  Create screen
+    session.screen.fill( WHITE )  # Black background
     session.screen.blit(logo, logo_tl)  # Center the image (adjust as needed)
     session.screen.blit(text, text_tl)  # Position the text (adjust as needed)
-
+    pygame.display.flip()
+    
     time.sleep(5)
 
     #  Use intro_text_surface.set_alpha(a) for fade-in/out later
