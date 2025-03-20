@@ -35,7 +35,11 @@ def main():
     display_splash( session )
 
     #  Create application manager
-    app_mgr = App_Manager( options.get_apps() )
+    icon_size = [ options.cfg_args.getint('menu','icon_width'),
+                  options.cfg_args.getint('menu','icon_height') ]
+    
+    app_mgr = App_Manager( options.get_apps(),
+                           icon_size = icon_size )
 
     while True:
 

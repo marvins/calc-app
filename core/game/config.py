@@ -3,6 +3,7 @@
 import argparse
 import configparser
 import logging
+import os
 import sys
 
 def parse_command_line():
@@ -90,7 +91,9 @@ class Options:
 
     def get_apps(self):
 
-        apps = []
+        apps = {}
+
+        base_dir = os.path.realpath(os.path.dirname(sys.argv[0]) + '/../../')
 
         #  Parse the app-list entry to get names
         app_tags = self.cfg_args.get('apps','list').split(' \n')
@@ -99,12 +102,12 @@ class Options:
 
             disp_name = self.cfg_args.get( tag, 'display_name' )
             main_path = self.cfg_args.get( tag, 'main_path' )
-            icon_path = self.cfg_args.get( tag, 'icon_path' )
+            icon_path = str(self.cfg_args.get( tag, 'icon_path' )).replace('__BASE__',base_dir)
 
-            apps.append( { 'name': disp_name,
-                           'main_path': main_path,
-                           'icon_path': icon_path } )
-            
+            apps[tag] = { 'name':      disp_name,
+                          'main_path': main_path,
+                          'icon_path': icon_path }
+
         return apps
 
     @staticmethod
