@@ -32,9 +32,10 @@ class Session:
     def create( config ):
 
         #  Get max allowable size
-        max_size = get_resolution()
+        size = [ config.cfg_args.getint('display','screen_width'),
+                 config.cfg_args.getint('display','screen_height') ]
 
-        screen = pygame.display.set_mode( max_size )
+        screen = pygame.display.set_mode( size )
 
         pygame.display.set_caption("Terminus Converter")
 
