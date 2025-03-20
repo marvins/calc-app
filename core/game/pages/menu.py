@@ -26,6 +26,9 @@ def main_menu( config, session, app_mgr ):
     session.screen.fill( white )
 
     #  Iterate over each app, drawing the icons
+    icon_size = [ config.cfg_args.getint('display','menu_icon_width'),
+                  config.cfg_args.getint('display','menu_icon_height') ]
+
 
 
     #  Wait for decision

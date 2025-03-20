@@ -97,9 +97,9 @@ class Options:
 
         for tag in app_tags:
 
-            disp_name = self.cfg_args.get('tag','display_name')
-            main_path = self.cfg_args.get('tag','main_path')
-            icon_path = self.cfg_args.get('tag','icon_path')
+            disp_name = self.cfg_args.get( tag, 'display_name' )
+            main_path = self.cfg_args.get( tag, 'main_path' )
+            icon_path = self.cfg_args.get( tag, 'icon_path' )
 
             apps.append( { 'name': disp_name,
                            'main_path': main_path,

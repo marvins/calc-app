@@ -39,6 +39,7 @@ def main():
 
     while True:
 
+        #  Launch the main menu
         action = main_menu( options, session, app_mgr )
 
         if action['code'] == Action.QUIT:
