@@ -9,34 +9,16 @@
 #**************************** INTELLECTUAL PROPERTY RIGHTS ****************************#
 #
 
-#  Project Libraries
-from 
 import pygame
 
-class Session:
+def load_image( pathname, fixed_size = None ):
+    '''
+    Load an image from disk
+    '''
 
-    def __init__(self, screen: pygame.Surface ):
-        
-        self.screen: pygame.Surface = screen
-
-
-    def quit(self):
-
-        # Quit Pygame
-        pygame.quit()
-
-    @staticmethod
-    def create( config ):
-
-        screen = pygame.display.set_mode( config.get_screen_size() )
-
-        pygame.display.set_caption("Terminus Converter")
-
-        session = Session( screen )
-
-        #  Setup Pygame
-        pygame.init()
-
-        return session
-
-
+    image = pygame.image.load( pathname )
+    
+    if fixed_size != None:
+        image = pygame.transform.scale( image, fixed_size )
+    
+    return image

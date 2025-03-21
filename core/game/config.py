@@ -59,6 +59,11 @@ def generate_config( config_path ):
         fout.write( '#  Override Default Display Settings\n' )
         fout.write( '[display]\n' )
         fout.write( '\n' )
+        fout.write( '#  Display Driver\n')
+        fout.write( '#  - pygame:  Used for non-embedded apps\n')
+        fout.write( '#  - micropython:  Used for RPI Pico or other embedded apps\n')
+        fout.write( 'driver=pygame\n')
+        fout.write( '\n' )
         fout.write( '#  Screen size\n' )
         fout.write( '#screen_size = 320 320)\n' )
         fout.write( '\n' )
@@ -72,6 +77,13 @@ class Options:
         self.cmd_args = cmd_args
         self.cfg_args = cfg_args
 
+    def get( self, section, key ):
+        return self.cfg_args.get(section,key)
+    
+
+    def get_screen_size(self):
+        return [ self.cfg_args.getint('display','screen_width'),
+                 self.cfg_args.getint('display','screen_height') ]
 
     def initialize_logger(self):
 

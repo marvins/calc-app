@@ -16,8 +16,6 @@ import time
 #  Pygame
 import pygame
 
-#  Project Libraries
-from screen import get_resolution
 
 WHITE = (255,255,255)
 BLACK = (0,0,0)

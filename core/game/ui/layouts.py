@@ -9,8 +9,21 @@
 #**************************** INTELLECTUAL PROPERTY RIGHTS ****************************#
 #
 
-import pyautogui
+class Layout_Base:
+    
+    def __init__(self):
+        pass
 
-def get_resolution():
-    return (pyautogui.size()[0], pyautogui.size()[1])
+
+
+class Vertical_Layout(Layout_Base):
+
+    def __init__(self):
+        super().__init__()
+
+
+class Horizontal_Layout(Layout_Base):
+
+    def __init__(self):
+        super().__init__()
 

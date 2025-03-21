@@ -9,34 +9,15 @@
 #**************************** INTELLECTUAL PROPERTY RIGHTS ****************************#
 #
 
-#  Project Libraries
-from 
-import pygame
+class Cache:
 
-class Session:
+    def __init__(self):
 
-    def __init__(self, screen: pygame.Surface ):
-        
-        self.screen: pygame.Surface = screen
+        self.cache = {}
 
+    def load_image(self, key, pathname):
+        pass
 
-    def quit(self):
-
-        # Quit Pygame
-        pygame.quit()
-
-    @staticmethod
-    def create( config ):
-
-        screen = pygame.display.set_mode( config.get_screen_size() )
-
-        pygame.display.set_caption("Terminus Converter")
-
-        session = Session( screen )
-
-        #  Setup Pygame
-        pygame.init()
-
-        return session
-
-
+    def save_item(self, key, image):
+        self.cache[key] = { 'image': image }
+    

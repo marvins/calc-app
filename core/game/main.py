@@ -18,6 +18,7 @@ import pygame
 
 #  App Utilities
 from app_manager import App_Manager
+from cache import Cache
 from config import Options
 from core import Action
 from pages.menu import main_menu
@@ -40,11 +41,13 @@ def main():
     
     app_mgr = App_Manager( options.get_apps(),
                            icon_size = icon_size )
+    
+    cache_mgr = Cache()
 
     while True:
 
         #  Launch the main menu
-        action = main_menu( options, session, app_mgr )
+        action = main_menu( options, session, app_mgr, cache_mgr )
 
         if action['code'] == Action.QUIT:
             break

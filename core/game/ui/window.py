@@ -9,34 +9,18 @@
 #**************************** INTELLECTUAL PROPERTY RIGHTS ****************************#
 #
 
-#  Project Libraries
-from 
-import pygame
 
-class Session:
+class Main_Window:
 
-    def __init__(self, screen: pygame.Surface ):
+    def __init__( self, layout = None ):
         
-        self.screen: pygame.Surface = screen
+        if layout != None:
+            self.layout = layout
 
 
-    def quit(self):
+    def set_layout( self, layout ):
 
-        # Quit Pygame
-        pygame.quit()
+        self.layout = layout
 
-    @staticmethod
-    def create( config ):
-
-        screen = pygame.display.set_mode( config.get_screen_size() )
-
-        pygame.display.set_caption("Terminus Converter")
-
-        session = Session( screen )
-
-        #  Setup Pygame
-        pygame.init()
-
-        return session
-
-
+    def render( self ):
+        pass
