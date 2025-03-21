@@ -1,0 +1,181 @@
+/**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
+/*                                                                                    */
+/*                           Copyright (c) 2025 Terminus LLC                          */
+/*                                                                                    */
+/*                                All Rights Reserved.                                */
+/*                                                                                    */
+/*          Use of this source code is governed by LICENSE in the repo root.          */
+/*                                                                                    */
+/**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
+/**
+ * @file    Options.cpp
+ * @author  Marvin Smith
+ * @date    3/21/2025
+*/
+#include <tmns/app/calc/core/Options.hpp>
+
+// C++ Standard Libraries
+#include <chrono>
+#include <ctime>
+#include <deque>
+#include <format>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+#include <string>
+
+namespace tmns::calc::core {
+
+/*************************************/
+/*      Print Usage Instructions     */
+/*************************************/
+std::string Options::usage() const{
+    
+    std::stringstream sout;
+    sout << "usage: " << m_app_name.filename() << " [optional flags] -c <config-path>" << std::endl;
+    sout << std::endl;
+    sout << "required flags:" << std::endl;
+    sout << "  -c <config-path> | --config-path <config-path> : Path to Python INI formatted config-file" << std::endl;
+    sout << "                     - Note:  Use gen-config flag to see available options" << std::endl;
+    sout << std::endl;
+    sout << "optional flags:" << std::endl;
+    sout << "  -h | --help : Print usage instructions and exit." << std::endl;
+    sout << std::endl;
+    sout << "  -g | --gen-config : Generate new config file at path specified by -c flag." << std::endl;
+    sout << std::endl;
+    sout << "  -v | --verbose : Use verbose logging." << std::endl;
+    sout << std::endl;
+    sout << "  -l <path> | --log-path <path> : Write output to log file." << std::endl;
+    sout << std::endl;
+
+    // Print examples of the app
+
+
+    return sout.str();
+}
+
+/****************************************************************/
+/*      Parse Command-Line Options and Config-File Options      */
+/****************************************************************/
+Options Options::parse( int argc, char* argv[] )
+{
+    auto app_name = std::filesystem::path( argv[0] );
+    auto options = Options( app_name );
+
+    // Get all arguments
+    std::deque<std::string> args;
+    for( int i = 1; i < argc; i++ ){
+        args.push_back( argv[i] );
+    }
+
+    // Parse each argument in sequence
+    while( !args.empty() ){
+
+        // Pop next argument
+        auto arg = args.front();
+        args.pop_front();
+
+        // Check if usage printed
+        if( arg == "-h" || arg == "--help" ){
+            auto msg = options.usage();
+            std::cerr << msg;
+            std::exit(0);
+        }
+
+        // Check if generate-config flag specified
+        else if( arg == "-g" || arg == "--gen-config" ){
+            options.m_gen_config = true;
+        }
+
+        // Check if config-path specified
+        else if( arg == "-c" || arg == "--config-path" ){
+
+            if( args.empty() ){
+                throw std::runtime_error("Cannot get config-path as arg list is empty");
+            }
+
+            options.m_config_path = args.front();
+            args.pop_front();
+        }
+
+    }
+
+    // Verify options
+    std::string errstr; 
+    if( !options.verify(errstr) ){
+        throw std::runtime_error( "Cannot verify configuration.  Issues: " + errstr );
+    }
+
+    // If we should generate a config, then just knock this out now and exit
+    if( options.m_gen_config ){
+        options.generate_config_file( options.m_config_path );
+    }
+
+    return options;
+}
+
+/*************************************************/
+/*          Generate Configuration File          */
+/*************************************************/
+void Options::generate_config_file( const std::filesystem::path& pathname )
+{
+
+    // Get the current time
+    auto now = std::chrono::system_clock::now();
+
+    std::ofstream fout( pathname );
+
+    fout << "#" << std::endl;
+    fout << "#  Terminus Calculator Application Configuration File" << std::endl;
+    fout << "#" << std::endl;
+    fout << "#  File: " << pathname.native() << std::endl;
+    fout << "#  Date: " << std::chrono::current_zone()->to_local(now) << std::endl;
+    fout << "#" << std::endl;
+    fout << std::endl;
+
+    // Print display options
+    fout << "#  Display Options" << std::endl;
+    fout << "#   - These are highly dependent on hardware.  Given that the systems are primarily embedded, we have" << std::endl;
+    fout << "#     a flag called \"override\" which tells the app whether or not to use the default size as found by the system." << std::endl;
+    fout << "[display]" << std::endl;
+    fout << std::endl;
+    fout << "#  Allow the system to determine screen size.  Set to true for embedded systems." << std::endl;
+    fout << "override_screen_size=false" << std::endl;
+    fout << std::endl;
+
+    fout << "#  Set the default screen size" << std::endl;
+    fout << "screen_width=1280" << std::endl;
+    fout << "screen_height=780" << std::endl;
+    fout << std::endl;
+
+}
+
+/************************************************/
+/*          Parameterized Constructor           */
+/************************************************/
+Options::Options( const std::filesystem::path& app_name )
+    : m_app_name (app_name){}
+
+/********************************************************/
+/*          Verify Application Configuration            */
+/********************************************************/
+bool Options::verify( std::string& error_str ) const {
+
+    // Clear string
+    error_str = "";
+
+    // Make sure config-path exists only if gen-config does not exist
+    if( !m_gen_config && !std::filesystem::exists( m_config_path ) ){
+        std::stringstream sout;
+        sout << "Configuration file (" << m_config_path.native() << ") does not exist.";
+        sout << "  This can only not-exist when --gen-config (-g) is passed.";
+        error_str = sout.str();
+        return false;
+    }
+
+    // If nothing causes us to blow up, then consider it good
+    return true;
+}
+
+} // End of tmns::calc::core namespace

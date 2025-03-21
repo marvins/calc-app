@@ -8,22 +8,32 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    main.cpp
+ * @file    Options.hpp
  * @author  Marvin Smith
  * @date    3/21/2025
 */
+#pragma once
+
+// C++ Standard Libraries
+#include <filesystem>
 
 // Project Libraries
 #include <tmns/app/calc/core/Options.hpp>
-#include <tmns/app/calc/core/Session.hpp>
 
-int main( int argc, char* argv[] ){
+namespace tmns::calc::core {
 
-    // Parse Command-Line and Configuration-File Options
-    auto config = tmns::calc::core::Options::parse( argc, argv );
+class Session final {
 
-    // Create the primary session
-    auto session = tmns::calc::core::Session::create( config );
+    public:
 
-    return 0;
-}
+        /**
+         * Generate a session given command-line instructions
+         */
+        static Session create( Options config );
+
+    private:
+
+
+}; // End of Session class
+
+} // End of tmns::core namespace

@@ -1,3 +1,6 @@
+
+
+
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /*                                                                                    */
 /*                           Copyright (c) 2025 Terminus LLC                          */
@@ -8,22 +11,26 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    main.cpp
+ * @file    Options.hpp
  * @author  Marvin Smith
  * @date    3/21/2025
 */
-
-// Project Libraries
-#include <tmns/app/calc/core/Options.hpp>
 #include <tmns/app/calc/core/Session.hpp>
 
-int main( int argc, char* argv[] ){
+namespace tmns::calc::core {
 
-    // Parse Command-Line and Configuration-File Options
-    auto config = tmns::calc::core::Options::parse( argc, argv );
+/****************************************************/
+/*          Create a Session API Instance           */
+/****************************************************/
+Session Session::create( Options config )
+{
 
-    // Create the primary session
-    auto session = tmns::calc::core::Session::create( config );
+#if CALC_PLATFORM == 2
+    #warning "Building desktop variant"
+#else
+    #error Not supported yet
+#endif
 
-    return 0;
 }
+
+} // End of tmns::calc::core namespace

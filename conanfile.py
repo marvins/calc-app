@@ -50,6 +50,7 @@ class ConanProject(ConanFile):
         tc.variables["VERSION_FROM_CONANFILE"]     = self.version
         tc.variables["DESCRIPTION_FROM_CONANFILE"] = self.description
         tc.variables["URL_FROM_CONANFILE"]         = self.url
+        tc.variables["CALC_PLATFORM"]              = self.options.platform
 
         tc.generate()
 

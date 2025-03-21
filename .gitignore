@@ -1,4 +1,6 @@
 __pycache__
 .DS_Store
 app.log
+build
+CMakeUserPresets.json
 venv
