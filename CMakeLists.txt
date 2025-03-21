@@ -70,11 +70,18 @@ include_directories( cpp/include )
 #-       Build Application      -#
 #--------------------------------#
 add_executable( terminus-calculator
+    cpp/include/tmns/app/calc/core/ConfigParser.hpp
     cpp/include/tmns/app/calc/core/Options.hpp
     cpp/include/tmns/app/calc/core/Session.hpp
+    cpp/include/tmns/app/calc/log/Level.hpp
+    cpp/include/tmns/app/calc/log/Logger.hpp
+    cpp/include/tmns/app/calc/utils/StringUtilities.hpp
     cpp/src/main.cpp
+    cpp/src/core/ConfigParser.cpp
     cpp/src/core/Options.cpp
     cpp/src/core/Session.cpp
+    cpp/src/log/Level.cpp
+    cpp/src/utils/StringUtilities.cpp
 )
 
 

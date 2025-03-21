@@ -14,6 +14,9 @@
 */
 #include <tmns/app/calc/core/Options.hpp>
 
+// Project Libraries
+#include <tmns/app/calc/core/ConfigParser.hpp>
+
 // C++ Standard Libraries
 #include <chrono>
 #include <ctime>
@@ -26,6 +29,26 @@
 #include <string>
 
 namespace tmns::calc::core {
+
+/*************************************/
+/*      Print Log-Friendly String    */
+/*************************************/
+std::string Options::to_log_string( size_t offset ) const
+{
+    std::string gap( offset, ' ' );
+
+    std::stringstream sout;
+    sout << gap << "Configuration:" << std::endl;
+    sout << gap << "  - app_name: " << m_app_name.native() << std::endl;
+    sout << gap << "  - settings: " << m_settings.size() << std::endl;
+    for( const auto& setting : m_settings ){
+        sout << gap << "     - " << setting.first << std::endl;
+        for( const auto& kvp : setting.second ){
+            sout << gap << "        - " << kvp.first << " = " << kvp.second << std::endl;
+        }
+    }
+    return sout.str();
+}
 
 /*************************************/
 /*      Print Usage Instructions     */
@@ -110,7 +133,11 @@ Options Options::parse( int argc, char* argv[] )
     // If we should generate a config, then just knock this out now and exit
     if( options.m_gen_config ){
         options.generate_config_file( options.m_config_path );
+        std::exit(0);
     }
+
+    // Parse the configuration file
+    options.m_settings = ConfigParser::parse( options.m_config_path );
 
     return options;
 }

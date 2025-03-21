@@ -16,12 +16,19 @@
 
 // C++ Standard Libraries
 #include <filesystem>
+#include <map>
+#include <string>
 
 namespace tmns::calc::core {
 
 class Options final {
 
     public:
+
+        /**
+         * Print Log-Friendly String
+         */
+        std::string to_log_string( size_t offset = 0 ) const;
 
         /**
          * Print usage as log-friendly string
@@ -64,6 +71,9 @@ class Options final {
 
         /// Flag to create configuration-file
         bool m_gen_config { false };
+
+        /// Configuration File Settings
+        std::map<std::string,std::map<std::string,std::string>> m_settings;
 
 }; // End of Options Class
 
