@@ -30,3 +30,17 @@ endif()
 #----------------------------------------#
 
 
+#--------------------------------#
+#-      Setup Filesystem        -#
+#--------------------------------#
+
+include_directories( cpp/include )
+
+#--------------------------------#
+#-       Build Application      -#
+#--------------------------------#
+add_executable( terminus-calculator
+    cpp/main.cpp
+)
+
+
