@@ -19,11 +19,19 @@
 #include <map>
 #include <string>
 
+// Project Libraries
+#include <tmns/app/calc/log/Level.hpp>
+
 namespace tmns::calc::core {
 
 class Options final {
 
     public:
+
+        /**
+         * Get the log severity
+         */
+        log::Level log_level() const;
 
         /**
          * Print Log-Friendly String
@@ -68,6 +76,9 @@ class Options final {
 
         /// Configuration file path
         std::filesystem::path m_config_path;
+
+        /// Log Severity
+        log::Level m_log_level { log::Level::INFO };
 
         /// Flag to create configuration-file
         bool m_gen_config { false };

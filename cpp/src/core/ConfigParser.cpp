@@ -72,7 +72,7 @@ ConfigParser::SETTINGS_TYPE ConfigParser::parse( const std::filesystem::path& pa
         // Split line based on equal sign
         auto parts = utils::string_split( input, '=' );
         
-        if( parts.size() > 2 ){
+        if( parts.size() >= 2 ){
             settings[current_section][parts[0]] = parts[1];
         }
 

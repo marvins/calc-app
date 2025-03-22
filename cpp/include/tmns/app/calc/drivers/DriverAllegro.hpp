@@ -8,36 +8,48 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    main.cpp
+ * @file    DriverAllegro.hpp
  * @author  Marvin Smith
- * @date    3/21/2025
+ * @date    03/21/2025
+ *
+ * @details Vertical Layout API
  */
+#pragma once
+
+// Allegro APIs
+#include <allegro5/allegro5.h>
+#include <allegro5/allegro_font.h>
 
 // Project Libraries
 #include <tmns/app/calc/core/Options.hpp>
-#include <tmns/app/calc/core/Session.hpp>
-#include <tmns/app/calc/log/HandlerConsole.hpp>
-#include <tmns/app/calc/log/Logger.hpp>
+#include <tmns/app/calc/drivers/DriverBase.hpp>
 
-int main( int argc, char* argv[] ){
+namespace tmns::calc::drv {
 
-    // Parse Command-Line and Configuration-File Options
-    auto config = tmns::calc::core::Options::parse( argc, argv );
+class Driver_Allegro {
 
-    // Setup the console logger
-    {
-        auto handler = std::make_unique<tmns::calc::log::HandlerConsole>( config.log_level() );
-        tmns::calc::log::Logger::add_handler( std::move( handler ) );
-    }
-    LOG_DEBUG( config.to_log_string() );
+    public:
 
-    // Create the primary session
-    auto session = tmns::calc::core::Session::create( config );
+        /**
+         * Initialize Library
+         */
+        bool initialize( core::Options& config ) override;
 
-    // Launch the Splash Screen
-    auto splash = tmns::calc::page::Splash::create( session );
-    splash.show();
-    session.sleep(5);
+        /**
+         * Close / Finalize
+         */
+        void finalize() override;
 
-    return 0;
-}
+    private:
+
+        ALLEGRO_TIMER* m_timer { nullptr };
+
+        ALLEGRO_EVENT_QUEUE* m_queue { nullptr };
+
+        ALLEGRO_DISPLAY* m_display { nullptr };
+
+        ALLEGRO_FONT* m_font { nullptr };
+
+}; // End of Driver_Allegro class
+
+} // End of tmns::calc::drv namespace

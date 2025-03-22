@@ -8,47 +8,19 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    Allegro.hpp
+ * @file    Splash.hpp
  * @author  Marvin Smith
- * @date    03/21/2025
- *
- * @details Vertical Layout API
+ * @date    3/22/2025
  */
 #pragma once
 
-// Allegro APIs
-#include <allegro5/allegro5.h>
-#include <allegro5/allegro_font.h>
-
 // Project Libraries
-#include <tmns/app/calc/core/Options.hpp>
+#include <tmns/app/calc/ui/LayoutVertical.hpp>
 
-namespace tmns::calc::drv {
+namespace tmns::calc::page {
 
-class Driver_Allegro {
+class Splash : public ui::LayoutVertical
+{
+}; // End Splash class
 
-    public:
-
-        /**
-         * Initialize Library
-         */
-        bool initialize( core::Options& config );
-
-        /**
-         * Close / Finalize
-         */
-        bool finalize();
-
-    private:
-
-    ALLEGRO_TIMER* m_timer { nullptr };
-
-    ALLEGRO_EVENT_QUEUE* m_queue { nullptr };
-
-    ALLEGRO_DISPLAY* m_display { nullptr };
-
-    ALLEGRO_FONT* m_font { nullptr };
-
-}; // End of Driver_Allegro class
-
-} // End of tmns::calc::drv namespace
+} // End of tmns::calc::page namespace

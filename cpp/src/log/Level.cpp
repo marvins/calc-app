@@ -1,6 +1,3 @@
-
-
-
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /*                                                                                    */
 /*                           Copyright (c) 2025 Terminus LLC                          */
@@ -11,27 +8,29 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    Options.hpp
+ * @file    Level.hpp
  * @author  Marvin Smith
- * @date    3/21/2025
-*/
-#include <tmns/app/calc/core/Session.hpp>
+ * @date    03/21/2025
+ *
+ * @details Log Level Type
+ */
+#include <tmns/app/calc/log/Level.hpp>
 
-namespace tmns::calc::core {
+namespace tmns::calc::log {
 
-/****************************************************/
-/*          Create a Session API Instance           */
-/****************************************************/
-Session Session::create( Options config )
+/**********************************************/
+/*      Convert the Log Level to String       */
+/**********************************************/
+std::string to_string( Level lvl )
 {
-    Session new_session;
-    
-#if CALC_PLATFORM == 2
-    #warning "Building desktop variant"
-#else
-    #error Not supported yet
-#endif
-    return new_session;
+    switch( lvl ){
+        case Level::TRACE:   return "TRACE";
+        case Level::DEBUG:   return "DEBUG";
+        case Level::INFO:    return "INFO";
+        case Level::WARNING: return "WARNING";
+        case Level::ERROR:   return "ERROR";
+        default:             return "UNKNOWN";
+    }
 }
 
-} // End of tmns::calc::core namespace
+} // End of tmns::calc::log namespace

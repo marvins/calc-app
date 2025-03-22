@@ -8,34 +8,48 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    Options.hpp
+ * @file    HandlerBase.hpp
  * @author  Marvin Smith
- * @date    3/21/2025
-*/
+ * @date    03/21/2025
+ *
+ * @details Logging Interface
+ */
 #pragma once
 
-// C++ Standard Libraries
-#include <filesystem>
-
 // Project Libraries
-#include <tmns/app/calc/core/Options.hpp>
+#include <tmns/app/calc/log/HandlerBase.hpp>
+#include <tmns/app/calc/log/Level.hpp>
 
-namespace tmns::calc::core {
+// C++ Standard Libraries
+#include <memory>
 
-class Session final {
+namespace tmns::calc::log {
 
+class HandlerConsole : public HandlerBase
+{
     public:
 
+        using ptr_t = std::unique_ptr<HandlerConsole>;
+
         /**
-         * Generate a session given command-line instructions
+         * Construct a new Console Log Handler
          */
-        static Session create( Options config );
+        HandlerConsole( Level min_severity = Level::INFO );
+
+        /**
+         * Log a message to the console
+         */
+        void log( Level       lvl,
+                  TIME_TP     log_time,
+                  std::string filename,
+                  int         line_no,
+                  std::string message ) override;
 
     private:
 
-        // 
+        /// Log Severity
+        Level m_severity;
 
+}; // End of HandlerConsole class
 
-}; // End of Session class
-
-} // End of tmns::core namespace
+} // End of tmns::calc::utils namespace

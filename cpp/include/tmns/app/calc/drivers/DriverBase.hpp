@@ -8,36 +8,32 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    main.cpp
+ * @file    DriverBase.hpp
  * @author  Marvin Smith
- * @date    3/21/2025
+ * @date    3/22/2025
  */
+#pragma once
 
 // Project Libraries
 #include <tmns/app/calc/core/Options.hpp>
-#include <tmns/app/calc/core/Session.hpp>
-#include <tmns/app/calc/log/HandlerConsole.hpp>
-#include <tmns/app/calc/log/Logger.hpp>
 
-int main( int argc, char* argv[] ){
+namespace tmns::calc::drv {
 
-    // Parse Command-Line and Configuration-File Options
-    auto config = tmns::calc::core::Options::parse( argc, argv );
+class Driver_Base {
 
-    // Setup the console logger
-    {
-        auto handler = std::make_unique<tmns::calc::log::HandlerConsole>( config.log_level() );
-        tmns::calc::log::Logger::add_handler( std::move( handler ) );
-    }
-    LOG_DEBUG( config.to_log_string() );
+    public:
 
-    // Create the primary session
-    auto session = tmns::calc::core::Session::create( config );
+        /**
+         * Initialize the driver
+         */
+        virtual bool initialize( core::Options& config ) = 0;
 
-    // Launch the Splash Screen
-    auto splash = tmns::calc::page::Splash::create( session );
-    splash.show();
-    session.sleep(5);
+        /**
+         * Finalize / Destroy the driver
+         */
+        virtual void finalize() = 0;
 
-    return 0;
-}
+}; // End of Driver_Base class
+
+
+} // End of tmns::calc::drv namespace

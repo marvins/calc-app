@@ -30,6 +30,13 @@
 
 namespace tmns::calc::core {
 
+/********************************/
+/*      Get the log level       */
+/********************************/
+log::Level Options::log_level() const{
+    return m_log_level;
+}
+
 /*************************************/
 /*      Print Log-Friendly String    */
 /*************************************/
@@ -40,7 +47,7 @@ std::string Options::to_log_string( size_t offset ) const
     std::stringstream sout;
     sout << gap << "Configuration:" << std::endl;
     sout << gap << "  - app_name: " << m_app_name.native() << std::endl;
-    sout << gap << "  - settings: " << m_settings.size() << std::endl;
+    sout << gap << "  - settings: (sections: " << m_settings.size() << ")" << std::endl;
     for( const auto& setting : m_settings ){
         sout << gap << "     - " << setting.first << std::endl;
         for( const auto& kvp : setting.second ){
@@ -67,7 +74,8 @@ std::string Options::usage() const{
     sout << std::endl;
     sout << "  -g | --gen-config : Generate new config file at path specified by -c flag." << std::endl;
     sout << std::endl;
-    sout << "  -v | --verbose : Use verbose logging." << std::endl;
+    sout << "  -v | --verbose : Use debug logging." << std::endl;
+    sout << "  -vv | --trace : Use trace logging." << std::endl;
     sout << std::endl;
     sout << "  -l <path> | --log-path <path> : Write output to log file." << std::endl;
     sout << std::endl;
@@ -106,6 +114,15 @@ Options Options::parse( int argc, char* argv[] )
             std::exit(0);
         }
 
+        // Check if verbose / debug
+        else if( arg == "-v" || arg == "--debug" ){
+            options.m_log_level = log::Level::DEBUG;
+        }
+
+        else if( arg == "-vv" || arg == "--trace" ){
+            options.m_log_level = log::Level::TRACE;
+        }
+
         // Check if generate-config flag specified
         else if( arg == "-g" || arg == "--gen-config" ){
             options.m_gen_config = true;
@@ -120,6 +137,12 @@ Options Options::parse( int argc, char* argv[] )
 
             options.m_config_path = args.front();
             args.pop_front();
+        }
+
+        else {
+            std::cerr << "error: Unsupported argument (" << arg << ")" << std::endl;
+            std::cerr << options.usage() << std::endl;
+            std::exit(1);
         }
 
     }

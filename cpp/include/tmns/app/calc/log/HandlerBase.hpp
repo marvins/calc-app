@@ -8,34 +8,42 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    Options.hpp
+ * @file    HandlerBase.hpp
  * @author  Marvin Smith
- * @date    3/21/2025
-*/
+ * @date    03/21/2025
+ *
+ * @details Logging Interface
+ */
 #pragma once
 
-// C++ Standard Libraries
-#include <filesystem>
-
 // Project Libraries
-#include <tmns/app/calc/core/Options.hpp>
+#include <tmns/app/calc/log/Level.hpp>
 
-namespace tmns::calc::core {
+// C++ Standard Libraries
+#include <chrono>
+#include <memory>
 
-class Session final {
+namespace tmns::calc::log {
+
+class HandlerBase {
 
     public:
 
+        using ptr_t = std::unique_ptr<HandlerBase>;
+
+        // Time to use for logging
+        using TIME_TP = std::chrono::system_clock::time_point;
+
         /**
-         * Generate a session given command-line instructions
+         * Log a message to the respective handler destination
          */
-        static Session create( Options config );
+        virtual void log( Level       lvl,
+                          TIME_TP     log_time,
+                          std::string filename,
+                          int         line_no,
+                          std::string message ) = 0;
 
-    private:
 
-        // 
+}; // End of HandlerBase class
 
-
-}; // End of Session class
-
-} // End of tmns::core namespace
+} // End of tmns::calc::utils namespace
