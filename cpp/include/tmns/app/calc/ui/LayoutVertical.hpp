@@ -19,9 +19,11 @@
 // C++ Standard Libraries
 #include <deque>
 #include <memory>
+#include <mutex>
 
 // Project Libraries
 #include <tmns/app/calc/ui/LayoutBase.hpp>
+#include <tmns/app/calc/ui/WidgetBase.hpp>
 
 namespace tmns::calc::ui {
 
@@ -32,8 +34,10 @@ class LayoutVertical : public LayoutBase
 {
     public:
 
+        /// @brief Pointer Type
         typedef std::shared_ptr<LayoutVertical> ptr_t;
 
+        // Default Constructor
         LayoutVertical() = default;
 
         /**
@@ -41,8 +45,15 @@ class LayoutVertical : public LayoutBase
          */
         void append( WidgetBase::ptr_t new_widget );
 
+        /**
+         * Show the contents of the layout
+         */
+        bool show( core::Session& session ) override;
 
-    private:
+    protected:
+
+        /// Access to widget list
+        std::mutex m_widget_mtx;
 
         /// List of widgets
         std::deque<WidgetBase::ptr_t> m_widgets;

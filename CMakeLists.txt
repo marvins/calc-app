@@ -78,6 +78,11 @@ add_executable( terminus-calculator
     cpp/include/tmns/app/calc/log/HandlerFile.hpp
     cpp/include/tmns/app/calc/log/Level.hpp
     cpp/include/tmns/app/calc/log/Logger.hpp
+    cpp/include/tmns/app/calc/pages/Splash.hpp
+    cpp/include/tmns/app/calc/ui/Label.hpp
+    cpp/include/tmns/app/calc/ui/LayoutBase.hpp
+    cpp/include/tmns/app/calc/ui/LayoutVertical.hpp
+    cpp/include/tmns/app/calc/ui/WidgetBase.hpp
     cpp/include/tmns/app/calc/utils/StringUtilities.hpp
     cpp/src/main.cpp
     cpp/src/core/ConfigParser.cpp
@@ -86,6 +91,9 @@ add_executable( terminus-calculator
     cpp/src/log/HandlerConsole.cpp
     cpp/src/log/Level.cpp
     cpp/src/log/Logger.cpp
+    cpp/src/pages/Splash.cpp
+    cpp/src/ui/Label.cpp
+    cpp/src/ui/LayoutVertical.cpp
     cpp/src/utils/StringUtilities.cpp
 )
 

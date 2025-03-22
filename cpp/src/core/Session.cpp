@@ -17,7 +17,18 @@
 */
 #include <tmns/app/calc/core/Session.hpp>
 
+// C++ Standard Libraries
+#include <thread>
+
 namespace tmns::calc::core {
+
+/************************************************/
+/*          Sleep for Designated Amount         */
+/************************************************/
+void Session::sleep_for( std::chrono::milliseconds sleep_time )
+{
+    std::this_thread::sleep_for( sleep_time );
+}
 
 /****************************************************/
 /*          Create a Session API Instance           */

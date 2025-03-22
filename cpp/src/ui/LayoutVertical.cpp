@@ -8,40 +8,22 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    Options.hpp
+ * @file    LayoutVertical.cpp
  * @author  Marvin Smith
- * @date    3/21/2025
-*/
-#pragma once
+ * @date    03/22/2025
+ *
+ * @details Vertical Layout API
+ */
+#include <tmns/app/calc/ui/LayoutVertical.hpp>
 
-// C++ Standard Libraries
-#include <chrono>
-#include <filesystem>
+namespace tmns::calc::ui {
 
-// Project Libraries
-#include <tmns/app/calc/core/Options.hpp>
+/*****************************************/
+/*         Add Layout to Widget List     */
+/*****************************************/
+void LayoutVertical::append( WidgetBase::ptr_t new_widget ){
+    std::unique_lock<std::mutex> lck( m_widget_mtx );
+    m_widgets.push_back( new_widget );
+}
 
-namespace tmns::calc::core {
-
-class Session final {
-
-    public:
-
-        /**
-         * Sleep for a designated amount
-         */
-        void sleep_for( std::chrono::milliseconds sleep_time );
-
-        /**
-         * Generate a session given command-line instructions
-         */
-        static Session create( Options config );
-
-    private:
-
-        // 
-
-
-}; // End of Session class
-
-} // End of tmns::core namespace
+} // End of tmns::calc::ui namespace

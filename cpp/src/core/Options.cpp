@@ -199,6 +199,14 @@ void Options::generate_config_file( const std::filesystem::path& pathname )
     fout << "screen_height=780" << std::endl;
     fout << std::endl;
 
+    fout << "#  Section for the Primary Menu" << std::endl;
+    fout << "[menu]" << std::endl;
+    fout << std::endl;
+    fout << "#  Icon to use for the splash screen" << std::endl;
+    fout << "splash_icon=./cpp/resources/icon.png" << std::endl;
+    fout << std::endl;
+    
+
 }
 
 /************************************************/

@@ -8,40 +8,34 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    Options.hpp
+ * @file    Splash.cpp
  * @author  Marvin Smith
- * @date    3/21/2025
-*/
-#pragma once
-
-// C++ Standard Libraries
-#include <chrono>
-#include <filesystem>
+ * @date    3/22/2025
+ */
+#include <tmns/app/calc/pages/Splash.hpp>
 
 // Project Libraries
-#include <tmns/app/calc/core/Options.hpp>
+#include <tmns/app/calc/ui/Label.hpp>
 
-namespace tmns::calc::core {
+namespace tmns::calc::page {
 
-class Session final {
+/************************************/
+/*          Build Instance          */
+/************************************/
+Splash::ptr_t Splash::create( const core::Options& config,
+                              core::Session&       session )
+{
+    auto splash = std::make_shared<Splash>();
+    
+    // Load the icon first
+    auto icon_label = ui::Label::from_image( config.get_path("menu","splash_icon") );
+    splash->append( icon_label );
 
-    public:
+    // Add a text label
+    auto text_label = ui::Label::from_text( "Terminus Converter" );
+    splash->append( text_label );
 
-        /**
-         * Sleep for a designated amount
-         */
-        void sleep_for( std::chrono::milliseconds sleep_time );
+    return splash;
+}
 
-        /**
-         * Generate a session given command-line instructions
-         */
-        static Session create( Options config );
-
-    private:
-
-        // 
-
-
-}; // End of Session class
-
-} // End of tmns::core namespace
+} // End of tmns::calc::page namespace

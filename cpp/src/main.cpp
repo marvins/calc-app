@@ -18,6 +18,7 @@
 #include <tmns/app/calc/core/Session.hpp>
 #include <tmns/app/calc/log/HandlerConsole.hpp>
 #include <tmns/app/calc/log/Logger.hpp>
+#include <tmns/app/calc/pages/Splash.hpp>
 
 int main( int argc, char* argv[] ){
 
@@ -35,9 +36,9 @@ int main( int argc, char* argv[] ){
     auto session = tmns::calc::core::Session::create( config );
 
     // Launch the Splash Screen
-    auto splash = tmns::calc::page::Splash::create( session );
-    splash.show();
-    session.sleep(5);
+    auto splash = tmns::calc::page::Splash::create( config, session );
+    splash->show( session );
+    session.sleep_for( std::chrono::milliseconds(5000) );
 
     return 0;
 }

@@ -17,6 +17,7 @@
 #pragma once
 
 // Project Libraries
+#include <tmns/app/calc/core/Session.hpp>
 #include <tmns/app/calc/ui/Frame.hpp>
 
 namespace tmns::calc::ui {
@@ -28,7 +29,10 @@ class LayoutBase : public Frame
 {
     public:
 
-
+        /**
+         * Show the contents of the layout on the screen
+         */
+        virtual bool show( core::Session& session ) = 0;
 
     private:
 
