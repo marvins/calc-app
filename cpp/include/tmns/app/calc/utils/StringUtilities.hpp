@@ -21,6 +21,11 @@
 namespace tmns::calc::utils {
 
 /**
+ * Make the string lower-case
+ */
+std::string to_lower( const std::string& input );
+
+/**
  * @brief Trim the string
  */
 std::string string_trim( const std::string& input,
@@ -31,5 +36,6 @@ std::string string_trim( const std::string& input,
  */
 std::vector<std::string> string_split( const std::string& input,
                                        char               deliminator );
+
 
 } // End of tmns::calc::utils namespace

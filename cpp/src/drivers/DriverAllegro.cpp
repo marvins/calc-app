@@ -37,7 +37,8 @@ bool Driver_Allegro::initialize( core::Options& config )
 
     m_queue = al_create_event_queue();
 
-    m_display = al_create_display(320, 200);
+    // Configure display
+    configure_display( config );
 
     m_font = al_create_builtin_font();
 
@@ -60,17 +61,39 @@ void Driver_Allegro::finalize()
     al_destroy_event_queue( m_queue );    
 }
 
+/******************************************/
+/*        Get the screen dimensions       */
+/******************************************/
+img::Dimensions Driver_Allegro::get_screen_dimensions() const
+{
+    return img::Dimensions( al_get_display_width( m_display ),
+                            al_get_display_height( m_display ),
+                            3 );
+}
+
 /************************************/
 /*          Load the Image          */
 /************************************/
-ui::Frame::ptr_t Driver_Allegro::load_image( const std::filesystem::path& pathname )
+img::Frame::ptr_t Driver_Allegro::load_image( const std::filesystem::path& pathname )
 {
     auto img = cv::imread( pathname.native(), cv::IMREAD_COLOR );
 
     // build new frame instance
-    auto frame = std::make_shared<ui::Frame>( img.cols, img.rows, img.channels() );
+    auto frame = std::make_shared<img::Frame>( img::Dimensions( img.cols, img.rows, img.channels() ) );
 
     return frame;
+}
+
+/********************************************/
+/*          Print Log-Friendly String       */
+/********************************************/
+std::string Driver_Allegro::to_log_string( size_t offset ) const
+{
+    std::string gap( offset, ' ' );
+    std::stringstream sout;
+    sout << gap << "Driver_Allegro:" << std::endl;
+    
+    return sout.str();
 }
 
 /************************************************/
@@ -83,6 +106,28 @@ Driver_Allegro::ptr_t Driver_Allegro::create( core::Options& config )
 
     driver->initialize( config );
     return driver;
+}
+
+/************************************************/
+/*          Configure Display Settings          */
+/************************************************/
+void Driver_Allegro::configure_display( core::Options& config )
+{
+    img::Dimensions img_dims;
+    if( config.setting<bool>( "display", "override_screen_size" ) ){
+
+        // Get size parameters
+        img_dims.set_cols( config.setting<int>( "display", "screen_width" ) );
+        img_dims.set_rows( config.setting<int>( "display", "screen_height" ) );
+        img_dims.set_channels( 3 );
+    }
+
+    // Currently not implemented
+    else {
+        throw std::runtime_error( "Unable to get display settings at this time.");
+    }
+
+    m_display = al_create_display( img_dims.cols(), img_dims.rows() );
 }
 
 } // End of tmns::calc::drv namespace

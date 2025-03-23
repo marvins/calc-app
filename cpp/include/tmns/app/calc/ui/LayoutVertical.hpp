@@ -49,7 +49,7 @@ class LayoutVertical : public LayoutBase
          * Show the contents of the layout
          */
         bool render( core::Session& session,
-                     Frame&         image ) override;
+                     img::Frame&    image ) override;
 
     protected:
 

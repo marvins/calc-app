@@ -18,7 +18,7 @@
 
 // Project Libraries
 #include <tmns/app/calc/drivers/DriverBase.hpp>
-#include <tmns/app/calc/ui/Frame.hpp>
+#include <tmns/app/calc/image/Frame.hpp>
 #include <tmns/app/calc/ui/WidgetBase.hpp>
 
 namespace tmns::calc::ui {
@@ -34,7 +34,7 @@ class Label : public WidgetBase {
          * Show the label
          */
         bool render( core::Session& session,
-                     Frame&         image ) override;
+                     img::Frame&    image ) override;
 
         /**
          * Load an image and store in the label
@@ -51,7 +51,7 @@ class Label : public WidgetBase {
     private:
 
         /// Pixel Data
-        Frame::ptr_t m_image { nullptr };
+        img::Frame::ptr_t m_image { nullptr };
 
 }; // End of Label Class
 

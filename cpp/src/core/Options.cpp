@@ -191,7 +191,7 @@ void Options::generate_config_file( const std::filesystem::path& pathname )
     fout << "[display]" << std::endl;
     fout << std::endl;
     fout << "#  Allow the system to determine screen size.  Set to true for embedded systems." << std::endl;
-    fout << "override_screen_size=false" << std::endl;
+    fout << "override_screen_size=true" << std::endl;
     fout << std::endl;
 
     fout << "#  Set the default screen size" << std::endl;
@@ -203,7 +203,7 @@ void Options::generate_config_file( const std::filesystem::path& pathname )
     fout << "[menu]" << std::endl;
     fout << std::endl;
     fout << "#  Icon to use for the splash screen" << std::endl;
-    fout << "splash_icon_path=./cpp/resources/icon.png" << std::endl;
+    fout << "splash_icon_path=./cpp/resources/logo.png" << std::endl;
     fout << std::endl;
     fout << "#  Sleep time in ms for splash screen" << std::endl;
     fout << "splash_time_sleep_ms=50000" << std::endl;

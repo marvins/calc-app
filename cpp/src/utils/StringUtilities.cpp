@@ -15,9 +15,25 @@
 #include <tmns/app/calc/utils/StringUtilities.hpp>
 
 // C++ Standard Libraries
+#include <algorithm>
 #include <sstream>
 
 namespace tmns::calc::utils {
+
+/********************************************/
+/*          Convert to Lower-Case           */
+/********************************************/
+std::string to_lower( const std::string& input )
+{
+    std::string result = input;
+    std::transform( result.begin(),
+                    result.end(),
+                    result.begin(),
+                    [](unsigned char c) {
+                        return std::tolower(c);
+                    });
+    return result;
+}
 
 /************************************/
 /*          Trim the String         */

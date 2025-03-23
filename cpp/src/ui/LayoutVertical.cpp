@@ -30,7 +30,7 @@ void LayoutVertical::append( WidgetBase::ptr_t new_widget ){
 /*          Show the Contents           */
 /****************************************/
 bool LayoutVertical::render( core::Session& session,
-                             Frame&         image )
+                             img::Frame&    image )
 {
     return false;
 }

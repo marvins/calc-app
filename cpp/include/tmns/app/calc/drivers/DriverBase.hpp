@@ -16,7 +16,7 @@
 
 // Project Libraries
 #include <tmns/app/calc/core/Options.hpp>
-#include <tmns/app/calc/ui/Frame.hpp>
+#include <tmns/app/calc/image/Frame.hpp>
 
 namespace tmns::calc::drv {
 
@@ -38,10 +38,19 @@ class Driver_Base {
         virtual void finalize() = 0;
 
         /**
+         * Get default screen dimensions
+         */
+        virtual img::Dimensions get_screen_dimensions() const = 0;
+
+        /**
          * Load image from disk
          */
-        virtual ui::Frame::ptr_t load_image( const std::filesystem::path& path ) = 0;
+        virtual img::Frame::ptr_t load_image( const std::filesystem::path& path ) = 0;
 
+        /**
+         * Print Log-Friendly String
+         */
+        virtual std::string to_log_string( size_t offset = 0 ) const = 0;
 
 }; // End of Driver_Base class
 

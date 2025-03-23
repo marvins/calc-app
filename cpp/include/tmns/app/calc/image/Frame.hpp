@@ -8,7 +8,7 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    WidgetBase.hpp
+ * @file    Frame.hpp
  * @author  Marvin Smith
  * @date    03/21/2025
  *
@@ -20,7 +20,10 @@
 #include <memory>
 #include <vector>
 
-namespace tmns::calc::ui {
+// Project Libraries
+#include <tmns/app/calc/image/Primitives.hpp>
+
+namespace tmns::calc::img {
 
 /**
  * @class Frame
@@ -40,31 +43,40 @@ struct Frame {
         /**
          * Parameterized Constructor
          */
-        Frame( int rows, int cols, int channels );
+        Frame( const Dimensions& dims );
 
-        inline int rows() const { return m_rows; }
+        /**
+         * Get the image dimensions
+         */
+        inline Dimensions dims() const { return m_dims; }
 
-        inline int cols() const { return m_cols; }
-
-        inline int channels() const { return m_channels; }
-
-        std::vector<char> image() const{
+        /**
+         * Get a copy of the pixel data
+         */
+        inline std::vector<char> image() const{
             return m_image;
         }
 
-        std::vector<char>& image() {
+        /**
+         * Get a reference of the pixel data
+         */
+        inline std::vector<char>& image_ref() {
             return m_image;
         }
+
+        /**
+         * Resize the image to new dimensions
+         */
+        void resize( Dimensions new_dims );
 
     private:
 
         /// @brief  Pixel Data
         std::vector<char> m_image;
 
-        int m_rows { 0 };
-        int m_cols { 0 };
-        int m_channels { 0 };
+        // Image Dimensions
+        Dimensions m_dims {};
     
 };// End of Frame class
 
-} // End of tmns::calc::ui namespace
+} // End of tmns::calc::img namespace

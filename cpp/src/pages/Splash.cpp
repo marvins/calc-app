@@ -19,12 +19,14 @@
 
 namespace tmns::calc::page {
 
+/**************************************/
 /*          Show Splash Screen        */
 /**************************************/
 void Splash::show( core::Options& config,
                    core::Session& session )
 {
-
+    // Render the internal layout on top of the view
+    
 }
 
 /************************************/

@@ -21,7 +21,7 @@
 
 // Project Libraries
 #include <tmns/app/calc/core/Session.hpp>
-#include <tmns/app/calc/ui/Frame.hpp>
+#include <tmns/app/calc/image/Frame.hpp>
 
 namespace tmns::calc::ui {
 
@@ -39,7 +39,7 @@ class WidgetBase
          * @brief Render the image to the desired screen instance
          */
         virtual bool render( core::Session& session,
-                             Frame&         image ) = 0;
+                             img::Frame&    image ) = 0;
 
     private:
 

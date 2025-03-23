@@ -8,25 +8,30 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    Frame.cpp
+ * @file    Primitives.hpp
  * @author  Marvin Smith
- * @date    03/22/2025
+ * @date    03/23/2025
  *
- * @details Image Frame
+ * @details Image Primivite Types
  */
-#include <tmns/app/calc/ui/Frame.hpp>
+#include <tmns/app/calc/image/Primitives.hpp>
 
-namespace tmns::calc::ui {
+namespace tmns::calc::img {
 
 /********************************/
 /*          Constructor         */
 /********************************/
-Frame::Frame( int rows, int cols, int channels )
-  : m_rows { rows },
-    m_cols { cols },
-    m_channels { channels }
-{
-    m_image.resize( rows * cols * channels );
+Dimensions::Dimensions( size_t cols, size_t rows, size_t channels )
+    : m_cols { cols },
+      m_rows { rows },
+      m_channels { channels }
+{}
+
+/********************************************/
+/*          Get the size in bytes           */
+/********************************************/
+size_t Dimensions::size_bytes() const {
+    return m_rows * m_cols * m_channels;
 }
 
-} // End of tmns::calc::ui namespace
+} // End of tmns::calc::img namespace

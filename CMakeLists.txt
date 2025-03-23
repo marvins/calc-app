@@ -87,13 +87,15 @@ add_executable( terminus-calculator
     cpp/include/tmns/app/calc/core/Session.hpp
     cpp/include/tmns/app/calc/drivers/DriverAllegro.hpp
     cpp/include/tmns/app/calc/drivers/DriverBase.hpp
+    cpp/include/tmns/app/calc/image/Frame.hpp
+    cpp/include/tmns/app/calc/image/Primitives.hpp
     cpp/include/tmns/app/calc/log/HandlerBase.hpp
     cpp/include/tmns/app/calc/log/HandlerConsole.hpp
     cpp/include/tmns/app/calc/log/HandlerFile.hpp
     cpp/include/tmns/app/calc/log/Level.hpp
     cpp/include/tmns/app/calc/log/Logger.hpp
     cpp/include/tmns/app/calc/pages/Splash.hpp
-    cpp/include/tmns/app/calc/ui/Frame.hpp
+    cpp/include/tmns/app/calc/ui/EventType.hpp
     cpp/include/tmns/app/calc/ui/Label.hpp
     cpp/include/tmns/app/calc/ui/LayoutBase.hpp
     cpp/include/tmns/app/calc/ui/LayoutVertical.hpp
@@ -104,11 +106,13 @@ add_executable( terminus-calculator
     cpp/src/core/Options.cpp
     cpp/src/core/Session.cpp
     cpp/src/drivers/DriverAllegro.cpp
+    cpp/src/image/Frame.cpp
+    cpp/src/image/Primitives.cpp
     cpp/src/log/HandlerConsole.cpp
     cpp/src/log/Level.cpp
     cpp/src/log/Logger.cpp
     cpp/src/pages/Splash.cpp
-    cpp/src/ui/Frame.cpp
+    cpp/src/ui/EventType.cpp
     cpp/src/ui/Label.cpp
     cpp/src/ui/LayoutVertical.cpp
     cpp/src/utils/StringUtilities.cpp

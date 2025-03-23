@@ -35,7 +35,7 @@ drv::Driver_Base::ptr_t Session::driver() const{
 /****************************************/
 /*          Get Frame Instance          */
 /****************************************/
-ui::Frame& Session::active_frame(){
+img::Frame& Session::active_frame(){
     return m_active_frame;
 }
 
@@ -61,6 +61,9 @@ Session Session::create( Options config )
     #error Not supported yet
 #endif
     return new_session;
+
+    // Set the default frame size
+    new_session.m_active_frame.resize( new_session.driver()->get_screen_dimensions() );
 }
 
 } // End of tmns::calc::core namespace

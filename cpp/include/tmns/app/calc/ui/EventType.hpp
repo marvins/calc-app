@@ -8,35 +8,29 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    LayoutBase.hpp
+ * @file    EventType.hpp
  * @author  Marvin Smith
- * @date    03/21/2025
+ * @date    03/23/2025
  *
- * @details Base Layout API
+ * @details Represent Events from the UI.
  */
 #pragma once
 
-// Project Libraries
-#include <tmns/app/calc/core/Session.hpp>
-#include <tmns/app/calc/image/Frame.hpp>
+// C++ Standard Libraries
+#include <string>
 
 namespace tmns::calc::ui {
 
+enum class EventType {
+    KEYBOARD_DOWN  =  1,
+    KEYBOARD_LEFT  =  2,
+    KEYBOARD_RIGHT =  3,
+    KEYBOARD_UP    =  4,
+}; // End of EventType Event
+
 /**
- * @class LayoutBase
+ * Convert the event-type to string
  */
-class LayoutBase
-{
-    public:
-
-        /**
-         * Show the contents of the layout on the screen
-         */
-        virtual bool render( core::Session& session,
-                             img::Frame&    image ) = 0;
-
-    private:
-
-};// End of LayoutBase class
+std::string to_string( EventType tp );
 
 } // End of tmns::calc::ui namespace

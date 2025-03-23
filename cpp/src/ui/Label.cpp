@@ -20,7 +20,7 @@ namespace tmns::calc::ui {
 /*      Render the Image        */
 /********************************/
 bool Label::render( core::Session& session,
-                    Frame&         image )
+                    img::Frame&    image )
 {
     return false;
 }

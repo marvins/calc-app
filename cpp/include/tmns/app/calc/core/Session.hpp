@@ -21,6 +21,7 @@
 // Project Libraries
 #include <tmns/app/calc/core/Options.hpp>
 #include <tmns/app/calc/drivers/DriverBase.hpp>
+#include <tmns/app/calc/image/Frame.hpp>
 
 namespace tmns::calc::core {
 
@@ -36,7 +37,7 @@ class Session final {
         /**
          * Get a copy of the current screen buffer
          */
-        ui::Frame& active_frame();
+        img::Frame& active_frame();
 
         /**
          * Sleep for a designated amount
@@ -54,7 +55,7 @@ class Session final {
         drv::Driver_Base::ptr_t m_driver;
 
         // Active Frame
-        ui::Frame m_active_frame;
+        img::Frame m_active_frame;
 
 
 }; // End of Session class

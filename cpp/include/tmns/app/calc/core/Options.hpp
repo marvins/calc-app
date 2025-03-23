@@ -22,6 +22,7 @@
 
 // Project Libraries
 #include <tmns/app/calc/log/Level.hpp>
+#include <tmns/app/calc/utils/StringUtilities.hpp>
 
 namespace tmns::calc::core {
 
@@ -36,6 +37,16 @@ class Options final {
         VALTYPE setting( const std::string& section,
                          const std::string& key ) const {
             return m_settings.find(section)->second.find(key)->second;
+        }
+
+        /**
+         * Instanciation for bools
+         */
+        template <typename VALTYPE>
+        VALTYPE setting( const std::string& section,
+                         const std::string& key ) const requires std::is_same<VALTYPE,bool>::value {
+            auto bval = utils::to_lower( setting<std::string>( section, key ) );
+            return ( bval == "true" || bval == "1" );
         }
 
         /**

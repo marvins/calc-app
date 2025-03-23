@@ -47,14 +47,28 @@ class Driver_Allegro : public Driver_Base {
         void finalize() override;
 
         /**
+         * Get screen dimensions
+         */
+        img::Dimensions get_screen_dimensions() const override;
+
+        /**
          * Load image from disk.
          */
-        ui::Frame::ptr_t load_image( const std::filesystem::path& path ) override;
+        img::Frame::ptr_t load_image( const std::filesystem::path& path ) override;
 
+        /**
+         * Print log-friendly string
+         */
+        std::string to_log_string( size_t offset = 0 ) const override;
+        
         /**
          * Create a new instance of the driver.
          */
         static Driver_Allegro::ptr_t create( core::Options& config );
+
+    protected:
+
+        void configure_display( core::Options& options );
 
     private:
 
