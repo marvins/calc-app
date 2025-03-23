@@ -69,7 +69,7 @@ if( ${RENDER_DRIVER} STREQUAL "allegro" )
     set( EXTRA_LIBS ${EXTRA_LIBS} ${OpenCV_LIBRARIES} )
 
 
-    set( EXTRA_SOURCES cpp/include/tmns/app/calc/drivers/DriverAllegro.hpp
+    set( EXTRA_SOURCES cpp/include/terminus/app/calc/drivers/DriverAllegro.hpp
                        cpp/src/drivers/DriverAllegro.cpp )
 #----------------------------
 #  Raylib
@@ -93,7 +93,7 @@ elseif( ${RENDER_DRIVER} STREQUAL "raylib" )
     message( "OpenCV_LIBRARIES: ${OpenCV_LIBRARIES}" )
     set( EXTRA_LIBS ${EXTRA_LIBS} ${OpenCV_LIBRARIES} )
 
-    set( EXTRA_SOURCES cpp/include/tmns/app/calc/drivers/DriverRaylib.hpp
+    set( EXTRA_SOURCES cpp/include/terminus/app/calc/drivers/DriverRaylib.hpp
                        cpp/src/drivers/DriverRaylib.cpp )
 
 else()
@@ -111,28 +111,28 @@ include_directories( cpp/include )
 #-       Build Application      -#
 #--------------------------------#
 add_executable( terminus-calculator
-    cpp/include/tmns/app/calc/core/ConfigParser.hpp
-    cpp/include/tmns/app/calc/core/Options.hpp
-    cpp/include/tmns/app/calc/core/Session.hpp
-    cpp/include/tmns/app/calc/drivers/DriverAllegro.hpp
-    cpp/include/tmns/app/calc/drivers/DriverBase.hpp
-    cpp/include/tmns/app/calc/image/Frame.hpp
-    cpp/include/tmns/app/calc/image/FrameView.hpp
-    cpp/include/tmns/app/calc/image/Primitives.hpp
-    cpp/include/tmns/app/calc/log/HandlerBase.hpp
-    cpp/include/tmns/app/calc/log/HandlerConsole.hpp
-    cpp/include/tmns/app/calc/log/HandlerFile.hpp
-    cpp/include/tmns/app/calc/log/Level.hpp
-    cpp/include/tmns/app/calc/log/Logger.hpp
-    cpp/include/tmns/app/calc/pages/Splash.hpp
-    cpp/include/tmns/app/calc/ui/EventType.hpp
-    cpp/include/tmns/app/calc/ui/Label.hpp
-    cpp/include/tmns/app/calc/ui/LayoutBase.hpp
-    cpp/include/tmns/app/calc/ui/LayoutVertical.hpp
-    cpp/include/tmns/app/calc/ui/WidgetBase.hpp
-    cpp/include/tmns/app/calc/ui/WidgetLayoutItem.hpp
-    cpp/include/tmns/app/calc/utils/StringUtilities.hpp
-    cpp/include/tmns/math/Rectangle.hpp
+    cpp/include/terminus/app/calc/core/ConfigParser.hpp
+    cpp/include/terminus/app/calc/core/Options.hpp
+    cpp/include/terminus/app/calc/core/Session.hpp
+    cpp/include/terminus/app/calc/drivers/DriverAllegro.hpp
+    cpp/include/terminus/app/calc/drivers/DriverBase.hpp
+    cpp/include/terminus/app/calc/image/Frame.hpp
+    cpp/include/terminus/app/calc/image/FrameView.hpp
+    cpp/include/terminus/app/calc/image/Primitives.hpp
+    cpp/include/terminus/app/calc/log/HandlerBase.hpp
+    cpp/include/terminus/app/calc/log/HandlerConsole.hpp
+    cpp/include/terminus/app/calc/log/HandlerFile.hpp
+    cpp/include/terminus/app/calc/log/Level.hpp
+    cpp/include/terminus/app/calc/log/Logger.hpp
+    cpp/include/terminus/app/calc/pages/Splash.hpp
+    cpp/include/terminus/app/calc/ui/EventType.hpp
+    cpp/include/terminus/app/calc/ui/Label.hpp
+    cpp/include/terminus/app/calc/ui/LayoutBase.hpp
+    cpp/include/terminus/app/calc/ui/LayoutVertical.hpp
+    cpp/include/terminus/app/calc/ui/WidgetBase.hpp
+    cpp/include/terminus/app/calc/ui/WidgetLayoutItem.hpp
+    cpp/include/terminus/app/calc/utils/StringUtilities.hpp
+    cpp/include/terminus/math/Rectangle.hpp
     cpp/src/main.cpp
     cpp/src/core/ConfigParser.cpp
     cpp/src/core/Options.cpp
