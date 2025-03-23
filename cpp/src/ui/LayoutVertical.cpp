@@ -26,4 +26,14 @@ void LayoutVertical::append( WidgetBase::ptr_t new_widget ){
     m_widgets.push_back( new_widget );
 }
 
+/****************************************/
+/*          Show the Contents           */
+/****************************************/
+bool LayoutVertical::render( core::Session& session,
+                             Frame&         image )
+{
+    return false;
+}
+
+
 } // End of tmns::calc::ui namespace

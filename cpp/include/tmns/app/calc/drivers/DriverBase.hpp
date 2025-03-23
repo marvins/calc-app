@@ -16,6 +16,7 @@
 
 // Project Libraries
 #include <tmns/app/calc/core/Options.hpp>
+#include <tmns/app/calc/ui/Frame.hpp>
 
 namespace tmns::calc::drv {
 
@@ -35,6 +36,12 @@ class Driver_Base {
          * Finalize / Destroy the driver
          */
         virtual void finalize() = 0;
+
+        /**
+         * Load image from disk
+         */
+        virtual ui::Frame::ptr_t load_image( const std::filesystem::path& path ) = 0;
+
 
 }; // End of Driver_Base class
 

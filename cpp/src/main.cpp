@@ -37,8 +37,7 @@ int main( int argc, char* argv[] ){
 
     // Launch the Splash Screen
     auto splash = tmns::calc::page::Splash::create( config, session );
-    splash->show( session );
-    session.sleep_for( std::chrono::milliseconds(5000) );
+    splash->show( config, session );
 
     return 0;
 }

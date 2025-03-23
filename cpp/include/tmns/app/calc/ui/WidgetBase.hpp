@@ -38,8 +38,8 @@ class WidgetBase
         /**
          * @brief Render the image to the desired screen instance
          */
-        virtual bool render( const core::Session& session,
-                             Frame&               image ) = 0;
+        virtual bool render( core::Session& session,
+                             Frame&         image ) = 0;
 
     private:
 

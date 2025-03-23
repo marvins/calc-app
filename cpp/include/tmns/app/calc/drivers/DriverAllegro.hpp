@@ -20,15 +20,21 @@
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_font.h>
 
+// OpenCV APIs
+
+
 // Project Libraries
 #include <tmns/app/calc/core/Options.hpp>
 #include <tmns/app/calc/drivers/DriverBase.hpp>
 
 namespace tmns::calc::drv {
 
-class Driver_Allegro {
+class Driver_Allegro : public Driver_Base {
 
     public:
+
+        /// Pointer Type
+        using ptr_t = std::shared_ptr<Driver_Allegro>;
 
         /**
          * Initialize Library
@@ -39,6 +45,16 @@ class Driver_Allegro {
          * Close / Finalize
          */
         void finalize() override;
+
+        /**
+         * Load image from disk.
+         */
+        ui::Frame::ptr_t load_image( const std::filesystem::path& path ) override;
+
+        /**
+         * Create a new instance of the driver.
+         */
+        static Driver_Allegro::ptr_t create( core::Options& config );
 
     private:
 

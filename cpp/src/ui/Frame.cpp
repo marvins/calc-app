@@ -8,35 +8,25 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    LayoutBase.hpp
+ * @file    Frame.cpp
  * @author  Marvin Smith
- * @date    03/21/2025
+ * @date    03/22/2025
  *
- * @details Base Layout API
+ * @details Image Frame
  */
-#pragma once
-
-// Project Libraries
-#include <tmns/app/calc/core/Session.hpp>
 #include <tmns/app/calc/ui/Frame.hpp>
 
 namespace tmns::calc::ui {
 
-/**
- * @class LayoutBase
- */
-class LayoutBase : public Frame
+/********************************/
+/*          Constructor         */
+/********************************/
+Frame::Frame( int rows, int cols, int channels )
+  : m_rows { rows },
+    m_cols { cols },
+    m_channels { channels }
 {
-    public:
-
-        /**
-         * Show the contents of the layout on the screen
-         */
-        virtual bool render( core::Session& session,
-                             Frame&         image ) = 0;
-
-    private:
-
-};// End of LayoutBase class
+    m_image.resize( rows * cols * channels );
+}
 
 } // End of tmns::calc::ui namespace

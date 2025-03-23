@@ -19,6 +19,14 @@
 
 namespace tmns::calc::page {
 
+/*          Show Splash Screen        */
+/**************************************/
+void Splash::show( core::Options& config,
+                   core::Session& session )
+{
+
+}
+
 /************************************/
 /*          Build Instance          */
 /************************************/
@@ -28,11 +36,13 @@ Splash::ptr_t Splash::create( const core::Options& config,
     auto splash = std::make_shared<Splash>();
     
     // Load the icon first
-    auto icon_label = ui::Label::from_image( config.get_path("menu","splash_icon") );
+    auto icon_label = ui::Label::from_image( config.setting<std::filesystem::path>("menu","splash_icon_path"),
+                                             session.driver() );
     splash->append( icon_label );
 
     // Add a text label
-    auto text_label = ui::Label::from_text( "Terminus Converter" );
+    auto text_label = ui::Label::from_text( "Terminus Converter",
+                                            session.driver() );
     splash->append( text_label );
 
     return splash;

@@ -203,7 +203,10 @@ void Options::generate_config_file( const std::filesystem::path& pathname )
     fout << "[menu]" << std::endl;
     fout << std::endl;
     fout << "#  Icon to use for the splash screen" << std::endl;
-    fout << "splash_icon=./cpp/resources/icon.png" << std::endl;
+    fout << "splash_icon_path=./cpp/resources/icon.png" << std::endl;
+    fout << std::endl;
+    fout << "#  Sleep time in ms for splash screen" << std::endl;
+    fout << "splash_time_sleep_ms=50000" << std::endl;
     fout << std::endl;
     
 

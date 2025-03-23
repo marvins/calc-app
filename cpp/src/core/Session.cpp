@@ -17,10 +17,27 @@
 */
 #include <tmns/app/calc/core/Session.hpp>
 
+// Project Libraries
+#include <tmns/app/calc/drivers/DriverAllegro.hpp>
+
 // C++ Standard Libraries
 #include <thread>
 
 namespace tmns::calc::core {
+
+/****************************************/
+/*          Get Copy of Driver          */
+/****************************************/
+drv::Driver_Base::ptr_t Session::driver() const{
+    return m_driver;
+}
+
+/****************************************/
+/*          Get Frame Instance          */
+/****************************************/
+ui::Frame& Session::active_frame(){
+    return m_active_frame;
+}
 
 /************************************************/
 /*          Sleep for Designated Amount         */
@@ -39,6 +56,7 @@ Session Session::create( Options config )
     
 #if CALC_PLATFORM == 2
     #warning "Building desktop variant"
+    new_session.m_driver = drv::Driver_Allegro::create( config );
 #else
     #error Not supported yet
 #endif

@@ -50,11 +50,23 @@ if( ${CALC_PLATFORM} STREQUAL "desktop" )
 
     #  Desktop apps will need allegro
     find_package(PkgConfig REQUIRED)
-    pkg_check_modules(ALLEGRO5 REQUIRED allegro)
+    pkg_check_modules( ALLEGRO5 REQUIRED allegro-5 allegro_font-5 )
 
     #  Desktop apps will need a flag to tell them to use allegro rather than any other option
     add_compile_definitions( CALC_PLATFORM=2 )
 
+    message( "ALLEGRO5_FOUND: ${ALLEGRO5_FOUND}" )
+    message( "ALLEGRO5_INCLUDE_DIRS: ${ALLEGRO5_INCLUDE_DIRS}" )
+    message( "ALLEGRO5_LIBRARIES: ${ALLEGRO5_LIBRARIES}" )
+
+    include_directories( ${ALLEGRO5_INCLUDE_DIRS} )
+    set( EXTRA_LIBS ${ALLEGRO5_LIBRARIES} )
+
+    #  OpenCV
+    find_package( OpenCV REQUIRED opencv_imgcodecs )
+    message( "OpenCV_INCLUDE_DIRS: ${OpenCV_INCLUDE_DIRS}" )
+    message( "OpenCV_LIBRARIES: ${OpenCV_LIBRARIES}" )
+    set( EXTRA_LIBS ${EXTRA_LIBS} ${OpenCV_LIBRARIES} )
 else()
 
     add_compile_definitions( CALC_PLATFORM=1 )
@@ -73,12 +85,15 @@ add_executable( terminus-calculator
     cpp/include/tmns/app/calc/core/ConfigParser.hpp
     cpp/include/tmns/app/calc/core/Options.hpp
     cpp/include/tmns/app/calc/core/Session.hpp
+    cpp/include/tmns/app/calc/drivers/DriverAllegro.hpp
+    cpp/include/tmns/app/calc/drivers/DriverBase.hpp
     cpp/include/tmns/app/calc/log/HandlerBase.hpp
     cpp/include/tmns/app/calc/log/HandlerConsole.hpp
     cpp/include/tmns/app/calc/log/HandlerFile.hpp
     cpp/include/tmns/app/calc/log/Level.hpp
     cpp/include/tmns/app/calc/log/Logger.hpp
     cpp/include/tmns/app/calc/pages/Splash.hpp
+    cpp/include/tmns/app/calc/ui/Frame.hpp
     cpp/include/tmns/app/calc/ui/Label.hpp
     cpp/include/tmns/app/calc/ui/LayoutBase.hpp
     cpp/include/tmns/app/calc/ui/LayoutVertical.hpp
@@ -88,15 +103,18 @@ add_executable( terminus-calculator
     cpp/src/core/ConfigParser.cpp
     cpp/src/core/Options.cpp
     cpp/src/core/Session.cpp
+    cpp/src/drivers/DriverAllegro.cpp
     cpp/src/log/HandlerConsole.cpp
     cpp/src/log/Level.cpp
     cpp/src/log/Logger.cpp
     cpp/src/pages/Splash.cpp
+    cpp/src/ui/Frame.cpp
     cpp/src/ui/Label.cpp
     cpp/src/ui/LayoutVertical.cpp
     cpp/src/utils/StringUtilities.cpp
 )
 
-
+target_link_libraries( terminus-calculator 
+                       ${EXTRA_LIBS} )
 
 

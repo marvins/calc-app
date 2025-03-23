@@ -11,13 +11,14 @@
  * @file    Options.hpp
  * @author  Marvin Smith
  * @date    3/21/2025
-*/
+ */
 #pragma once
 
 // C++ Standard Libraries
 #include <filesystem>
 #include <map>
 #include <string>
+#include <type_traits>
 
 // Project Libraries
 #include <tmns/app/calc/log/Level.hpp>
@@ -28,6 +29,43 @@ class Options final {
 
     public:
 
+        /**
+         * Get the configuration settings
+         */
+        template <typename VALTYPE>
+        VALTYPE setting( const std::string& section,
+                         const std::string& key ) const {
+            return m_settings.find(section)->second.find(key)->second;
+        }
+
+        /**
+         * Instanciation for integers
+         */
+        template <typename VALTYPE>
+        VALTYPE setting( const std::string& section,
+                         const std::string& key ) const requires std::is_same<VALTYPE,int32_t>::value {
+            return std::stoi( setting<std::string>( section, key ) );
+        }
+
+        /**
+         * Instanciation for floats
+         */
+        template <typename VALTYPE>
+        VALTYPE setting( const std::string& section,
+                         const std::string& key ) const requires std::is_same<VALTYPE,float>::value {
+            return std::stof( setting<std::string>( section, key ) );
+        }
+
+        /**
+         * Instanciation for paths
+         */
+        template <typename VALTYPE>
+        VALTYPE setting( const std::string& section,
+                         const std::string& key ) const requires std::is_same<VALTYPE,std::filesystem::path>::value {
+            return std::filesystem::path( setting<std::string>( section, key ) );
+        }
+
+        
         /**
          * Get the log severity
          */

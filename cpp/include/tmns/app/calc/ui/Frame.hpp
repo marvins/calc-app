@@ -18,6 +18,7 @@
 
 // C++ Libraries
 #include <memory>
+#include <vector>
 
 namespace tmns::calc::ui {
 
@@ -26,11 +27,43 @@ namespace tmns::calc::ui {
  */
 struct Frame {
 
-    std::vector<char> image;
+    public:
 
-    int rows;
-    int cols;
-    int channels;
+        /// @brief  Pointer Type
+        using ptr_t = std::shared_ptr<Frame>;
+
+        /**
+         * Constructor
+         */
+        Frame() = default;
+
+        /**
+         * Parameterized Constructor
+         */
+        Frame( int rows, int cols, int channels );
+
+        inline int rows() const { return m_rows; }
+
+        inline int cols() const { return m_cols; }
+
+        inline int channels() const { return m_channels; }
+
+        std::vector<char> image() const{
+            return m_image;
+        }
+
+        std::vector<char>& image() {
+            return m_image;
+        }
+
+    private:
+
+        /// @brief  Pixel Data
+        std::vector<char> m_image;
+
+        int m_rows { 0 };
+        int m_cols { 0 };
+        int m_channels { 0 };
     
 };// End of Frame class
 

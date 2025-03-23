@@ -31,6 +31,12 @@ class Label : public WidgetBase {
         using ptr_t = std::shared_ptr<Label>;
 
         /**
+         * Show the label
+         */
+        bool render( core::Session& session,
+                     Frame&         image ) override;
+
+        /**
          * Load an image and store in the label
          */
         static Label::ptr_t from_image( const std::filesystem::path& image_path,

@@ -20,12 +20,23 @@
 
 // Project Libraries
 #include <tmns/app/calc/core/Options.hpp>
+#include <tmns/app/calc/drivers/DriverBase.hpp>
 
 namespace tmns::calc::core {
 
 class Session final {
 
     public:
+
+        /**
+         * Get a copy of the driver
+         */
+        drv::Driver_Base::ptr_t driver() const;
+
+        /**
+         * Get a copy of the current screen buffer
+         */
+        ui::Frame& active_frame();
 
         /**
          * Sleep for a designated amount
@@ -39,7 +50,11 @@ class Session final {
 
     private:
 
-        // 
+        // Internal Driver
+        drv::Driver_Base::ptr_t m_driver;
+
+        // Active Frame
+        ui::Frame m_active_frame;
 
 
 }; // End of Session class

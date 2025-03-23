@@ -25,6 +25,15 @@ class Splash : public ui::LayoutVertical
 {
     public:
 
+        /// Pointer Type
+        using ptr_t = std::shared_ptr<Splash>;
+
+        /**
+         * Show the screen for a bit, then exit
+         */
+        void show( core::Options& config,
+                   core::Session& session );
+
         /**
          * Create a new Splash Screen
          */
