@@ -24,8 +24,8 @@
 
 
 // Project Libraries
-#include <tmns/app/calc/core/Options.hpp>
-#include <tmns/app/calc/drivers/DriverBase.hpp>
+#include <terminus/app/calc/core/Options.hpp>
+#include <terminus/app/calc/drivers/DriverBase.hpp>
 
 namespace tmns::calc::drv {
 

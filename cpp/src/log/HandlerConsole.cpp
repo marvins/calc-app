@@ -14,7 +14,7 @@
  *
  * @details Logging Interface
  */
-#include <tmns/app/calc/log/HandlerConsole.hpp>
+#include <terminus/app/calc/log/HandlerConsole.hpp>
 
 // C++ Standard Libraries
 #include <filesystem>

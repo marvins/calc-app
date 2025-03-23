@@ -12,11 +12,11 @@
  * @author  Marvin Smith
  * @date    3/22/2025
  */
-#include <tmns/app/calc/pages/Splash.hpp>
+#include <terminus/app/calc/pages/Splash.hpp>
 
 // Project Libraries
-#include <tmns/app/calc/image/FrameView.hpp>
-#include <tmns/app/calc/ui/Label.hpp>
+#include <terminus/app/calc/image/FrameView.hpp>
+#include <terminus/app/calc/ui/Label.hpp>
 
 namespace tmns::calc::page {
 
@@ -26,9 +26,11 @@ namespace tmns::calc::page {
 void Splash::show( core::Options& config,
                    core::Session& session )
 {
+    img::FrameView frame_view( session.active_frame() );
+    
     // Render the internal layout on top of the view
     LayoutVertical::render( session,
-                            img::FrameView( session.active_frame() ) );
+                            frame_view );
 
 }
 

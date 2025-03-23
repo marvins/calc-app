@@ -17,9 +17,9 @@
 #pragma once
 
 // Project Libraries
-#include <tmns/app/calc/core/Session.hpp>
-#include <tmns/app/calc/image/FrameView.hpp>
-#include <tmns/app/calc/ui/WidgetLayoutItem.hpp>
+#include <terminus/app/calc/core/Session.hpp>
+#include <terminus/app/calc/image/FrameView.hpp>
+#include <terminus/app/calc/ui/WidgetLayoutItem.hpp>
 
 namespace tmns::calc::ui {
 

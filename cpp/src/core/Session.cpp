@@ -15,13 +15,13 @@
  * @author  Marvin Smith
  * @date    3/21/2025
 */
-#include <tmns/app/calc/core/Session.hpp>
+#include <terminus/app/calc/core/Session.hpp>
 
 // Project Libraries
 #if RENDER_DRIVER == 2
-#include <tmns/app/calc/drivers/DriverAllegro.hpp>
+#include <terminus/app/calc/drivers/DriverAllegro.hpp>
 #elif RENDER_DRIVER == 3
-#include <tmns/app/calc/drivers/DriverRaylib.hpp>
+#include <terminus/app/calc/drivers/DriverRaylib.hpp>
 #endif
 
 // C++ Standard Libraries

@@ -14,7 +14,7 @@
  *
  * @details Base Layout API
  */
-#include <tmns/app/calc/ui/LayoutBase.hpp>
+#include <terminus/app/calc/ui/LayoutBase.hpp>
 
 namespace tmns::calc::ui {
 

@@ -14,7 +14,7 @@
  *
  * @details Log Level Type
  */
-#include <tmns/app/calc/log/Level.hpp>
+#include <terminus/app/calc/log/Level.hpp>
 
 namespace tmns::calc::log {
 

@@ -14,7 +14,7 @@
  *
  * @details Represent Events from the UI.
  */
-#include <tmns/app/calc/ui/EventType.hpp>
+#include <terminus/app/calc/ui/EventType.hpp>
 
 // C++ Standard Libraries
 #include <string>

@@ -15,8 +15,8 @@
 #pragma once
 
 // Project Libraries
-#include <tmns/app/calc/core/Options.hpp>
-#include <tmns/app/calc/image/Frame.hpp>
+#include <terminus/app/calc/core/Options.hpp>
+#include <terminus/app/calc/image/Frame.hpp>
 
 namespace tmns::calc::drv {
 

@@ -14,7 +14,7 @@
  *
  * @details Logging Interface
  */
-#include <tmns/app/calc/log/Logger.hpp>
+#include <terminus/app/calc/log/Logger.hpp>
 
 // C++ Standard Libraries
 #include <memory>

@@ -21,8 +21,8 @@
 #include <type_traits>
 
 // Project Libraries
-#include <tmns/app/calc/log/Level.hpp>
-#include <tmns/app/calc/utils/StringUtilities.hpp>
+#include <terminus/app/calc/log/Level.hpp>
+#include <terminus/app/calc/utils/StringUtilities.hpp>
 
 namespace tmns::calc::core {
 

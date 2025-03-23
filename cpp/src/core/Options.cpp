@@ -12,10 +12,10 @@
  * @author  Marvin Smith
  * @date    3/21/2025
 */
-#include <tmns/app/calc/core/Options.hpp>
+#include <terminus/app/calc/core/Options.hpp>
 
 // Project Libraries
-#include <tmns/app/calc/core/ConfigParser.hpp>
+#include <terminus/app/calc/core/ConfigParser.hpp>
 
 // C++ Standard Libraries
 #include <chrono>

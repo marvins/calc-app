@@ -17,8 +17,8 @@
 #pragma once
 
 // Project Libraries
-#include <tmns/app/calc/log/HandlerBase.hpp>
-#include <tmns/app/calc/log/Level.hpp>
+#include <terminus/app/calc/log/HandlerBase.hpp>
+#include <terminus/app/calc/log/Level.hpp>
 
 // C++ Standard Libraries
 #include <memory>

@@ -17,10 +17,10 @@
 #pragma once
 
 // Project Libraries
-#include <tmns/app/calc/drivers/DriverBase.hpp>
-#include <tmns/app/calc/image/Frame.hpp>
-#include <tmns/app/calc/ui/WidgetBase.hpp>
-#include <tmns/math/Size.hpp>
+#include <terminus/app/calc/drivers/DriverBase.hpp>
+#include <terminus/app/calc/image/Frame.hpp>
+#include <terminus/app/calc/ui/WidgetBase.hpp>
+#include <terminus/math/Size.hpp>
 
 namespace tmns::calc::ui {
 

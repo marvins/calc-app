@@ -15,9 +15,9 @@
 #pragma once
 
 // Project Libraries
-#include <tmns/app/calc/core/Options.hpp>
-#include <tmns/app/calc/core/Session.hpp>
-#include <tmns/app/calc/ui/LayoutVertical.hpp>
+#include <terminus/app/calc/core/Options.hpp>
+#include <terminus/app/calc/core/Session.hpp>
+#include <terminus/app/calc/ui/LayoutVertical.hpp>
 
 namespace tmns::calc::page {
 

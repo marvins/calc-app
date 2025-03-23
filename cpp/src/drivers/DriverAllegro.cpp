@@ -14,7 +14,7 @@
  *
  * @details Vertical Layout API
  */
-#include <tmns/app/calc/drivers/DriverAllegro.hpp>
+#include <terminus/app/calc/drivers/DriverAllegro.hpp>
 
 // OpenCV Libraries
 #include <opencv4/opencv2/imgcodecs.hpp>

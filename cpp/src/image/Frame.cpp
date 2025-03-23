@@ -14,7 +14,7 @@
  *
  * @details Image Frame
  */
-#include <tmns/app/calc/image/Frame.hpp>
+#include <terminus/app/calc/image/Frame.hpp>
 
 namespace tmns::calc::img {
 

@@ -14,7 +14,7 @@
  *
  * @details Image Primivite Types
  */
-#include <tmns/app/calc/image/Primitives.hpp>
+#include <terminus/app/calc/image/Primitives.hpp>
 
 namespace tmns::calc::img {
 
@@ -38,7 +38,8 @@ size_t Dimensions::size_bytes() const {
 /*          Get the size in pixels          */
 /********************************************/
 math::Size2i Dimensions::size() const {
-    return math::Size2i( m_cols, m_rows );
+    return math::Size2i( { static_cast<int>(m_cols),
+                           static_cast<int>(m_rows) } );
 }
 
 } // End of tmns::calc::img namespace

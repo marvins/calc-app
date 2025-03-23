@@ -132,6 +132,11 @@ add_executable( terminus-calculator
     cpp/include/terminus/app/calc/ui/WidgetBase.hpp
     cpp/include/terminus/app/calc/ui/WidgetLayoutItem.hpp
     cpp/include/terminus/app/calc/utils/StringUtilities.hpp
+    cpp/include/terminus/math/types/Compound_Types.hpp
+    cpp/include/terminus/math/types/Functors.hpp
+    cpp/include/terminus/math/types/Fundamental_Types.hpp
+    cpp/include/terminus/math/types/Math_Functors.hpp
+    cpp/include/terminus/math/types/Type_Deduction.hpp
     cpp/include/terminus/math/Rectangle.hpp
     cpp/src/main.cpp
     cpp/src/core/ConfigParser.cpp

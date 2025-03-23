@@ -20,8 +20,8 @@
 #include <memory>
 
 // Project Libraries
-#include <tmns/app/calc/core/Session.hpp>
-#include <tmns/app/calc/image/Frame.hpp>
+#include <terminus/app/calc/core/Session.hpp>
+#include <terminus/app/calc/image/Frame.hpp>
 
 namespace tmns::calc::ui {
 

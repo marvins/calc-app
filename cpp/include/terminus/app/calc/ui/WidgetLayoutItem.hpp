@@ -17,8 +17,8 @@
 #pragma once
 
 // Project Libraries
-#include <tmns/app/calc/ui/LayoutPrimitives.hpp>
-#include <tmns/app/calc/ui/WidgetBase.hpp>
+#include <terminus/app/calc/ui/LayoutPrimitives.hpp>
+#include <terminus/app/calc/ui/WidgetBase.hpp>
 
 namespace tmns::calc::ui {
 

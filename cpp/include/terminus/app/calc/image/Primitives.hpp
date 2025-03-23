@@ -21,7 +21,7 @@
 #include <vector>
 
 // Terminus Libraries
-#include <tmns/math/Size.hpp>
+#include <terminus/math/Size.hpp>
 
 namespace tmns::calc::img {
 

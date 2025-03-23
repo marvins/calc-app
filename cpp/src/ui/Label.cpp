@@ -12,7 +12,7 @@
  * @author  Marvin Smith
  * @date    3/22/2025
  */
-#include <tmns/app/calc/ui/Label.hpp>
+#include <terminus/app/calc/ui/Label.hpp>
 
 namespace tmns::calc::ui {
 

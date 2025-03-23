@@ -14,11 +14,11 @@
  */
 
 // Project Libraries
-#include <tmns/app/calc/core/Options.hpp>
-#include <tmns/app/calc/core/Session.hpp>
-#include <tmns/app/calc/log/HandlerConsole.hpp>
-#include <tmns/app/calc/log/Logger.hpp>
-#include <tmns/app/calc/pages/Splash.hpp>
+#include <terminus/app/calc/core/Options.hpp>
+#include <terminus/app/calc/core/Session.hpp>
+#include <terminus/app/calc/log/HandlerConsole.hpp>
+#include <terminus/app/calc/log/Logger.hpp>
+#include <terminus/app/calc/pages/Splash.hpp>
 
 int main( int argc, char* argv[] ){
 

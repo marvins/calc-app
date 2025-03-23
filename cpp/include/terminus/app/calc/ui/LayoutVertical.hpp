@@ -22,8 +22,8 @@
 #include <mutex>
 
 // Project Libraries
-#include <tmns/app/calc/ui/LayoutBase.hpp>
-#include <tmns/app/calc/ui/WidgetBase.hpp>
+#include <terminus/app/calc/ui/LayoutBase.hpp>
+#include <terminus/app/calc/ui/WidgetBase.hpp>
 
 namespace tmns::calc::ui {
 

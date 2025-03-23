@@ -14,7 +14,7 @@
  *
  * @details Vertical Layout API
  */
-#include <tmns/app/calc/ui/LayoutVertical.hpp>
+#include <terminus/app/calc/ui/LayoutVertical.hpp>
 
 namespace tmns::calc::ui {
 

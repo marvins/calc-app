@@ -21,7 +21,7 @@
 #include <vector>
 
 // Project Libraries
-#include <tmns/app/calc/image/Primitives.hpp>
+#include <terminus/app/calc/image/Primitives.hpp>
 
 namespace tmns::calc::img {
 
