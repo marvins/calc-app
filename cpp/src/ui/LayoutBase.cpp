@@ -8,31 +8,28 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    Frame.cpp
+ * @file    LayoutBase.cpp
  * @author  Marvin Smith
- * @date    03/22/2025
+ * @date    03/23/2025
  *
- * @details Image Frame
+ * @details Base Layout API
  */
-#include <tmns/app/calc/image/Frame.hpp>
+#include <tmns/app/calc/ui/LayoutBase.hpp>
 
-namespace tmns::calc::img {
+namespace tmns::calc::ui {
 
-/********************************/
-/*          Constructor         */
-/********************************/
-Frame::Frame( const Dimensions& dims )
-  : m_dims( dims )
-{
-    resize( m_dims, 0 );
+/****************************************/
+/*          Get Layout Dimensions       */
+/****************************************/
+img::Dimensions LayoutBase::layout_dimensions() const {
+    return m_layout_dims;
 }
 
-/******************************/
-/*         Resize image       */
-/******************************/
-void Frame::resize( Dimensions new_dims, uint8_t pixel )
-{
-    m_image.resize( new_dims.size_bytes(), pixel );   
+/****************************************/
+/*          Set Layout Dimensions       */
+/****************************************/
+void LayoutBase::set_layout_dimensions( img::Dimensions dims ){
+    m_layout_dims = dims;
 }
 
-} // End of tmns::calc::img namespace
+} // End of tmns::calc::ui namespace

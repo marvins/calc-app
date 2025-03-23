@@ -40,20 +40,20 @@ if( CMAKE_BUILD_TYPE STREQUAL "debug" OR CMAKE_BUILD_TYPE STREQUAL "Debug" )
     endif()
 endif()
 
-message( "Application Platform: ${CALC_PLATFORM}" )
+message( "Application Platform: ${RENDER_DRIVER}" )
 
 
 #----------------------------------------#
 #-          Find Dependencies           -#
 #----------------------------------------#
-if( ${CALC_PLATFORM} STREQUAL "desktop" )
+if( ${RENDER_DRIVER} STREQUAL "allegro" )
 
     #  Desktop apps will need allegro
     find_package(PkgConfig REQUIRED)
     pkg_check_modules( ALLEGRO5 REQUIRED allegro-5 allegro_font-5 )
 
     #  Desktop apps will need a flag to tell them to use allegro rather than any other option
-    add_compile_definitions( CALC_PLATFORM=2 )
+    add_compile_definitions( RENDER_DRIVER=2 )
 
     message( "ALLEGRO5_FOUND: ${ALLEGRO5_FOUND}" )
     message( "ALLEGRO5_INCLUDE_DIRS: ${ALLEGRO5_INCLUDE_DIRS}" )
@@ -67,9 +67,38 @@ if( ${CALC_PLATFORM} STREQUAL "desktop" )
     message( "OpenCV_INCLUDE_DIRS: ${OpenCV_INCLUDE_DIRS}" )
     message( "OpenCV_LIBRARIES: ${OpenCV_LIBRARIES}" )
     set( EXTRA_LIBS ${EXTRA_LIBS} ${OpenCV_LIBRARIES} )
+
+
+    set( EXTRA_SOURCES cpp/include/tmns/app/calc/drivers/DriverAllegro.hpp
+                       cpp/src/drivers/DriverAllegro.cpp )
+#----------------------------
+#  Raylib
+elseif( ${RENDER_DRIVER} STREQUAL "raylib" )
+
+    #  Desktop apps will need a flag to tell them to use allegro rather than any other option
+    add_compile_definitions( RENDER_DRIVER=3 )
+
+    find_package( raylib REQUIRED )
+
+    message( "raylib_FOUND: ${raylib_FOUND}" )
+    message( "raylib_INCLUDE_DIRS: ${raylib_INCLUDE_DIRS}" )
+    message( "raylib_LIBRARIES: ${raylib_LIBRARIES}" )
+
+    include_directories( ${raylib_INCLUDE_DIRS} )
+    set( EXTRA_LIBS ${raylib_LIBRARIES} )
+
+    #  OpenCV
+    find_package( OpenCV REQUIRED opencv_imgcodecs )
+    message( "OpenCV_INCLUDE_DIRS: ${OpenCV_INCLUDE_DIRS}" )
+    message( "OpenCV_LIBRARIES: ${OpenCV_LIBRARIES}" )
+    set( EXTRA_LIBS ${EXTRA_LIBS} ${OpenCV_LIBRARIES} )
+
+    set( EXTRA_SOURCES cpp/include/tmns/app/calc/drivers/DriverRaylib.hpp
+                       cpp/src/drivers/DriverRaylib.cpp )
+
 else()
 
-    add_compile_definitions( CALC_PLATFORM=1 )
+    add_compile_definitions( RENDER_DRIVER=1 )
 endif()
 
 #--------------------------------#
@@ -88,6 +117,7 @@ add_executable( terminus-calculator
     cpp/include/tmns/app/calc/drivers/DriverAllegro.hpp
     cpp/include/tmns/app/calc/drivers/DriverBase.hpp
     cpp/include/tmns/app/calc/image/Frame.hpp
+    cpp/include/tmns/app/calc/image/FrameView.hpp
     cpp/include/tmns/app/calc/image/Primitives.hpp
     cpp/include/tmns/app/calc/log/HandlerBase.hpp
     cpp/include/tmns/app/calc/log/HandlerConsole.hpp
@@ -100,13 +130,15 @@ add_executable( terminus-calculator
     cpp/include/tmns/app/calc/ui/LayoutBase.hpp
     cpp/include/tmns/app/calc/ui/LayoutVertical.hpp
     cpp/include/tmns/app/calc/ui/WidgetBase.hpp
+    cpp/include/tmns/app/calc/ui/WidgetLayoutItem.hpp
     cpp/include/tmns/app/calc/utils/StringUtilities.hpp
+    cpp/include/tmns/math/Rectangle.hpp
     cpp/src/main.cpp
     cpp/src/core/ConfigParser.cpp
     cpp/src/core/Options.cpp
     cpp/src/core/Session.cpp
-    cpp/src/drivers/DriverAllegro.cpp
     cpp/src/image/Frame.cpp
+    cpp/src/image/FrameView.cpp
     cpp/src/image/Primitives.cpp
     cpp/src/log/HandlerConsole.cpp
     cpp/src/log/Level.cpp
@@ -114,8 +146,11 @@ add_executable( terminus-calculator
     cpp/src/pages/Splash.cpp
     cpp/src/ui/EventType.cpp
     cpp/src/ui/Label.cpp
+    cpp/src/ui/LayoutBase.cpp
+    cpp/src/ui/LayoutPrimitives.cpp
     cpp/src/ui/LayoutVertical.cpp
     cpp/src/utils/StringUtilities.cpp
+    ${EXTRA_SOURCES}
 )
 
 target_link_libraries( terminus-calculator 

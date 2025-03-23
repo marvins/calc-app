@@ -8,31 +8,27 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    Frame.cpp
+ * @file    WidgetLayoutItem.hpp
  * @author  Marvin Smith
- * @date    03/22/2025
+ * @date    03/23/2025
  *
- * @details Image Frame
+ * @details Container which stores widget plus layout data.
  */
-#include <tmns/app/calc/image/Frame.hpp>
+#pragma once
 
-namespace tmns::calc::img {
+// Project Libraries
+#include <tmns/app/calc/ui/LayoutPrimitives.hpp>
+#include <tmns/app/calc/ui/WidgetBase.hpp>
 
-/********************************/
-/*          Constructor         */
-/********************************/
-Frame::Frame( const Dimensions& dims )
-  : m_dims( dims )
-{
-    resize( m_dims, 0 );
-}
+namespace tmns::calc::ui {
 
-/******************************/
-/*         Resize image       */
-/******************************/
-void Frame::resize( Dimensions new_dims, uint8_t pixel )
-{
-    m_image.resize( new_dims.size_bytes(), pixel );   
-}
+struct WidgetLayoutItem {
 
-} // End of tmns::calc::img namespace
+    /// Widget to add
+    WidgetBase::ptr_t  widget;
+
+    /// Layout Info
+    WidgetLayoutInfo   layout_info;
+};
+
+} // End of tmns::calc::ui namespace

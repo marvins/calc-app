@@ -46,6 +46,11 @@ struct Frame {
         Frame( const Dimensions& dims );
 
         /**
+         * Image Size
+         */
+        inline math::Size2i size() const { return m_dims.size(); }
+        
+        /**
          * Get the image dimensions
          */
         inline Dimensions dims() const { return m_dims; }
@@ -67,7 +72,7 @@ struct Frame {
         /**
          * Resize the image to new dimensions
          */
-        void resize( Dimensions new_dims );
+        void resize( Dimensions new_dims, uint8_t pixel );
 
     private:
 

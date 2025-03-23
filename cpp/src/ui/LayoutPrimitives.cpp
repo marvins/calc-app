@@ -8,31 +8,15 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    Frame.cpp
+ * @file    LayoutPrimitives.cpp
  * @author  Marvin Smith
- * @date    03/22/2025
+ * @date    03/23/2025
  *
- * @details Image Frame
+ * @details Layout Primitive Type Source
  */
-#include <tmns/app/calc/image/Frame.hpp>
 
-namespace tmns::calc::img {
+namespace tmns::calc::ui {
 
-/********************************/
-/*          Constructor         */
-/********************************/
-Frame::Frame( const Dimensions& dims )
-  : m_dims( dims )
-{
-    resize( m_dims, 0 );
-}
 
-/******************************/
-/*         Resize image       */
-/******************************/
-void Frame::resize( Dimensions new_dims, uint8_t pixel )
-{
-    m_image.resize( new_dims.size_bytes(), pixel );   
-}
 
-} // End of tmns::calc::img namespace
+} // End of tmns::calc::ui namespace

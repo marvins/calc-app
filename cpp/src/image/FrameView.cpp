@@ -8,31 +8,21 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    Frame.cpp
+ * @file    FrameView.hpp
  * @author  Marvin Smith
- * @date    03/22/2025
+ * @date    03/23/2025
  *
- * @details Image Frame
+ * @details Image Frame View
  */
-#include <tmns/app/calc/image/Frame.hpp>
+#include <tmns/app/calc/image/FrameView.hpp>
 
 namespace tmns::calc::img {
 
-/********************************/
-/*          Constructor         */
-/********************************/
-Frame::Frame( const Dimensions& dims )
-  : m_dims( dims )
-{
-    resize( m_dims, 0 );
-}
-
-/******************************/
-/*         Resize image       */
-/******************************/
-void Frame::resize( Dimensions new_dims, uint8_t pixel )
-{
-    m_image.resize( new_dims.size_bytes(), pixel );   
-}
+/****************************/
+/*      Constructor         */
+/****************************/
+FrameView::FrameView( Frame& frame )
+  : m_frame { frame }
+{}
 
 } // End of tmns::calc::img namespace

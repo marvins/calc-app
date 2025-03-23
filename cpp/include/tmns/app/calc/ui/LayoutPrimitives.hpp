@@ -8,49 +8,50 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    LayoutBase.hpp
+ * @file    LayoutPrimitives.hpp
  * @author  Marvin Smith
- * @date    03/21/2025
+ * @date    03/23/2025
  *
- * @details Base Layout API
+ * @details UI Attributes.
  */
 #pragma once
 
-// Project Libraries
-#include <tmns/app/calc/core/Session.hpp>
-#include <tmns/app/calc/image/FrameView.hpp>
-#include <tmns/app/calc/ui/WidgetLayoutItem.hpp>
+// C++ Standard Libraries
+#include <cinttypes>
+#include <optional>
+#include <set>
 
 namespace tmns::calc::ui {
 
 /**
- * @class LayoutBase
+ * Set the alignment policy
  */
-class LayoutBase
-{
-    public:
+enum class AlignmentPolicy : uint32_t {
+    CENTER_VERTICAL   = 1,
+    CENTER_HORIZONTAL = 2,
+    LEFT              = 3,
+    RIGHT             = 4,
+    TOP               = 5,
+    BOTTOM            = 6,
+}; // End of AlignmentPolicy Enum
 
-        /**
-         * Show the contents of the layout on the screen
-         */
-        virtual bool render( core::Session&  session,
-                             img::FrameView& image ) = 0;
+/**
+ * Set the stretch policy
+ */
+enum class StretchPolicy {
+    FIXED = 0,
+    GROW  = 1,
+}; // End of StretchPolicy Enum
 
-        /**
-         * Get the layout dimensions
-         */
-        img::Dimensions layout_dimensions() const;
+struct WidgetLayoutInfo {
+    
+    // Where in the structure to align the asset
+    std::set<AlignmentPolicy> alignment; 
 
-        /**
-         * Update the layout dimensions
-         */
-        virtual void set_layout_dimensions( img::Dimensions dims );
+    // How much of the layout do you want this widget to take
+    std::optional<double> ratio;
 
-    private:
-
-        // Declared Size
-        img::Dimensions m_layout_dims;
-
-};// End of LayoutBase class
+    // 
+};
 
 } // End of tmns::calc::ui namespace

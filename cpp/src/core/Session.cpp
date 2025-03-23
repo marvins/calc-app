@@ -18,7 +18,11 @@
 #include <tmns/app/calc/core/Session.hpp>
 
 // Project Libraries
+#if RENDER_DRIVER == 2
 #include <tmns/app/calc/drivers/DriverAllegro.hpp>
+#elif RENDER_DRIVER == 3
+#include <tmns/app/calc/drivers/DriverRaylib.hpp>
+#endif
 
 // C++ Standard Libraries
 #include <thread>
@@ -54,16 +58,20 @@ Session Session::create( Options config )
 {
     Session new_session;
     
-#if CALC_PLATFORM == 2
+#if RENDER_DRIVER == 2
     #warning "Building desktop variant"
     new_session.m_driver = drv::Driver_Allegro::create( config );
+#elif RENDER_DRIVER == 3
+    #warning "Building Raylib Variant"
+    new_session.m_driver = drv::Driver_Raylib::create( config );
 #else
     #error Not supported yet
 #endif
     return new_session;
 
     // Set the default frame size
-    new_session.m_active_frame.resize( new_session.driver()->get_screen_dimensions() );
+    new_session.m_active_frame.resize( new_session.driver()->get_screen_dimensions(),
+                                       255 );
 }
 
 } // End of tmns::calc::core namespace

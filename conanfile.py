@@ -27,9 +27,9 @@ class ConanProject(ConanFile):
     description = "Embedded Calculator / Converter App"
     topics = ("terminus","convert")
 
-    options = { "platform": ['desktop','pico'] }
+    options = { "driver": ['raylib','allegro','pico'] }
 
-    default_options = { 'platform': 'desktop' }
+    default_options = { 'driver': 'raylib' }
 
     settings = "os", "compiler", "build_type", "arch"
 
@@ -50,7 +50,7 @@ class ConanProject(ConanFile):
         tc.variables["VERSION_FROM_CONANFILE"]     = self.version
         tc.variables["DESCRIPTION_FROM_CONANFILE"] = self.description
         tc.variables["URL_FROM_CONANFILE"]         = self.url
-        tc.variables["CALC_PLATFORM"]              = self.options.platform
+        tc.variables["RENDER_DRIVER"]              = self.options.driver
 
         tc.generate()
 

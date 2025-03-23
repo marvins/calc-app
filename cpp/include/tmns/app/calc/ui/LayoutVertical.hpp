@@ -41,6 +41,21 @@ class LayoutVertical : public LayoutBase
         LayoutVertical() = default;
 
         /**
+         * Get access to widgets
+         */
+        std::deque<WidgetLayoutItem>& widgets();
+
+        /**
+         * Get the Vertical Stretch Policy
+         */
+        StretchPolicy vertical_stretch_policy() const;
+
+        /**
+         * Set the Vertical Stretch Policy
+         */
+        void set_vertical_stretch_policy( StretchPolicy policy );
+
+        /**
          * Add Widget to Lyout
          */
         void append( WidgetBase::ptr_t new_widget );
@@ -48,16 +63,17 @@ class LayoutVertical : public LayoutBase
         /**
          * Show the contents of the layout
          */
-        bool render( core::Session& session,
-                     img::Frame&    image ) override;
+        bool render( core::Session&  session,
+                     img::FrameView& image ) override;
+
 
     protected:
 
-        /// Access to widget list
-        std::mutex m_widget_mtx;
-
         /// List of widgets
-        std::deque<WidgetBase::ptr_t> m_widgets;
+        std::deque<WidgetLayoutItem> m_widgets;
+
+        /// Vertical Stretch Policy
+        StretchPolicy m_vertical_stretch_policy { StretchPolicy::FIXED };
 
 };// End of LayoutVertical class
 

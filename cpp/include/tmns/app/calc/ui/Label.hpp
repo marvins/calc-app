@@ -20,6 +20,7 @@
 #include <tmns/app/calc/drivers/DriverBase.hpp>
 #include <tmns/app/calc/image/Frame.hpp>
 #include <tmns/app/calc/ui/WidgetBase.hpp>
+#include <tmns/math/Size.hpp>
 
 namespace tmns::calc::ui {
 
@@ -29,6 +30,11 @@ class Label : public WidgetBase {
 
         /// Pointer Type
         using ptr_t = std::shared_ptr<Label>;
+
+        /**
+         * Get the label size
+         */
+        math::Size2i size() const;
 
         /**
          * Show the label

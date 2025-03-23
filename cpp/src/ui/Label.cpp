@@ -16,6 +16,13 @@
 
 namespace tmns::calc::ui {
 
+/****************************/
+/*      Get label size      */
+/****************************/
+math::Size2i Label::size() const {
+    return m_image->size();
+}
+
 /********************************/
 /*      Render the Image        */
 /********************************/

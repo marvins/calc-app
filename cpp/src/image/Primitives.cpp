@@ -34,4 +34,11 @@ size_t Dimensions::size_bytes() const {
     return m_rows * m_cols * m_channels;
 }
 
+/********************************************/
+/*          Get the size in pixels          */
+/********************************************/
+math::Size2i Dimensions::size() const {
+    return math::Size2i( m_cols, m_rows );
+}
+
 } // End of tmns::calc::img namespace

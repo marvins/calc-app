@@ -20,6 +20,9 @@
 #include <memory>
 #include <vector>
 
+// Terminus Libraries
+#include <tmns/math/Size.hpp>
+
 namespace tmns::calc::img {
 
 /**
@@ -73,6 +76,11 @@ class Dimensions {
          * Return the size in bytes
          */
         size_t size_bytes() const;
+
+        /**
+         * Return Size of Image
+         */
+        math::Size2i size() const;
 
     private:
 
