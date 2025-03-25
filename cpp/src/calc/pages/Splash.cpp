@@ -17,6 +17,7 @@
 // Project Libraries
 #include <terminus/calc/image/FrameView.hpp>
 #include <terminus/calc/ui/Label.hpp>
+#include <terminus/version.hpp>
 
 // C++ Standard Libraries
 #include <thread>
@@ -73,6 +74,21 @@ Splash::ptr_t Splash::create( const core::Options& config,
     auto text_label = ui::Label::from_text( "Terminus Converter",
                                             session.driver() );
     splash->append( text_label );
+
+
+    // Add Build Information
+    {
+        std::stringstream sout;
+        sout << "Version: " << VERSION() << ", Build Date: " << BUILD_DATE();
+
+        auto version_label = ui::Label::from_text( sout.str(),
+                                                   session.driver() );
+
+        std::set<ui::AlignmentPolicy> alignment( { ui::AlignmentPolicy::CENTER_HORIZONTAL,
+                                                   ui::AlignmentPolicy::BOTTOM } );
+        splash->append( version_label, alignment, std::optional<double>() );
+    }
+
 
     return splash;
 }

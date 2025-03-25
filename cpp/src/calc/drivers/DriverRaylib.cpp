@@ -114,7 +114,7 @@ img::Frame::ptr_t Driver_Raylib::load_image( const std::filesystem::path& pathna
 img::Frame::ptr_t Driver_Raylib::rasterize_text( const std::string& message )
 {
     // Create image from text
-    auto text_image = ImageText( "Terminus Geospatial Toolbox", 16, DARKBLUE );
+    auto text_image = ImageText( message.c_str(), 16, DARKBLUE );
 
     int nchannels = raylib_format_to_channels(static_cast<PixelFormat>(text_image.format));
     

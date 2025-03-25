@@ -96,6 +96,12 @@ bool LayoutVertical::render( core::Session&  session,
                                           m_widgets[idx].widget->size_pixels(),
                                           m_widgets[idx].layout_info.alignment );
         
+        {
+            std::stringstream sout;
+            sout << "Widget: " << idx << " bbox: " << bbox_aligned.to_string();
+            LOG_DEBUG(sout.str());
+        }
+
         // Crop a section of the input image to apply our rendering to
         // @todo:  Figure out how the alignment API fits here
         auto subview = image.subview( bbox_aligned );

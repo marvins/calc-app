@@ -14,6 +14,9 @@
  */
 #include <terminus/calc/ui/Label.hpp>
 
+// Project Libraries
+#include <terminus/log.hpp>
+
 namespace tmns::calc::ui {
 
 /****************************/

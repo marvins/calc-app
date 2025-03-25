@@ -26,6 +26,11 @@ project( ${NAME_FROM_CONANFILE}
          DESCRIPTION ${DESCRIPTION_FROM_CONANFILE}
          LANGUAGES CXX )
 
+message( "VERSION: ${PROJECT_VERSION}" )
+message( "VERSION MAJOR: ${PROJECT_VERSION_MAJOR}" )
+message( "VERSION MINOR: ${PROJECT_VERSION_MINOR}" )
+message( "VERSION PATCH: ${PROJECT_VERSION_PATCH}" )
+
 #  Set C++ Folders
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
@@ -42,6 +47,15 @@ endif()
 
 message( "Application Platform: ${RENDER_DRIVER}" )
 
+#----------------------------------------#
+#-          Update Version File         -#
+#----------------------------------------#
+
+# Get the current date
+string(TIMESTAMP PROJECT_BUILD_DATE "%Y-%m-%d %H:%M:%S" )
+
+configure_file( ${CMAKE_SOURCE_DIR}/cpp/templates/version.hpp.in
+                ${CMAKE_SOURCE_DIR}/cpp/include/terminus/version.hpp )
 
 #----------------------------------------#
 #-          Find Dependencies           -#

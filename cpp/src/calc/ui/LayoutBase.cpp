@@ -80,7 +80,8 @@ math::Rect2i LayoutBase::align_widget( math::Rect2i              bbox_allocated,
 
     // - If the width of the widget is greater than the bbox, then we crop
     if( widget_size.width() >= bbox_allocated.width() ){
-        output.width() = bbox_allocated.width();
+        output.min().x() = bbox_allocated.min().x();
+        output.width()   = bbox_allocated.width();
     }
 
     // If left, then do nothing
@@ -99,7 +100,7 @@ math::Rect2i LayoutBase::align_widget( math::Rect2i              bbox_allocated,
     // If Right, work with the size
     else if( alignment.count( AlignmentPolicy::RIGHT ) > 0 ){
         int offset = bbox_allocated.width() - widget_size.width() - 1;
-        output.min().x() = offset;
+        output.min().x() = bbox_allocated.min().x() + offset;
         output.width()   = widget_size.width();
     }
 
@@ -114,7 +115,7 @@ math::Rect2i LayoutBase::align_widget( math::Rect2i              bbox_allocated,
 
     // - If the width of the widget is greater than the bbox, then we crop
     if( widget_size.height() >= bbox_allocated.height() ){
-        output.height() = bbox_allocated.height();
+        output.min().y() = bbox_allocated.min().y();
         output.height() = widget_size.height();
     }
 
@@ -134,7 +135,7 @@ math::Rect2i LayoutBase::align_widget( math::Rect2i              bbox_allocated,
     // If bottom, work with the size
     else if( alignment.count( AlignmentPolicy::BOTTOM ) > 0 ){
         int offset = bbox_allocated.height() - widget_size.height() - 1;
-        output.min().y() = offset;
+        output.min().y() = bbox_allocated.min().y() + offset;
         output.height()  = widget_size.height();
     }
 
