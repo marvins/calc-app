@@ -94,7 +94,9 @@ elseif( ${RENDER_DRIVER} STREQUAL "raylib" )
     set( EXTRA_LIBS ${EXTRA_LIBS} ${OpenCV_LIBRARIES} )
 
     set( EXTRA_SOURCES cpp/include/terminus/app/calc/drivers/DriverRaylib.hpp
-                       cpp/src/drivers/DriverRaylib.cpp )
+                       cpp/include/terminus/app/calc/drivers/Raylib_Utilities.hpp
+                       cpp/src/drivers/DriverRaylib.cpp
+                       cpp/src/drivers/Raylib_Utilities.cpp )
 
 else()
 

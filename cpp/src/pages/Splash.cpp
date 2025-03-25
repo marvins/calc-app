@@ -69,9 +69,9 @@ Splash::ptr_t Splash::create( const core::Options& config,
 
 
     // Add a text label
-    //auto text_label = ui::Label::from_text( "Terminus Converter",
-    //                                        session.driver() );
-    //splash->append( text_label );
+    auto text_label = ui::Label::from_text( "Terminus Converter",
+                                            session.driver() );
+    splash->append( text_label );
 
     return splash;
 }

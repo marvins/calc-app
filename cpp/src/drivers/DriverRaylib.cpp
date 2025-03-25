@@ -17,6 +17,7 @@
 #include <terminus/app/calc/drivers/DriverRaylib.hpp>
 
 // Project Libraries
+#include <terminus/app/calc/drivers/Raylib_Utilities.hpp>
 #include <terminus/app/calc/log/Logger.hpp>
 
 // OpenCV Libraries
@@ -56,19 +57,6 @@ void Driver_Raylib::finalize()
 void Driver_Raylib::show( img::Frame& image )
 {
 
-    LOG_DEBUG( image.to_log_string() );
-
-    // Create temporary opencv mat
-    /*
-    std::cout << "AAAAAAA" << std::endl;
-    cv::Mat temp_img( image.rows(), image.cols(), CV_8UC4, &image.image_ref()[0] );
-    cv::Mat temp_img2;
-    cv::cvtColor( temp_img, temp_img2, cv::COLOR_RGBA2BGR );
-    cv::imshow( "Hello World", temp_img2 );
-    cv::waitKey(0);
-    std::cout << "BBBBBBBB" << std::endl;
-    */
-
     // Create raylib image
     Image img = {
         .data = &image.image_ref()[0],
@@ -85,7 +73,6 @@ void Driver_Raylib::show( img::Frame& image )
 
     ClearBackground(RAYWHITE);
     DrawTexture(texture, 0, 0, WHITE);
-    DrawText("this IS a texture loaded from an image!", 50, 50, 10, GRAY);
     EndDrawing();
 }
 
@@ -117,6 +104,33 @@ img::Frame::ptr_t Driver_Raylib::load_image( const std::filesystem::path& pathna
                                                img::Dimensions( img.cols, 
                                                                 img.rows,
                                                                 img.channels() ) );
+
+    return frame;
+}
+
+/************************************/
+/*          Rasterize Text          */
+/************************************/
+img::Frame::ptr_t Driver_Raylib::rasterize_text( const std::string& message )
+{
+    // Create image from text
+    auto text_image = ImageText( "Terminus Geospatial Toolbox", 16, DARKBLUE );
+
+    int nchannels = raylib_format_to_channels(static_cast<PixelFormat>(text_image.format));
+    
+    std::span<char> image_span( reinterpret_cast<char*>(text_image.data),
+                                text_image.width * text_image.height * nchannels );
+                                    
+    // build new frame instance
+    auto frame = std::make_shared<img::Frame>( image_span, 
+                                               img::Dimensions( text_image.width, 
+                                                                text_image.height,
+                                                                nchannels ) );
+
+    // Delete image
+    UnloadImage( text_image );
+
+    LOG_DEBUG( "Text Image Info: " + frame->to_log_string() );
 
     return frame;
 }

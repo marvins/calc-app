@@ -36,6 +36,7 @@ HandlerConsole::HandlerConsole( Level min_severity )
 void HandlerConsole::log( Level       lvl,
                           TIME_TP     log_time,
                           std::string filename,
+                          std::string func,
                           int         line_no,
                           std::string message ) 
 {
@@ -48,7 +49,10 @@ void HandlerConsole::log( Level       lvl,
     std::cout << "[" << to_string( lvl ) << "] ";
 
     // Process filename
-    std::cout << "(" << std::filesystem::path(filename).filename().native() << " line: " << line_no << ") ";
+    std::cout << "(" << std::filesystem::path(filename).filename().native();
+    
+    // Process function and line
+    std::cout << " func: " << func << " line: " << line_no << ") ";
 
     // Process message
     std::cout << message << std::endl;

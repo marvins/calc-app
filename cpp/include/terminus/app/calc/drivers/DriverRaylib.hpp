@@ -62,6 +62,11 @@ class Driver_Raylib : public Driver_Base {
         img::Frame::ptr_t load_image( const std::filesystem::path& path ) override;
 
         /**
+         * Generate Image from Text
+         */
+        img::Frame::ptr_t rasterize_text( const std::string& message ) override;
+
+        /**
          * Print log-friendly string
          */
         std::string to_log_string( size_t offset = 0 ) const override;

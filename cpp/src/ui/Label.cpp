@@ -57,11 +57,13 @@ Label::ptr_t Label::from_image( const std::filesystem::path& image_path,
 Label::ptr_t Label::from_text( const std::string&      message,
                                drv::Driver_Base::ptr_t driver )
 {
+    auto frame = driver->rasterize_text( message );
 
-auto new_lbl = std::make_shared<Label>();
+    auto new_lbl = std::make_shared<Label>();
 
+    new_lbl->m_image = frame;
 
-return new_lbl;
+    return new_lbl;
 }
 
 } // End of tmns::calc::ui namespace

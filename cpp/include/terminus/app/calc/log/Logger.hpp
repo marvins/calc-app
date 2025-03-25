@@ -29,6 +29,7 @@
 #define LOG_DEBUG( message ) tmns::calc::log::Logger::log( tmns::calc::log::Level::DEBUG, \
                                                            std::chrono::system_clock::now(), \
                                                            __FILE__, \
+                                                           __func__, \
                                                            __LINE__, \
                                                            message )
 
@@ -62,6 +63,7 @@ class Logger {
         static void log( Level                lvl,
                          HandlerBase::TIME_TP log_time,
                          std::string          filename,
+                         std::string          func,
                          int                  line_no,
                          std::string          message );
 

@@ -58,6 +58,7 @@ void Logger::add_handler( HandlerBase::ptr_t logger )
 void Logger::log( Level                lvl,
                   HandlerBase::TIME_TP log_time,
                   std::string          filename,
+                  std::string          func,
                   int                  line_no,
                   std::string          message )
 {
@@ -65,7 +66,7 @@ void Logger::log( Level                lvl,
     std::unique_lock<std::mutex> lck( inst.m_mtx );
 
     for( auto& handler : inst.m_handlers ){
-        handler->log( lvl, log_time, filename, line_no, message );
+        handler->log( lvl, log_time, filename, func, line_no, message );
     }
 }
 

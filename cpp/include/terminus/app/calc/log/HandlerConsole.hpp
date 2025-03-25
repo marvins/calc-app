@@ -42,6 +42,7 @@ class HandlerConsole : public HandlerBase
         void log( Level       lvl,
                   TIME_TP     log_time,
                   std::string filename,
+                  std::string func,
                   int         line_no,
                   std::string message ) override;
 

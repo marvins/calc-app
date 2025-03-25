@@ -17,6 +17,7 @@
 #include <terminus/app/calc/ui/LayoutVertical.hpp>
 
 // Terminus Libraries
+#include <terminus/app/calc/log/Logger.hpp>
 #include <terminus/math/Rectangle.hpp>
 
 namespace tmns::calc::ui {
@@ -73,10 +74,11 @@ bool LayoutVertical::render( core::Session&  session,
     {
         // Get widget info
         auto widget_size = widget.widget->size_pixels();
+        LOG_DEBUG( "Widget Size: " + widget_size.to_string() );
 
         // Compute view for frame
         auto widget_bbox = math::Rect2i( point_tl,
-                                       widget_size );
+                                         widget_size );
         
         // Crop a section of the input image to apply our rendering to
         // @todo:  Figure out how the alignment API fits here

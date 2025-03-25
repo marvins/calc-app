@@ -53,6 +53,11 @@ class Driver_Base {
         virtual img::Frame::ptr_t load_image( const std::filesystem::path& path ) = 0;
 
         /**
+         * Rasterize Text
+         */
+        virtual img::Frame::ptr_t rasterize_text( const std::string& message ) = 0;
+
+        /**
          * Print Log-Friendly String
          */
         virtual std::string to_log_string( size_t offset = 0 ) const = 0;

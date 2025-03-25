@@ -17,6 +17,7 @@
 #include <terminus/app/calc/image/FrameView.hpp>
 
 /// Terminus Libraries
+#include <terminus/app/calc/log/Logger.hpp>
 #include <terminus/math/Point_Utilities.hpp>
 #include <terminus/math/Size.hpp>
 
@@ -99,6 +100,7 @@ void FrameView::set_pixel( int col, int row, math::Vector4u value )
 /**************************************************/
 FrameView FrameView::subview( const math::Rect2i& bbox )
 {
+    LOG_DEBUG( "This BBOX: " + m_bbox.to_string() + " that bbox: " + bbox.to_string() );
     // Adjust bottom left corner (Not by actual values, but by DELTA!)
     auto new_bl = m_bbox.bl();
     
@@ -106,8 +108,6 @@ FrameView FrameView::subview( const math::Rect2i& bbox )
     new_bl += bbox.bl();
 
     auto new_size = math::Size2i( { bbox.width(), bbox.height() } );
-    new_size.width()  -= (m_bbox.width()  - bbox.width() );
-    new_size.height() -= (m_bbox.height() - bbox.height() );
 
     // The new size of the scene
     auto new_bbox = math::Rect2i( new_bl, new_size );
@@ -128,20 +128,26 @@ bool FrameView::copy( const Frame& frame,
         throw std::runtime_error( sout.str() );
     }
 
+    {
+        std::stringstream sout;
+        sout << "This BBOX: " << m_bbox.to_string() << ", Incoming Frame: " << frame.to_log_string();
+        LOG_DEBUG(sout.str());
+    }
+
     // Copy the image row  by row
     for( size_t r = 0; r < frame.rows(); r++ )
     {
         // Get the destination row
-        int dest_row = m_bbox.bl()[1];
+        int dest_row = m_bbox.bl()[1] + r;
 
         // Iterate over each input column
         for( size_t c = 0; c < frame.cols(); c++ )
         {
             // Get the destination column
-            int dest_col = m_bbox.bl()[0];
+            int dest_col = m_bbox.bl()[0] + c;
 
             auto pixel = frame.get_pixel( c, r );
-            m_frame.set_pixel( c, r, pixel );
+            m_frame.set_pixel( dest_col, dest_row, pixel );
         }
     }
 
