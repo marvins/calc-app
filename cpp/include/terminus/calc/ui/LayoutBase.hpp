@@ -91,7 +91,7 @@ class LayoutBase
          * 
          * - non-Fixed is unsupported at this time
          */
-        std::vector<math::Rect2i> allocate_bboxes() const;
+        virtual std::vector<math::Rect2i> allocate_bboxes() const = 0;
 
         /// List of widgets
         std::vector<WidgetLayoutItem> m_widgets;

@@ -14,10 +14,10 @@
  *
  * @details Vertical Layout API
  */
-#include <terminus/app/calc/ui/LayoutVertical.hpp>
+#include <terminus/calc/ui/LayoutVertical.hpp>
 
 // Terminus Libraries
-#include <terminus/app/calc/log/Logger.hpp>
+#include <terminus/log/Logger.hpp>
 #include <terminus/math/Rectangle.hpp>
 
 namespace tmns::calc::ui {
@@ -66,10 +66,10 @@ bool LayoutVertical::render( core::Session&  session,
     auto widget_bboxes = allocate_bboxes();
 
     // Iterate over each element, rendering
-    for( size_t idx = 0; idx < m_widgets.size(); i++ )
+    for( size_t idx = 0; idx < m_widgets.size(); idx++ )
     {
         // Get actual widget size (internally reported)
-        auto widget_size = widget.widget->size_pixels();
+        auto widget_size = m_widgets[idx].widget->size_pixels();
 
         // Get size allocated for widget per this layout
         auto widget_bbox_allocated = widget_bboxes[idx];
@@ -78,12 +78,76 @@ bool LayoutVertical::render( core::Session&  session,
         // @todo:  Figure out how the alignment API fits here
         auto subview = image.subview( widget_bbox_allocated );
 
-        widget.widget->render( session, subview );
+        m_widgets[idx].widget->render( session, subview );
 
         point_tl.y() += widget_size.height();
     }
     
     return false;
+}
+
+/****************************************/
+/*      Get allocated bounding box      */
+/****************************************/
+std::vector<math::Rect2i> LayoutVertical::allocate_bboxes() const
+{
+    // Get layout dimensions
+    auto full_bbox = math::Rect2i( math::Vector2i( { 0, 0 } ),
+                                   layout_size() );
+
+    // Shrink from padding
+    auto pad = padding();
+    full_bbox.min() += math::Vector2i( { pad[0], pad[2] } );
+    full_bbox.width()  -= pad[0] + pad[1];
+    full_bbox.height() -= pad[2] + pad[3];
+
+    // If a ratio is supplied, sum up the total ratio values. 
+    double ratio_sum = 0;
+    double widgets_without_ratios = 0;
+    for( const auto& widget : m_widgets ){
+        if( widget.layout_info.ratio ){
+            ratio_sum += widget.layout_info.ratio.value();
+        } else {
+            widgets_without_ratios += 1;
+        }
+    }
+
+    // Since sum won't equal one, create multiplier
+    double multiplier = 1/ratio_sum;
+
+    // Non-ratio'd widgets get leftover
+    double non_ratio_weight = (1 - std::min( ratio_sum, 1. )) / widgets_without_ratios;
+
+    // Assign weights to all widgets
+    std::vector<double> weights;
+    for( const auto& widget : m_widgets ){
+        
+        // If widget has ratio
+        if( widget.layout_info.ratio ){
+            weights.push_back( widget.layout_info.ratio.value() * multiplier );
+        } else {
+            weights.push_back( non_ratio_weight );
+        }
+    }
+
+    // We will work from top-down
+    math::Rect2i remainder = full_bbox;
+    std::vector<math::Rect2i> bboxes;
+
+    // Compute Sizes
+    for( size_t idx = 0; idx < m_widgets.size(); idx++ )
+    {
+        // Compute size 
+        int w = remainder.width();
+        int h = remainder.height() * weights[idx];
+
+        auto tl = remainder.min();
+
+        bboxes.push_back( math::Rect2i( tl, math::Size2i( { w, h } ) ) );
+    }
+
+    return bboxes;
+
 }
 
 } // End of tmns::calc::ui namespace

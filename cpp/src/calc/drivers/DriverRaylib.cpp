@@ -14,11 +14,11 @@
  *
  * @details Raylib Graphics API Wrapper Source
  */
-#include <terminus/app/calc/drivers/DriverRaylib.hpp>
+#include <terminus/calc/drivers/DriverRaylib.hpp>
 
 // Project Libraries
-#include <terminus/app/calc/drivers/Raylib_Utilities.hpp>
-#include <terminus/app/calc/log/Logger.hpp>
+#include <terminus/calc/drivers/Raylib_Utilities.hpp>
+#include <terminus/log/Logger.hpp>
 
 // OpenCV Libraries
 #include <opencv4/opencv2/imgcodecs.hpp>

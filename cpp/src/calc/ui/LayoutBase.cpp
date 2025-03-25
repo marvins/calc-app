@@ -14,7 +14,7 @@
  *
  * @details Base Layout API
  */
-#include <terminus/app/calc/ui/LayoutBase.hpp>
+#include <terminus/calc/ui/LayoutBase.hpp>
 
 namespace tmns::calc::ui {
 
@@ -60,35 +60,6 @@ void LayoutBase::set_padding( int left, int right, int top, int bottom ){
 std::vector<WidgetLayoutItem>& LayoutBase::widgets()
 {
     return m_widgets;
-}
-
-/****************************************/
-/*      Get allocated bounding box      */
-/****************************************/
-std::vector<math::Rect2i> LayoutBase::allocate_bboxes() const
-{
-    // Get layout dimensions
-    auto full_bbox = math::Rect2i( math::Vector2i( { 0, 0 } ),
-                                   layout_size() );
-
-    // Shrink from padding
-    auto pad = padding();
-    full_bbox.min() += math::Vector2i( { pad[0], pad[2] } );
-    full_bbox.width()  -= pad[0] + pad[1];
-    full_bbox.height() -= pad[2] + pad[3];
-
-    // If a ratio is supplied, sum up the total ratio values. 
-    double ratio_sum = 0;
-    for( const auto& widget : m_widgets ){
-        if( widget.layout_info.ratio ){
-            ratio_sum += widget.layout_info.ratio.value();
-        }
-    }
-
-    // Normalize
-
-    
-
 }
 
 } // End of tmns::calc::ui namespace

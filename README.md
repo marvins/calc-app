@@ -2,16 +2,6 @@
 
 This is my attempt to build a nice handy calculator app for the ClockworkPi PicoCalc device.  This is an open-source graphing calculator built on a Raspberry-Pi Pico. 
 
-**Note:** Currently I'm debating between a Python-based and C++-based app.  There are some major pros and cons between them. 
-
-## Python vs C++ App
-
-### Python
-
-
-### C++
-
-
 ---
 ## Building the C++ Application
 
@@ -51,3 +41,4 @@ Run the following script to launch and run `terminus-calculator` on any `desktop
 ```bash
 ./scripts/cpp-run-app.sh
 ```
+

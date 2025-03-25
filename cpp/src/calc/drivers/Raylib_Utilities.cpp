@@ -14,7 +14,7 @@
  *
  * @details Raylib Graphics API Wrapper Header
  */
-#include <terminus/app/calc/drivers/Raylib_Utilities.hpp>
+#include <terminus/calc/drivers/Raylib_Utilities.hpp>
 
 // C++ Standard Libraries
 #include <iostream>

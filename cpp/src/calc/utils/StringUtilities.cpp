@@ -12,7 +12,7 @@
  * @author  Marvin Smith
  * @date    3/21/2025
 */
-#include <terminus/app/calc/utils/StringUtilities.hpp>
+#include <terminus/calc/utils/StringUtilities.hpp>
 
 // C++ Standard Libraries
 #include <algorithm>

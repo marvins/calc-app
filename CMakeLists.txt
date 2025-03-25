@@ -134,6 +134,7 @@ add_executable( terminus-calculator
     cpp/include/terminus/log/HandlerFile.hpp
     cpp/include/terminus/log/Level.hpp
     cpp/include/terminus/log/Logger.hpp
+    cpp/include/terminus/log.hpp
     cpp/include/terminus/math/Rectangle.hpp
     cpp/src/calc/core/ConfigParser.cpp
     cpp/src/calc/core/Options.cpp
@@ -158,6 +159,6 @@ add_executable( terminus-calculator
 target_link_libraries( terminus-calculator 
                        ${EXTRA_LIBS} )
 
-if( TERMINUS_MATH_ENABLE_TESTS )
+if( TERMINUS_CALC_ENABLE_TESTS )
     add_subdirectory( test/unit )
 endif()

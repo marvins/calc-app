@@ -8,28 +8,14 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    main.cpp
+ * @file    log.hpp
  * @author  Marvin Smith
- * @date    3/25/2025
+ * @date    03/25/2025
+ *
+ * @details Primary Logging Interface
  */
+#pragma once
 
-// GoogleTest
-#include <gtest/gtest.h>
-
-// Terminus Libraries
-#include <terminus/log.hpp>
-
-int main( int argc, char* argv[] )
-{
-    // Parse Command-Line Options
-
-    
-    // Initialize Logging
-    {
-        auto handler = std::make_unique<tmns::log::HandlerConsole>( tmns::log::Level::DEBUG );
-        tmns::log::Logger::add_handler( std::move( handler ) );
-    }
-
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
+#include <terminus/log/HandlerConsole.hpp>
+#include <terminus/log/HandlerFile.hpp>
+#include <terminus/log/Logger.hpp>

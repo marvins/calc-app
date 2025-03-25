@@ -62,6 +62,26 @@ class LayoutVertical : public LayoutBase
 
     protected:
 
+        /**
+         * Get allocated region for widgets
+         * 
+         * @note:  This is not the space it'll use.  This is the space reserved
+         *         - This takes into account the number of widgets, ratio, stretch policy, etc.
+         * 
+         * Guidance on how rules are applied
+         * - If StretchPolicy is FIXED:
+         *    1. The total widget size is fetched
+         *    2. The size is adjusted according to padding
+         *        Rectangles are adjusted as well
+         *    3. Ratios (for widgets which have them) are summed to get total.
+         *      - Ratios are normalized so the ratios sum to 1  (in-ratio / sum-ratio)
+         *    4. Widgets without ratios get auto-assigned the leftover ratios
+         *    5. All widgets are assigned a box size
+         * 
+         * - non-Fixed is unsupported at this time
+         */
+        std::vector<math::Rect2i> allocate_bboxes() const override;
+
         /// Vertical Stretch Policy
         StretchPolicy m_vertical_stretch_policy { StretchPolicy::FIXED };
 

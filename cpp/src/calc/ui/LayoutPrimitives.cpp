@@ -14,7 +14,7 @@
  *
  * @details Layout Primitive Type Source
  */
-#include <terminus/app/calc/ui/LayoutPrimitives.hpp>
+#include <terminus/calc/ui/LayoutPrimitives.hpp>
 
 namespace tmns::calc::ui {
 

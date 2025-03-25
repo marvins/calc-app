@@ -27,8 +27,8 @@ int main( int argc, char* argv[] ){
 
     // Setup the console logger
     {
-        auto handler = std::make_unique<tmns::calc::log::HandlerConsole>( config.log_level() );
-        tmns::calc::log::Logger::add_handler( std::move( handler ) );
+        auto handler = std::make_unique<tmns::log::HandlerConsole>( config.log_level() );
+        tmns::log::Logger::add_handler( std::move( handler ) );
     }
     LOG_DEBUG( config.to_log_string() );
 
