@@ -31,6 +31,8 @@ class Label : public WidgetBase {
         /// Pointer Type
         using ptr_t = std::shared_ptr<Label>;
 
+        Label() = default;
+        
         /**
          * Get the label size
          */
@@ -53,6 +55,11 @@ class Label : public WidgetBase {
          */
         static Label::ptr_t from_text( const std::string&       message,
                                        drv::Driver_Base::ptr_t  driver );
+
+        /**
+         * Provide a pre-initialized frame
+         */
+        static Label::ptr_t from_frame( img::Frame::ptr_t frame );
 
     private:
 

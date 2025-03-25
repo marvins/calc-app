@@ -70,8 +70,6 @@ class LayoutBase
          * Get access to widgets
          */
         std::vector<WidgetLayoutItem>& widgets();
-
-    protected:
     
         /**
          * Get allocated region for widgets
@@ -92,6 +90,15 @@ class LayoutBase
          * - non-Fixed is unsupported at this time
          */
         virtual std::vector<math::Rect2i> allocate_bboxes() const = 0;
+
+        /**
+         * Align the Widget within the Bounding box.
+         */
+        static math::Rect2i align_widget( math::Rect2i              bbox_allocated,
+                                          math::Size2i              widget_size,
+                                          std::set<AlignmentPolicy> alignment );
+
+    protected:
 
         /// List of widgets
         std::vector<WidgetLayoutItem> m_widgets;

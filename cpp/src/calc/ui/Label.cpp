@@ -66,4 +66,16 @@ Label::ptr_t Label::from_text( const std::string&      message,
     return new_lbl;
 }
 
+/**********************************************/
+/*      Construct from existing frame         */
+/**********************************************/
+Label::ptr_t Label::from_frame( img::Frame::ptr_t frame )
+{
+    auto new_lbl = std::make_shared<Label>();
+
+    new_lbl->m_image = frame;
+
+    return new_lbl;
+}
+
 } // End of tmns::calc::ui namespace

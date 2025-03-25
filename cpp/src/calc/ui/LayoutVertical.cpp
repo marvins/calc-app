@@ -37,6 +37,23 @@ void LayoutVertical::append( WidgetBase::ptr_t new_widget ){
     m_widgets.push_back( new_layout_item );
 }
 
+/*****************************************/
+/*         Add Layout to Widget List     */
+/*****************************************/
+void LayoutVertical::append( WidgetBase::ptr_t          new_widget,
+                             std::set<AlignmentPolicy>  alignment,
+                             std::optional<double>      ratio ){
+
+    // Wrap with new layout item
+    WidgetLayoutItem new_layout_item;
+    new_layout_item.widget                = new_widget;
+    new_layout_item.layout_info.alignment = alignment;
+    new_layout_item.layout_info.ratio     = ratio;
+
+    // Add to layout
+    m_widgets.push_back( new_layout_item );
+}
+
 /********************************************/
 /*      Get the Vertical Stretch Policy     */
 /********************************************/
@@ -73,10 +90,15 @@ bool LayoutVertical::render( core::Session&  session,
 
         // Get size allocated for widget per this layout
         auto widget_bbox_allocated = widget_bboxes[idx];
+
+        // Align the widget within the bounding box
+        auto bbox_aligned = align_widget( widget_bbox_allocated,
+                                          m_widgets[idx].widget->size_pixels(),
+                                          m_widgets[idx].layout_info.alignment );
         
         // Crop a section of the input image to apply our rendering to
         // @todo:  Figure out how the alignment API fits here
-        auto subview = image.subview( widget_bbox_allocated );
+        auto subview = image.subview( bbox_aligned );
 
         m_widgets[idx].widget->render( session, subview );
 
@@ -131,19 +153,22 @@ std::vector<math::Rect2i> LayoutVertical::allocate_bboxes() const
     }
 
     // We will work from top-down
-    math::Rect2i remainder = full_bbox;
     std::vector<math::Rect2i> bboxes;
 
     // Compute Sizes
+    double tl_height = full_bbox.min().y();
     for( size_t idx = 0; idx < m_widgets.size(); idx++ )
     {
         // Compute size 
-        int w = remainder.width();
-        int h = remainder.height() * weights[idx];
+        int w = full_bbox.width();
+        int h = full_bbox.height() * weights[idx];
 
-        auto tl = remainder.min();
+        auto tl = math::ToPoint2<int>( full_bbox.min().x(),
+                                       tl_height );
 
         bboxes.push_back( math::Rect2i( tl, math::Size2i( { w, h } ) ) );
+
+        tl_height += h;
     }
 
     return bboxes;

@@ -54,13 +54,17 @@ class LayoutVertical : public LayoutBase
         void append( WidgetBase::ptr_t new_widget );
 
         /**
+         * Add Widget to Lyout
+         */
+        void append( WidgetBase::ptr_t          new_widget,
+                     std::set<AlignmentPolicy>  alignment,
+                     std::optional<double>      ratio );
+
+        /**
          * Show the contents of the layout
          */
         bool render( core::Session&  session,
                      img::FrameView& image ) override;
-
-
-    protected:
 
         /**
          * Get allocated region for widgets
@@ -82,6 +86,8 @@ class LayoutVertical : public LayoutBase
          */
         std::vector<math::Rect2i> allocate_bboxes() const override;
 
+    protected: 
+    
         /// Vertical Stretch Policy
         StretchPolicy m_vertical_stretch_policy { StretchPolicy::FIXED };
 

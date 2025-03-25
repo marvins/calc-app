@@ -27,11 +27,23 @@ set( TEST ${PROJECT_NAME}_test )
 #  Until I learn how to make shared or static libraries with the RPI Pico, 
 #  I need to re-add the source files
 set( PROJECT_SOURCES
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/image/Frame.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/image/FrameView.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/image/Primitives.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/ui/Label.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/ui/LayoutBase.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/ui/LayoutVertical.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log/HandlerBase.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log/HandlerConsole.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log/HandlerFile.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log/Level.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log/Logger.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/calc/image/Frame.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/calc/image/FrameView.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/calc/image/Primitives.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/calc/ui/Label.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/calc/ui/LayoutBase.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/calc/ui/LayoutVertical.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/log/HandlerConsole.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/log/Level.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/log/Logger.cpp
@@ -39,6 +51,7 @@ set( PROJECT_SOURCES
 
 #  Here are the list of actual unit-tests
 set( PROJECT_TESTS 
+    calc/ui/TEST_LayoutBase.cpp
     calc/ui/TEST_LayoutVertical.cpp 
 )
 
