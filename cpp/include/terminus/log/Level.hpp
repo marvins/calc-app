@@ -14,23 +14,24 @@
  *
  * @details Log Level Type
  */
-#include <terminus/log/Level.hpp>
+#pragma once
+
+// C++ Standard Libraries
+#include <string>
 
 namespace tmns::log {
 
-/**********************************************/
-/*      Convert the Log Level to String       */
-/**********************************************/
-std::string to_string( Level lvl )
-{
-    switch( lvl ){
-        case Level::TRACE:   return "TRACE";
-        case Level::DEBUG:   return "DEBUG";
-        case Level::INFO:    return "INFO";
-        case Level::WARNING: return "WARNING";
-        case Level::ERROR:   return "ERROR";
-        default:             return "UNKNOWN";
-    }
-}
+enum class Level {
+    TRACE   = 0,
+    DEBUG   = 1,
+    INFO    = 2,
+    WARNING = 3,
+    ERROR   = 4,
+}; // End of Level Enumeration
+
+/**
+ * Convert the Log Level to String
+ */
+std::string to_string( Level );
 
 } // End of tmns::log namespace

@@ -93,10 +93,10 @@ elseif( ${RENDER_DRIVER} STREQUAL "raylib" )
     message( "OpenCV_LIBRARIES: ${OpenCV_LIBRARIES}" )
     set( EXTRA_LIBS ${EXTRA_LIBS} ${OpenCV_LIBRARIES} )
 
-    set( EXTRA_SOURCES cpp/include/terminus/app/calc/drivers/DriverRaylib.hpp
-                       cpp/include/terminus/app/calc/drivers/Raylib_Utilities.hpp
-                       cpp/src/drivers/DriverRaylib.cpp
-                       cpp/src/drivers/Raylib_Utilities.cpp )
+    set( EXTRA_SOURCES cpp/include/terminus/calc/drivers/DriverRaylib.hpp
+                       cpp/include/terminus/calc/drivers/Raylib_Utilities.hpp
+                       cpp/src/calc/drivers/DriverRaylib.cpp
+                       cpp/src/calc/drivers/Raylib_Utilities.cpp )
 
 else()
 
@@ -113,49 +113,51 @@ include_directories( cpp/include )
 #-       Build Application      -#
 #--------------------------------#
 add_executable( terminus-calculator
-    cpp/include/terminus/app/calc/core/ConfigParser.hpp
-    cpp/include/terminus/app/calc/core/Options.hpp
-    cpp/include/terminus/app/calc/core/Session.hpp
-    cpp/include/terminus/app/calc/drivers/DriverAllegro.hpp
-    cpp/include/terminus/app/calc/drivers/DriverBase.hpp
-    cpp/include/terminus/app/calc/image/Frame.hpp
-    cpp/include/terminus/app/calc/image/FrameView.hpp
-    cpp/include/terminus/app/calc/image/Primitives.hpp
-    cpp/include/terminus/app/calc/log/HandlerBase.hpp
-    cpp/include/terminus/app/calc/log/HandlerConsole.hpp
-    cpp/include/terminus/app/calc/log/HandlerFile.hpp
-    cpp/include/terminus/app/calc/log/Level.hpp
-    cpp/include/terminus/app/calc/log/Logger.hpp
-    cpp/include/terminus/app/calc/pages/Splash.hpp
-    cpp/include/terminus/app/calc/ui/EventType.hpp
-    cpp/include/terminus/app/calc/ui/Label.hpp
-    cpp/include/terminus/app/calc/ui/LayoutBase.hpp
-    cpp/include/terminus/app/calc/ui/LayoutVertical.hpp
-    cpp/include/terminus/app/calc/ui/WidgetBase.hpp
-    cpp/include/terminus/app/calc/ui/WidgetLayoutItem.hpp
-    cpp/include/terminus/app/calc/utils/StringUtilities.hpp
+    cpp/include/terminus/calc/core/ConfigParser.hpp
+    cpp/include/terminus/calc/core/Options.hpp
+    cpp/include/terminus/calc/core/Session.hpp
+    cpp/include/terminus/calc/drivers/DriverAllegro.hpp
+    cpp/include/terminus/calc/drivers/DriverBase.hpp
+    cpp/include/terminus/calc/image/Frame.hpp
+    cpp/include/terminus/calc/image/FrameView.hpp
+    cpp/include/terminus/calc/image/Primitives.hpp
+    cpp/include/terminus/calc/pages/Splash.hpp
+    cpp/include/terminus/calc/ui/EventType.hpp
+    cpp/include/terminus/calc/ui/Label.hpp
+    cpp/include/terminus/calc/ui/LayoutBase.hpp
+    cpp/include/terminus/calc/ui/LayoutVertical.hpp
+    cpp/include/terminus/calc/ui/WidgetBase.hpp
+    cpp/include/terminus/calc/ui/WidgetLayoutItem.hpp
+    cpp/include/terminus/calc/utils/StringUtilities.hpp
+    cpp/include/terminus/log/HandlerBase.hpp
+    cpp/include/terminus/log/HandlerConsole.hpp
+    cpp/include/terminus/log/HandlerFile.hpp
+    cpp/include/terminus/log/Level.hpp
+    cpp/include/terminus/log/Logger.hpp
     cpp/include/terminus/math/Rectangle.hpp
-    cpp/src/main.cpp
-    cpp/src/core/ConfigParser.cpp
-    cpp/src/core/Options.cpp
-    cpp/src/core/Session.cpp
-    cpp/src/image/Frame.cpp
-    cpp/src/image/FrameView.cpp
-    cpp/src/image/Primitives.cpp
+    cpp/src/calc/core/ConfigParser.cpp
+    cpp/src/calc/core/Options.cpp
+    cpp/src/calc/core/Session.cpp
+    cpp/src/calc/image/Frame.cpp
+    cpp/src/calc/image/FrameView.cpp
+    cpp/src/calc/image/Primitives.cpp
+    cpp/src/calc/pages/Splash.cpp
+    cpp/src/calc/ui/EventType.cpp
+    cpp/src/calc/ui/Label.cpp
+    cpp/src/calc/ui/LayoutBase.cpp
+    cpp/src/calc/ui/LayoutPrimitives.cpp
+    cpp/src/calc/ui/LayoutVertical.cpp
+    cpp/src/calc/utils/StringUtilities.cpp
     cpp/src/log/HandlerConsole.cpp
     cpp/src/log/Level.cpp
     cpp/src/log/Logger.cpp
-    cpp/src/pages/Splash.cpp
-    cpp/src/ui/EventType.cpp
-    cpp/src/ui/Label.cpp
-    cpp/src/ui/LayoutBase.cpp
-    cpp/src/ui/LayoutPrimitives.cpp
-    cpp/src/ui/LayoutVertical.cpp
-    cpp/src/utils/StringUtilities.cpp
+    cpp/src/main.cpp
     ${EXTRA_SOURCES}
 )
 
 target_link_libraries( terminus-calculator 
                        ${EXTRA_LIBS} )
 
-
+if( TERMINUS_MATH_ENABLE_TESTS )
+    add_subdirectory( test/unit )
+endif()

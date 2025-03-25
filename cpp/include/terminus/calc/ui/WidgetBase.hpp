@@ -8,29 +8,47 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    Level.hpp
+ * @file    WidgetBase.hpp
  * @author  Marvin Smith
  * @date    03/21/2025
  *
- * @details Log Level Type
+ * @details Base Widget API
  */
-#include <terminus/log/Level.hpp>
+#pragma once
 
-namespace tmns::log {
+// C++ Libraries
+#include <memory>
 
-/**********************************************/
-/*      Convert the Log Level to String       */
-/**********************************************/
-std::string to_string( Level lvl )
+// Project Libraries
+#include <terminus/calc/core/Session.hpp>
+#include <terminus/calc/image/FrameView.hpp>
+#include <terminus/math/Size.hpp>
+
+namespace tmns::calc::ui {
+
+/**
+ * @class WidgetBase
+ */
+class WidgetBase
 {
-    switch( lvl ){
-        case Level::TRACE:   return "TRACE";
-        case Level::DEBUG:   return "DEBUG";
-        case Level::INFO:    return "INFO";
-        case Level::WARNING: return "WARNING";
-        case Level::ERROR:   return "ERROR";
-        default:             return "UNKNOWN";
-    }
-}
+    public:
 
-} // End of tmns::log namespace
+        /// @brief  Pointer Type
+        using ptr_t = std::shared_ptr<WidgetBase>;
+
+        /**
+         * @brief Get the size of the widget, in pixels
+         */
+        virtual math::Size2i size_pixels() const = 0;
+
+        /**
+         * @brief Render the image to the desired screen instance
+         */
+        virtual bool render( core::Session&   session,
+                             img::FrameView&  image ) = 0;
+
+    private:
+
+};// End of WidgetBase class
+
+} // End of tmns::calc::ui namespace

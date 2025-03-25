@@ -14,12 +14,12 @@
  *
  * @details Logging Interface
  */
-#include <terminus/app/calc/log/Logger.hpp>
+#include <terminus/log/Logger.hpp>
 
 // C++ Standard Libraries
 #include <memory>
 
-namespace tmns::calc::log {
+namespace tmns::log {
 
 static std::unique_ptr<Logger> g_logger;
 
@@ -70,4 +70,4 @@ void Logger::log( Level                lvl,
     }
 }
 
-} // End of tmns::calc::utils namespace
+} // End of tmns::log namespace

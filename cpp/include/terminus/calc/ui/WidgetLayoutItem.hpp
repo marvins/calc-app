@@ -8,29 +8,27 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    Level.hpp
+ * @file    WidgetLayoutItem.hpp
  * @author  Marvin Smith
- * @date    03/21/2025
+ * @date    03/23/2025
  *
- * @details Log Level Type
+ * @details Container which stores widget plus layout data.
  */
-#include <terminus/log/Level.hpp>
+#pragma once
 
-namespace tmns::log {
+// Project Libraries
+#include <terminus/calc/ui/LayoutPrimitives.hpp>
+#include <terminus/calc/ui/WidgetBase.hpp>
 
-/**********************************************/
-/*      Convert the Log Level to String       */
-/**********************************************/
-std::string to_string( Level lvl )
-{
-    switch( lvl ){
-        case Level::TRACE:   return "TRACE";
-        case Level::DEBUG:   return "DEBUG";
-        case Level::INFO:    return "INFO";
-        case Level::WARNING: return "WARNING";
-        case Level::ERROR:   return "ERROR";
-        default:             return "UNKNOWN";
-    }
-}
+namespace tmns::calc::ui {
 
-} // End of tmns::log namespace
+struct WidgetLayoutItem {
+
+    /// Widget to add
+    WidgetBase::ptr_t  widget;
+
+    /// Layout Info
+    WidgetLayoutInfo   layout_info;
+};
+
+} // End of tmns::calc::ui namespace

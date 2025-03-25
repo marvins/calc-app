@@ -128,6 +128,19 @@ class Point_ : public Vector_<ValueT,Dims>
         }
 
         /**
+         * Addition assignment operator
+         */
+        template <typename OtherT>
+        Point_<ValueT,Dims>& operator += ( const Vector_<OtherT,Dims>& rhs )
+        {
+            for( size_t i = 0; i < this->data().size(); i++ )
+            {
+                this->data()[i] += rhs.data()[i];
+            }
+            return (*this);
+        }
+
+        /**
          * Subtraction assignment operator
         */
         template <typename OtherT>

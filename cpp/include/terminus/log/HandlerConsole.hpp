@@ -8,29 +8,49 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    Level.hpp
+ * @file    HandlerBase.hpp
  * @author  Marvin Smith
  * @date    03/21/2025
  *
- * @details Log Level Type
+ * @details Logging Interface
  */
+#pragma once
+
+// Project Libraries
+#include <terminus/log/HandlerBase.hpp>
 #include <terminus/log/Level.hpp>
+
+// C++ Standard Libraries
+#include <memory>
 
 namespace tmns::log {
 
-/**********************************************/
-/*      Convert the Log Level to String       */
-/**********************************************/
-std::string to_string( Level lvl )
+class HandlerConsole : public HandlerBase
 {
-    switch( lvl ){
-        case Level::TRACE:   return "TRACE";
-        case Level::DEBUG:   return "DEBUG";
-        case Level::INFO:    return "INFO";
-        case Level::WARNING: return "WARNING";
-        case Level::ERROR:   return "ERROR";
-        default:             return "UNKNOWN";
-    }
-}
+    public:
+
+        using ptr_t = std::unique_ptr<HandlerConsole>;
+
+        /**
+         * Construct a new Console Log Handler
+         */
+        HandlerConsole( Level min_severity = Level::INFO );
+
+        /**
+         * Log a message to the console
+         */
+        void log( Level       lvl,
+                  TIME_TP     log_time,
+                  std::string filename,
+                  std::string func,
+                  int         line_no,
+                  std::string message ) override;
+
+    private:
+
+        /// Log Severity
+        Level m_severity;
+
+}; // End of HandlerConsole class
 
 } // End of tmns::log namespace

@@ -10,36 +10,23 @@
 /**
  * @file    main.cpp
  * @author  Marvin Smith
- * @date    3/21/2025
+ * @date    3/25/2025
  */
 
-// Project Libraries
-#include <terminus/calc/core/Options.hpp>
-#include <terminus/calc/core/Session.hpp>
-#include <terminus/calc/pages/Splash.hpp>
-#include <terminus/log/HandlerConsole.hpp>
-#include <terminus/log/Logger.hpp>
+// GoogleTest
+#include <gtest/gtest.h>
 
-int main( int argc, char* argv[] ){
+int main( int argc, char* argv[] )
+{
+    // Parse Command-Line Options
 
-    // Parse Command-Line and Configuration-File Options
-    auto config = tmns::calc::core::Options::parse( argc, argv );
-
-    // Setup the console logger
+    
+    // Initialize Logging
     {
-        auto handler = std::make_unique<tmns::calc::log::HandlerConsole>( config.log_level() );
+        auto handler = std::make_unique<tmns::log::HandlerConsole>( tmns::log::Level::DEBUG );
         tmns::calc::log::Logger::add_handler( std::move( handler ) );
     }
-    LOG_DEBUG( config.to_log_string() );
 
-    // Create the primary session
-    auto session = tmns::calc::core::Session::create( config );
-
-    LOG_DEBUG( session.to_log_string() );
-
-    // Launch the Splash Screen
-    auto splash = tmns::calc::page::Splash::create( config, session );
-    splash->show( config, session );
-
-    return 0;
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }

@@ -27,9 +27,11 @@ class ConanProject(ConanFile):
     description = "Embedded Calculator / Converter App"
     topics = ("terminus","convert")
 
-    options = { "driver": ['raylib','allegro','pico'] }
+    options = { "driver":     ['raylib','allegro','pico'],
+                "with_tests": [True, False] }
 
-    default_options = { 'driver': 'raylib' }
+    default_options = { 'driver': 'raylib',
+                        'with_tests': True }
 
     settings = "os", "compiler", "build_type", "arch"
 
@@ -46,11 +48,18 @@ class ConanProject(ConanFile):
 
     def generate(self):
         tc = CMakeToolchain(self)
+        
+        #  Project Variables
         tc.variables["NAME_FROM_CONANFILE"]        = self.name
         tc.variables["VERSION_FROM_CONANFILE"]     = self.version
         tc.variables["DESCRIPTION_FROM_CONANFILE"] = self.description
         tc.variables["URL_FROM_CONANFILE"]         = self.url
+
+        #  Major choice here for Pico
         tc.variables["RENDER_DRIVER"]              = self.options.driver
+
+        #  Recommend only using tests for non Pico
+        tc.variables["TERMINUS_CALC_ENABLE_TESTS"]    = self.options.with_tests
 
         tc.generate()
 

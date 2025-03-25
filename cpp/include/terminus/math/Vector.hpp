@@ -331,6 +331,19 @@ class Vector_ : public Vector_Base<Vector_<ValueT,Dims>>
         }
 
         /**
+         * Addition-Assignment Operator
+         */
+        template< typename OtherValueT>
+        Vector_<ValueT,Dims> operator += ( const Vector_<OtherValueT,Dims>& rhs )
+        {
+           for( size_t i=0; i<m_data.size(); i++ )
+           {
+               m_data[i] += rhs.m_data[i];
+           }
+           return (*this);
+        }
+
+        /**
          * Normalize the vector
          */
         Vector_<ValueT,Dims> normalize() const

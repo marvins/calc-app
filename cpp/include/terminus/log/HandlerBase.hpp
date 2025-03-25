@@ -8,55 +8,43 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    HandlerConsole.cpp
+ * @file    HandlerBase.hpp
  * @author  Marvin Smith
  * @date    03/21/2025
  *
  * @details Logging Interface
  */
-#include <terminus/log/HandlerConsole.hpp>
+#pragma once
+
+// Project Libraries
+#include <terminus/log/Level.hpp>
 
 // C++ Standard Libraries
-#include <filesystem>
-#include <iostream>
-#include <sstream>
+#include <chrono>
+#include <memory>
 
 namespace tmns::log {
 
-/********************************/
-/*          Constructor         */
-/********************************/
-HandlerConsole::HandlerConsole( Level min_severity )
-    : m_severity { min_severity }
-{}
+class HandlerBase {
 
-/********************************/
-/*          Log a Message       */
-/********************************/
-void HandlerConsole::log( Level       lvl,
+    public:
+
+        using ptr_t = std::unique_ptr<HandlerBase>;
+
+        // Time to use for logging
+        using TIME_TP = std::chrono::system_clock::time_point;
+
+        /**
+         * Log a message to the respective handler destination
+         */
+        virtual void log( Level       lvl,
                           TIME_TP     log_time,
                           std::string filename,
                           std::string func,
                           int         line_no,
-                          std::string message ) 
-{
-    std::stringstream sout;
-    
-    // Process log time
-    std::cout << "[" << std::chrono::current_zone()->to_local(log_time) << "] ";
+                          std::string message ) = 0;
 
-    // Process severity 
-    std::cout << "[" << to_string( lvl ) << "] ";
 
-    // Process filename
-    std::cout << "(" << std::filesystem::path(filename).filename().native();
-    
-    // Process function and line
-    std::cout << " func: " << func << " line: " << line_no << ") ";
-
-    // Process message
-    std::cout << message << std::endl;
-}
-
+}; // End of HandlerBase class
 
 } // End of tmns::log namespace

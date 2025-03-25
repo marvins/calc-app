@@ -8,38 +8,39 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    main.cpp
+ * @file    Splash.hpp
  * @author  Marvin Smith
- * @date    3/21/2025
+ * @date    3/22/2025
  */
+#pragma once
 
 // Project Libraries
 #include <terminus/calc/core/Options.hpp>
 #include <terminus/calc/core/Session.hpp>
-#include <terminus/calc/pages/Splash.hpp>
-#include <terminus/log/HandlerConsole.hpp>
-#include <terminus/log/Logger.hpp>
+#include <terminus/calc/ui/LayoutVertical.hpp>
 
-int main( int argc, char* argv[] ){
+namespace tmns::calc::page {
 
-    // Parse Command-Line and Configuration-File Options
-    auto config = tmns::calc::core::Options::parse( argc, argv );
+class Splash : public ui::LayoutVertical
+{
+    public:
 
-    // Setup the console logger
-    {
-        auto handler = std::make_unique<tmns::calc::log::HandlerConsole>( config.log_level() );
-        tmns::calc::log::Logger::add_handler( std::move( handler ) );
-    }
-    LOG_DEBUG( config.to_log_string() );
+        /// Pointer Type
+        using ptr_t = std::shared_ptr<Splash>;
 
-    // Create the primary session
-    auto session = tmns::calc::core::Session::create( config );
+        /**
+         * Show the screen for a bit, then exit
+         */
+        void show( core::Options& config,
+                   core::Session& session );
 
-    LOG_DEBUG( session.to_log_string() );
+        /**
+         * Create a new Splash Screen
+         */
+        static Splash::ptr_t create( const core::Options& config,
+                                     core::Session&       session );
+        
+        
+}; // End Splash class
 
-    // Launch the Splash Screen
-    auto splash = tmns::calc::page::Splash::create( config, session );
-    splash->show( config, session );
-
-    return 0;
-}
+} // End of tmns::calc::page namespace
