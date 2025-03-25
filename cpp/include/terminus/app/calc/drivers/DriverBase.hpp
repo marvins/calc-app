@@ -38,6 +38,11 @@ class Driver_Base {
         virtual void finalize() = 0;
 
         /**
+         * Display the current image.
+         */
+        virtual void show( img::Frame& frame ) = 0;
+
+        /**
          * Get default screen dimensions
          */
         virtual img::Dimensions get_screen_dimensions() const = 0;

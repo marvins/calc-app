@@ -21,7 +21,8 @@
 
 // Project Libraries
 #include <terminus/app/calc/core/Session.hpp>
-#include <terminus/app/calc/image/Frame.hpp>
+#include <terminus/app/calc/image/FrameView.hpp>
+#include <terminus/math/Size.hpp>
 
 namespace tmns::calc::ui {
 
@@ -36,10 +37,15 @@ class WidgetBase
         using ptr_t = std::shared_ptr<WidgetBase>;
 
         /**
+         * @brief Get the size of the widget, in pixels
+         */
+        virtual math::Size2i size_pixels() const = 0;
+
+        /**
          * @brief Render the image to the desired screen instance
          */
-        virtual bool render( core::Session& session,
-                             img::Frame&    image ) = 0;
+        virtual bool render( core::Session&   session,
+                             img::FrameView&  image ) = 0;
 
     private:
 

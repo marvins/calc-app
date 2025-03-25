@@ -47,6 +47,11 @@ class Driver_Raylib : public Driver_Base {
         void finalize() override;
 
         /**
+         * Display the current image.
+         */
+        void show( img::Frame& frame ) override;
+
+        /**
          * Get screen dimensions
          */
         img::Dimensions get_screen_dimensions() const override;

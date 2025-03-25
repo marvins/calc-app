@@ -19,17 +19,20 @@ namespace tmns::calc::ui {
 /****************************/
 /*      Get label size      */
 /****************************/
-math::Size2i Label::size() const {
+math::Size2i Label::size_pixels() const {
     return m_image->size();
 }
 
 /********************************/
 /*      Render the Image        */
 /********************************/
-bool Label::render( core::Session& session,
-                    img::Frame&    image )
+bool Label::render( core::Session&   session,
+                    img::FrameView&  image )
 {
-    return false;
+    // Copy our label onto the frame image
+    image.copy( *m_image, img::CopyPolicy::FLEXIBILE );
+
+    return true;
 }
 
 /************************************/

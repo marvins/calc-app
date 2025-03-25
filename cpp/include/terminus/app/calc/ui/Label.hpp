@@ -34,13 +34,13 @@ class Label : public WidgetBase {
         /**
          * Get the label size
          */
-        math::Size2i size() const;
+        math::Size2i size_pixels() const override;
 
         /**
          * Show the label
          */
-        bool render( core::Session& session,
-                     img::Frame&    image ) override;
+        bool render( core::Session&  session,
+                     img::FrameView& image ) override;
 
         /**
          * Load an image and store in the label

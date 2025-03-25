@@ -88,7 +88,7 @@ elseif( ${RENDER_DRIVER} STREQUAL "raylib" )
     set( EXTRA_LIBS ${raylib_LIBRARIES} )
 
     #  OpenCV
-    find_package( OpenCV REQUIRED opencv_imgcodecs )
+    find_package( OpenCV REQUIRED opencv_imgcodecs opencv_highgui )
     message( "OpenCV_INCLUDE_DIRS: ${OpenCV_INCLUDE_DIRS}" )
     message( "OpenCV_LIBRARIES: ${OpenCV_LIBRARIES}" )
     set( EXTRA_LIBS ${EXTRA_LIBS} ${OpenCV_LIBRARIES} )
@@ -132,11 +132,6 @@ add_executable( terminus-calculator
     cpp/include/terminus/app/calc/ui/WidgetBase.hpp
     cpp/include/terminus/app/calc/ui/WidgetLayoutItem.hpp
     cpp/include/terminus/app/calc/utils/StringUtilities.hpp
-    cpp/include/terminus/math/types/Compound_Types.hpp
-    cpp/include/terminus/math/types/Functors.hpp
-    cpp/include/terminus/math/types/Fundamental_Types.hpp
-    cpp/include/terminus/math/types/Math_Functors.hpp
-    cpp/include/terminus/math/types/Type_Deduction.hpp
     cpp/include/terminus/math/Rectangle.hpp
     cpp/src/main.cpp
     cpp/src/core/ConfigParser.cpp

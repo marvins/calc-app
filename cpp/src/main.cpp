@@ -35,6 +35,8 @@ int main( int argc, char* argv[] ){
     // Create the primary session
     auto session = tmns::calc::core::Session::create( config );
 
+    LOG_DEBUG( session.to_log_string() );
+
     // Launch the Splash Screen
     auto splash = tmns::calc::page::Splash::create( config, session );
     splash->show( config, session );

@@ -11,7 +11,7 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    Options.hpp
+ * @file    Session.cpp
  * @author  Marvin Smith
  * @date    3/21/2025
 */
@@ -25,6 +25,8 @@
 #endif
 
 // C++ Standard Libraries
+#include <iostream>
+#include <sstream>
 #include <thread>
 
 namespace tmns::calc::core {
@@ -51,6 +53,28 @@ void Session::sleep_for( std::chrono::milliseconds sleep_time )
     std::this_thread::sleep_for( sleep_time );
 }
 
+/********************************************************/
+/*          Print the current frame to the screen       */
+/********************************************************/
+void Session::show()
+{
+    m_driver->show( m_active_frame );
+}
+
+/************************************************/
+/*          Print Log-Friendly String           */
+/************************************************/
+std::string Session::to_log_string( size_t offset ) const
+{
+    std::string gap( offset, ' ' );
+
+    std::stringstream sout;
+    sout << gap << "Session:" << std::endl;
+    sout << gap << "  - Active Frame:" << std::endl;
+    sout << m_active_frame.to_log_string( offset + 4 ) << std::endl;
+    return sout.str();
+}
+
 /****************************************************/
 /*          Create a Session API Instance           */
 /****************************************************/
@@ -67,11 +91,12 @@ Session Session::create( Options config )
 #else
     #error Not supported yet
 #endif
-    return new_session;
 
     // Set the default frame size
     new_session.m_active_frame.resize( new_session.driver()->get_screen_dimensions(),
                                        255 );
+    
+    return new_session;
 }
 
 } // End of tmns::calc::core namespace

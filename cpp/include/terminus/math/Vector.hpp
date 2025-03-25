@@ -1,3 +1,12 @@
+/**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
+/*                                                                                    */
+/*                           Copyright (c) 2025 Terminus LLC                          */
+/*                                                                                    */
+/*                                All Rights Reserved.                                */
+/*                                                                                    */
+/*          Use of this source code is governed by LICENSE in the repo root.          */
+/*                                                                                    */
+/**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
  * @file    Vector.hpp
  * @author  Marvin Smith
@@ -12,8 +21,8 @@
 #include <sstream>
 
 // Terminus Libraries
-#include <terminus/math/types/Fundamental_Types.hpp>
-#include <terminus/math/vector/Vector_Base.hpp>
+#include <terminus/math/Fundamental_Types.hpp>
+#include <terminus/math/Vector_Base.hpp>
 
 namespace tmns::math {
 
@@ -142,23 +151,6 @@ class Vector_ : public Vector_Base<Vector_<ValueT,Dims>>
             Vector_ tmp( v );
             m_data = tmp.m_data;
             return *this;
-        }
-
-        /**
-         * Temporary-free generalized assignment operator, from arbitrary vector expressions.
-         * This is a performance-optimizing function to be used with caution!
-         */
-        template <typename T>
-        Vector_& operator=( const Vector_No_Tmp<T>& v )
-        {
-            if( v.impl().size() != Dims )
-            {
-                throw std::runtime_error( "Vector must have dimension " + std::to_string( Dims ) );
-            }
-            else
-            {
-                return *this = v.impl();
-            }
         }
 
         /**
@@ -425,16 +417,6 @@ class Vector_ : public Vector_Base<Vector_<ValueT,Dims>>
 
 }; // End of Vector class
 
-/**
- * Handle for getting the size
- */
-template <typename ValueT,
-          size_t   Dims>
-struct Vector_Size<Vector_<ValueT,Dims>>
-{
-    const static size_t value = Dims;
-};
-
 // Alias for Point2_ object
 template <typename ValueT> using Vector2_ = Vector_<ValueT,2>;
 template <typename ValueT> using Vector3_ = Vector_<ValueT,3>;
@@ -454,5 +436,15 @@ using Vector4f = Vector4_<float>;
 using Vector2i = Vector2_<int>;
 using Vector3i = Vector3_<int>;
 using Vector4i = Vector4_<int>;
+
+// Uint8 Vectors
+using Vector2u = Vector2_<uint8_t>;
+using Vector3u = Vector3_<uint8_t>;
+using Vector4u = Vector4_<uint8_t>;
+
+// Char Vectors
+using Vector2c = Vector2_<char>;
+using Vector3c = Vector3_<char>;
+using Vector4c = Vector4_<char>;
 
 } // End of tmns::math

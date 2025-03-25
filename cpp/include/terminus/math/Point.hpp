@@ -7,7 +7,7 @@
 
 // Terminus Libraries
 #include "Enums.hpp"
-#include "vector/Vector.hpp"
+#include "Vector.hpp"
 
 // C++ Libraries
 #include <sstream>

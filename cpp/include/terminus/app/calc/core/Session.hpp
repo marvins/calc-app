@@ -45,6 +45,16 @@ class Session final {
         void sleep_for( std::chrono::milliseconds sleep_time );
 
         /**
+         * Show the active frame
+         */
+        void show();
+
+        /**
+         * Print information about session
+         */
+        std::string to_log_string( size_t offset = 0 ) const;
+
+        /**
          * Generate a session given command-line instructions
          */
         static Session create( Options config );

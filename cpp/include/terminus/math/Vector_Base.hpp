@@ -1,12 +1,18 @@
+/**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
+/*                                                                                    */
+/*                           Copyright (c) 2025 Terminus LLC                          */
+/*                                                                                    */
+/*                                All Rights Reserved.                                */
+/*                                                                                    */
+/*          Use of this source code is governed by LICENSE in the repo root.          */
+/*                                                                                    */
+/**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
  * @file    Vector_Base.hpp
  * @author  Marvin Smith
  * @date    9/16/2023
 */
 #pragma once
-
-// Terminus Libraries
-#include "Vector_Traits.hpp"
 
 // C++ Libraries
 #include <iomanip>

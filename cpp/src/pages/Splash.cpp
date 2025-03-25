@@ -18,6 +18,9 @@
 #include <terminus/app/calc/image/FrameView.hpp>
 #include <terminus/app/calc/ui/Label.hpp>
 
+// C++ Standard Libraries
+#include <thread>
+
 namespace tmns::calc::page {
 
 /**************************************/
@@ -31,6 +34,19 @@ void Splash::show( core::Options& config,
     // Render the internal layout on top of the view
     LayoutVertical::render( session,
                             frame_view );
+    
+    // Render Screen
+    auto start_time = std::chrono::system_clock::now();
+
+    while( std::chrono::duration_cast<std::chrono::seconds>( std::chrono::system_clock::now() - start_time ) < std::chrono::seconds(5) )
+    {
+        session.show();
+        std::this_thread::sleep_for( std::chrono::milliseconds(500) );
+    }
+    
+
+    // Sleep for a bit
+    std::this_thread::sleep_for( std::chrono::milliseconds( 5000 ) );
 
 }
 

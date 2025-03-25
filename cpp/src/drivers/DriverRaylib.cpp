@@ -16,8 +16,13 @@
  */
 #include <terminus/app/calc/drivers/DriverRaylib.hpp>
 
+// Project Libraries
+#include <terminus/app/calc/log/Logger.hpp>
+
 // OpenCV Libraries
 #include <opencv4/opencv2/imgcodecs.hpp>
+#include <opencv4/opencv2/imgproc.hpp>
+#include <opencv4/opencv2/highgui.hpp>
 
 namespace tmns::calc::drv {
 
@@ -32,6 +37,8 @@ bool Driver_Raylib::initialize( core::Options& config )
     // Setup OpenGL Context
     configure_display( config );
 
+    SetTargetFPS(30);
+
     return true;
 }
 
@@ -43,12 +50,51 @@ void Driver_Raylib::finalize()
     CloseWindow();  
 }
 
+/********************************************************/
+/*          Print the current frame to the screen       */
+/********************************************************/
+void Driver_Raylib::show( img::Frame& image )
+{
+
+    LOG_DEBUG( image.to_log_string() );
+
+    // Create temporary opencv mat
+    /*
+    std::cout << "AAAAAAA" << std::endl;
+    cv::Mat temp_img( image.rows(), image.cols(), CV_8UC4, &image.image_ref()[0] );
+    cv::Mat temp_img2;
+    cv::cvtColor( temp_img, temp_img2, cv::COLOR_RGBA2BGR );
+    cv::imshow( "Hello World", temp_img2 );
+    cv::waitKey(0);
+    std::cout << "BBBBBBBB" << std::endl;
+    */
+
+    // Create raylib image
+    Image img = {
+        .data = &image.image_ref()[0],
+        .width = image.size().width(),
+        .height = image.size().height(),
+        .mipmaps = 1,
+        .format = static_cast<int>(PIXELFORMAT_UNCOMPRESSED_R8G8B8A8) };
+
+    // Generate Texture
+    Texture2D texture = LoadTextureFromImage(img);
+
+    // Put texture onto frame 
+    BeginDrawing();
+
+    ClearBackground(RAYWHITE);
+    DrawTexture(texture, 0, 0, WHITE);
+    DrawText("this IS a texture loaded from an image!", 50, 50, 10, GRAY);
+    EndDrawing();
+}
+
 /******************************************/
 /*        Get the screen dimensions       */
 /******************************************/
 img::Dimensions Driver_Raylib::get_screen_dimensions() const
 {
-    return img::Dimensions( m_window_cols, m_window_cols, 3 );
+    return img::Dimensions( m_window_cols, m_window_rows, 4 );
 }
 
 /************************************/
@@ -58,8 +104,19 @@ img::Frame::ptr_t Driver_Raylib::load_image( const std::filesystem::path& pathna
 {
     auto img = cv::imread( pathname.native(), cv::IMREAD_COLOR );
 
+    // Make sure the image is 4 channels
+    cv::cvtColor( img, img, cv::COLOR_BGR2RGBA );
+    //cv::imshow( "PRE", img );
+    //cv::waitKey(0);
+    
+    std::span<char> image_span( reinterpret_cast<char*>(img.data),
+                                img.cols * img.rows * img.channels() );
+
     // build new frame instance
-    auto frame = std::make_shared<img::Frame>( img::Dimensions( img.cols, img.rows, img.channels() ) );
+    auto frame = std::make_shared<img::Frame>( image_span, 
+                                               img::Dimensions( img.cols, 
+                                                                img.rows,
+                                                                img.channels() ) );
 
     return frame;
 }

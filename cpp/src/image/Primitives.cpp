@@ -19,6 +19,19 @@
 namespace tmns::calc::img {
 
 /********************************/
+/*      Convert to String       */
+/********************************/
+std::string to_string( CopyPolicy policy )
+{
+    switch( policy ){
+        case CopyPolicy::FLEXIBILE:
+            return "FLEXIBLE";
+        default:
+            return "UNKNOWN";
+    }
+}
+
+/********************************/
 /*          Constructor         */
 /********************************/
 Dimensions::Dimensions( size_t cols, size_t rows, size_t channels )

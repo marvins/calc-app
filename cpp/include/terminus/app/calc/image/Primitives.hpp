@@ -26,6 +26,20 @@
 namespace tmns::calc::img {
 
 /**
+ * When copying imagery from one view to another, 
+ * we need rules in order to not overrun boundaries.
+ */
+enum class CopyPolicy : uint8_t 
+{
+    FLEXIBILE = 0,
+}; // End of CopyPolicy Enumeration
+
+/**
+ * Convert to string
+ */
+std::string to_string( CopyPolicy policy );
+
+/**
  * @brief Represents Image Characteristics
  */
 class Dimensions {

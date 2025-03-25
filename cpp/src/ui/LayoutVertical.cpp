@@ -16,6 +16,9 @@
  */
 #include <terminus/app/calc/ui/LayoutVertical.hpp>
 
+// Terminus Libraries
+#include <terminus/math/Rectangle.hpp>
+
 namespace tmns::calc::ui {
 
 /********************************************/
@@ -61,7 +64,28 @@ void LayoutVertical::set_vertical_stretch_policy( StretchPolicy policy ){
 bool LayoutVertical::render( core::Session&  session,
                              img::FrameView& image )
 {
+    // @todo:  Keep track of "rendered" vs "full" view
+    //         Add support for sub-views
+    auto point_tl = math::Vector2i( { 0, 0 } );
+
     // Iterate over each element, rendering
+    for( const auto& widget : m_widgets )
+    {
+        // Get widget info
+        auto widget_size = widget.widget->size_pixels();
+
+        // Compute view for frame
+        auto widget_bbox = math::Rect2i( point_tl,
+                                       widget_size );
+        
+        // Crop a section of the input image to apply our rendering to
+        // @todo:  Figure out how the alignment API fits here
+        auto subview = image.subview( widget_bbox );
+
+        widget.widget->render( session, subview );
+
+        point_tl.y() += widget_size.height();
+    }
     
     return false;
 }

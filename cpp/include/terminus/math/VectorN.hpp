@@ -1,3 +1,12 @@
+/**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
+/*                                                                                    */
+/*                           Copyright (c) 2025 Terminus LLC                          */
+/*                                                                                    */
+/*                                All Rights Reserved.                                */
+/*                                                                                    */
+/*          Use of this source code is governed by LICENSE in the repo root.          */
+/*                                                                                    */
+/**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
  * @file    VectorN.hpp
  * @author  Marvin Smith
@@ -124,16 +133,6 @@ class Vector_<ValueT,0> : public Vector_Base<Vector_<ValueT>>
             Vector_ tmp( v );
             m_data = tmp.m_data;
             return *this;
-        }
-
-        /**
-         * Temporary-free generalized assignment operator, from arbitrary vector expressions.
-         * This is a performance-optimizing function to be used with caution!
-         */
-        template <typename T>
-        Vector_& operator=( const Vector_No_Tmp<T>& v )
-        {
-            return *this = v.impl();
         }
 
         /**
