@@ -1,9 +1,22 @@
 #!/usr/bin/env python3
+############################# INTELLECTUAL PROPERTY RIGHTS #############################
+##                                                                                    ##
+##                           Copyright (c) 2024 Terminus LLC                          ##
+##                                All Rights Reserved.                                ##
+##                                                                                    ##
+##          Use of this source code is governed by LICENSE in the repo root.          ##
+##                                                                                    ##
+############################# INTELLECTUAL PROPERTY RIGHTS #############################
+#    File:    CMakeLists.txt
+#    Author:  Marvin Smith
+#    Date:    March 21, 2025
+#
+#    Purpose:  Build Terminus Geospatial Toolbox App
 
 #  Python Standard Libraries
 import argparse
 import logging
-from pathlist import Path
+from pathlib import Path
 
 def valid_file( arg ):
     if (file := Path(arg)).is_file():
