@@ -167,7 +167,7 @@ add_executable( ${PROJECT}
     cpp/src/calc/pages/Main_Menu.cpp
     cpp/src/calc/pages/Main_Window.cpp
     cpp/src/calc/pages/Splash.cpp
-    cpp/src/calc/ui/EventType.cpp
+    cpp/src/gui/ui/EventType.cpp
     cpp/src/calc/ui/Label.cpp
     cpp/src/calc/ui/LayoutBase.cpp
     cpp/src/calc/ui/LayoutPrimitives.cpp

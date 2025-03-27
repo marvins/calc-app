@@ -14,7 +14,7 @@
  *
  * @details Base Layout API
  */
-#include <terminus/calc/ui/LayoutBase.hpp>
+#include <terminus/gui/LayoutBase.hpp>
 
 // Terminus Libraries
 #include <terminus/log.hpp>

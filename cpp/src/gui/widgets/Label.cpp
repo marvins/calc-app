@@ -12,7 +12,7 @@
  * @author  Marvin Smith
  * @date    3/22/2025
  */
-#include <terminus/calc/ui/Label.hpp>
+#include <terminus/gui/Label.hpp>
 
 // Project Libraries
 #include <terminus/log.hpp>

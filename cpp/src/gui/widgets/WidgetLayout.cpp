@@ -14,7 +14,7 @@
  *
  * @details Simple widget for assigning Layouts to.
  */
-#include <terminus/calc/ui/WidgetLayout.hpp>
+#include <terminus/gui/WidgetLayout.hpp>
 
 namespace tmns::calc::ui {
 

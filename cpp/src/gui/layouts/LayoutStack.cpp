@@ -8,16 +8,33 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    LayoutPrimitives.cpp
+ * @file    LayoutStack.cpp
  * @author  Marvin Smith
- * @date    03/23/2025
+ * @date    03/27/2025
  *
- * @details Layout Primitive Type Source
+ * @details Stack Layout API
  */
-#include <terminus/calc/ui/LayoutPrimitives.hpp>
+#include <terminus/gui/LayoutStack.hpp>
+
+// Terminus Libraries
+#include <terminus/log/Logger.hpp>
+
 
 namespace tmns::calc::ui {
 
+/*****************************************/
+/*         Add Layout to Widget List     */
+/*****************************************/
+size_t LayoutStack::append( WidgetBase::ptr_t new_widget ){
 
+    // Wrap with new layout item
+    WidgetLayoutItem new_layout_item;
+    new_layout_item.widget = new_widget;
+
+    // Add to layout
+    m_widgets.push_back( new_layout_item );
+
+    return (m_widgets.size() - 1);
+}
 
 } // End of tmns::calc::ui namespace

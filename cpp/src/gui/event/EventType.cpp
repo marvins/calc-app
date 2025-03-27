@@ -8,33 +8,37 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    LayoutStack.cpp
+ * @file    EventType.cpp
  * @author  Marvin Smith
- * @date    03/27/2025
+ * @date    03/23/2025
  *
- * @details Stack Layout API
+ * @details Represent Events from the UI.
  */
-#include <terminus/calc/ui/LayoutStack.hpp>
+#include <terminus/gui/EventType.hpp>
 
-// Terminus Libraries
-#include <terminus/log/Logger.hpp>
-
+// C++ Standard Libraries
+#include <string>
 
 namespace tmns::calc::ui {
 
-/*****************************************/
-/*         Add Layout to Widget List     */
-/*****************************************/
-size_t LayoutStack::append( WidgetBase::ptr_t new_widget ){
-
-    // Wrap with new layout item
-    WidgetLayoutItem new_layout_item;
-    new_layout_item.widget = new_widget;
-
-    // Add to layout
-    m_widgets.push_back( new_layout_item );
-
-    return (m_widgets.size() - 1);
+/************************************************/
+/*      Convert the event-type to string        */
+/************************************************/
+std::string to_string( EventType tp )
+{
+    switch( tp )
+    {
+        case EventType::KEYBOARD_DOWN:
+            return "KEYBOARD_DOWN";
+        case EventType::KEYBOARD_LEFT:
+            return "KEYBOARD_LEFT";
+        case EventType::KEYBOARD_RIGHT:
+            return "KEYBOARD_RIGHT";
+        case EventType::KEYBOARD_UP:
+            return "KEYBOARD_UP";
+        default:
+            return "UNKNOWN";
+    }
 }
 
 } // End of tmns::calc::ui namespace

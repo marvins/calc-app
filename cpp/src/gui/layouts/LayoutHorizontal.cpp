@@ -14,7 +14,7 @@
  *
  * @details Vertical Layout API
  */
-#include <terminus/calc/ui/LayoutHorizontal.hpp>
+#include <terminus/gui/LayoutHorizontal.hpp>
 
 // Terminus Libraries
 #include <terminus/log/Logger.hpp>
