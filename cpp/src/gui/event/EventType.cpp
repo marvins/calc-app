@@ -19,7 +19,7 @@
 // C++ Standard Libraries
 #include <string>
 
-namespace tmns::calc::ui {
+namespace tmns::gui {
 
 /************************************************/
 /*      Convert the event-type to string        */
@@ -41,4 +41,4 @@ std::string to_string( EventType tp )
     }
 }
 
-} // End of tmns::calc::ui namespace
+} // End of tmns::gui namespace

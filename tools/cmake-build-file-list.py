@@ -52,12 +52,18 @@ def parse_command_line():
                          required = True,
                          action = 'append',
                          help = 'List of source folder to scan' )
+    
+    parser.add_argument( '--is-test',
+                         dest = 'is_test',
+                         default = False,
+                         action = 'store_true',
+                         help = 'Print files with ${CMAKE_SOURCE_DIR} prepended for unit-tests.' )
 
     # @todo:  Add patterns to scan for
 
     return parser.parse_args()
 
-def remove_root( base_dir: str, filepath: str ):
+def remove_root( base_dir: str, filepath: str, is_test: bool ):
     if not base_dir in filepath:
         raise Exception( f'For some reason {base_dir} not the root of {filepath}' )
     
@@ -66,6 +72,10 @@ def remove_root( base_dir: str, filepath: str ):
     #  Remove leading slashes if present
     if corrected[0] == '/':
         corrected = corrected[1:]
+
+    #  If this is a test, prepend cmake variable
+    if is_test:
+        corrected = '${CMAKE_SOURCE_DIR}/' + corrected
     
     return corrected
 
@@ -104,7 +114,7 @@ def main():
                     logging.debug( f'Found: {fpath}' )
 
                     #  Remove the root, as we previously made sure it was root relative
-                    fpath_rel = remove_root( full_dir, fpath )
+                    fpath_rel = remove_root( full_dir, fpath, cmd_args.is_test )
                     logging.debug( f'Adjusted to: {fpath_rel}' )
                     main_list.append( fpath_rel )
 

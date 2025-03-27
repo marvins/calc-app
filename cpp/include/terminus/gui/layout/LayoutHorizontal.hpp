@@ -20,10 +20,10 @@
 #include <memory>
 
 // Project Libraries
-#include <terminus/calc/ui/LayoutBase.hpp>
-#include <terminus/calc/ui/WidgetBase.hpp>
+#include <terminus/gui/layout/LayoutBase.hpp>
+#include <terminus/gui/widget/WidgetBase.hpp>
 
-namespace tmns::calc::ui {
+namespace tmns::gui {
 
 /**
  * @class LayoutHorizontal
@@ -93,4 +93,4 @@ class LayoutHorizontal : public LayoutBase
 
 };// End of LayoutHorizontal class
 
-} // End of tmns::calc::ui namespace
+} // End of tmns::gui namespace

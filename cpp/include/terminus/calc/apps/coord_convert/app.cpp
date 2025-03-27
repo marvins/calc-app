@@ -14,7 +14,7 @@
  *
  * @details Base Layout API
  */
-#include <terminus/apps/coord_convert/app.hpp>
+#include <terminus/calc/apps/coord_convert/app.hpp>
 
 namespace tmns::app::cc {
 

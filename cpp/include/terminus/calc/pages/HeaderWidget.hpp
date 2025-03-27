@@ -17,16 +17,16 @@
 #pragma once
 
 // Terminus Libraries
-#include <terminus/calc/ui/Label.hpp>
-#include <terminus/calc/ui/LayoutHorizontal.hpp>
-#include <terminus/calc/ui/WidgetLayout.hpp>
+#include <terminus/gui/layout/LayoutHorizontal.hpp>
+#include <terminus/gui/layout/WidgetLayout.hpp>
+#include <terminus/gui/widget/Label.hpp>
 
 namespace tmns::calc::page {
 
 /**
  * @class Header_Widget
  */
-class Header_Widget : public ui::WidgetLayout
+class Header_Widget : public gui::WidgetLayout
 {
     public:
 
@@ -43,14 +43,14 @@ class Header_Widget : public ui::WidgetLayout
 
         Header_Widget() = delete;
 
-        Header_Widget( ui::LayoutBase::ptr_t layout );
+        Header_Widget( gui::LayoutBase::ptr_t layout );
 
 
         /// Label storing time information
-        ui::Label::ptr_t m_time_data;
+        gui::Label::ptr_t m_time_data;
 
         /// Label storing title page
-        ui::Label::ptr_t m_title_data;
+        gui::Label::ptr_t m_title_data;
 
 };// End of Header_Widget class
 

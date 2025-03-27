@@ -23,7 +23,7 @@
 #include <terminus/calc/ui/LayoutBase.hpp>
 #include <terminus/calc/ui/WidgetBase.hpp>
 
-namespace tmns::calc::ui {
+namespace tmns::gui {
 
 /**
  * @class LayoutStack
@@ -64,4 +64,4 @@ class LayoutStack : public LayoutBase
 
 };// End of LayoutStretch class
 
-} // End of tmns::calc::ui namespace
+} // End of tmns::gui namespace

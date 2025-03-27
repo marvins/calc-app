@@ -42,6 +42,20 @@ Run the following script to launch and run `terminus_toolbox` on any `desktop` c
 ./scripts/cpp-run-app.sh
 ```
 
+## Helper Applications
+
+### CMake Build File List : `./tools/cmake-build-file-list`
+
+This is a handy app to find all C++ header and source files in the repo and make sure you match.  Why this matters is 
+when you forget files in the CMakeLists.txt file, they will either fail to compile (`.cpp`) or won't be scanned for changes
+prior to rebuilding (`.hpp`).  I therefore recommend you always provide both headers and footers to the `add_executable()` cmake command.
+
+**Example Usage:**
+
+    ./tools/cmake-build-file-list.py -d cpp/
+
+Then copy and paste this variable to the global `CMakeLists.txt` file and compare. Note that driver files are in `${EXTRA_SOURCES}`, so transfer them to those areas.
+
 ## References / Citations
 
 All icons in this project are free / Open-Source icons from Icon8.

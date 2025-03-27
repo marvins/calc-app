@@ -16,7 +16,7 @@
  */
 #include <terminus/gui/WidgetLayout.hpp>
 
-namespace tmns::calc::ui {
+namespace tmns::gui {
 
 /****************************************/
 /*          Get the widget size         */
@@ -57,4 +57,4 @@ WidgetLayout::ptr_t WidgetLayout::from_layout( LayoutBase::ptr_t layout )
 WidgetLayout::WidgetLayout( LayoutBase::ptr_t layout )
     : m_layout { layout }{}
 
-} // End of tmns::calc::ui namespace
+} // End of tmns::gui namespace

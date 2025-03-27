@@ -20,7 +20,7 @@
 #include <terminus/log/Logger.hpp>
 #include <terminus/math/Rectangle.hpp>
 
-namespace tmns::calc::ui {
+namespace tmns::gui {
 
 /*****************************************/
 /*         Add Layout to Widget List     */
@@ -181,4 +181,4 @@ std::vector<math::Rect2i> LayoutVertical::allocate_bboxes() const
 
 }
 
-} // End of tmns::calc::ui namespace
+} // End of tmns::gui namespace

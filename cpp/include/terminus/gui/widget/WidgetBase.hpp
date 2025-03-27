@@ -24,7 +24,7 @@
 #include <terminus/calc/image/FrameView.hpp>
 #include <terminus/math/Size.hpp>
 
-namespace tmns::calc::ui {
+namespace tmns::gui {
 
 /**
  * @class WidgetBase
@@ -51,4 +51,4 @@ class WidgetBase
 
 };// End of WidgetBase class
 
-} // End of tmns::calc::ui namespace
+} // End of tmns::gui namespace

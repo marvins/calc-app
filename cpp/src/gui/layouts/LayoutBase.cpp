@@ -19,7 +19,7 @@
 // Terminus Libraries
 #include <terminus/log.hpp>
 
-namespace tmns::calc::ui {
+namespace tmns::gui {
 
 /****************************************/
 /*          Get Layout Dimensions       */
@@ -156,4 +156,4 @@ math::Rect2i LayoutBase::align_widget( math::Rect2i              bbox_allocated,
     return output;
 }
 
-} // End of tmns::calc::ui namespace
+} // End of tmns::gui namespace

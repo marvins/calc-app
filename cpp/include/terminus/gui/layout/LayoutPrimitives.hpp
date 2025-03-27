@@ -21,7 +21,7 @@
 #include <optional>
 #include <set>
 
-namespace tmns::calc::ui {
+namespace tmns::gui {
 
 /**
  * Set the alignment policy
@@ -54,4 +54,4 @@ struct WidgetLayoutInfo {
     // 
 };
 
-} // End of tmns::calc::ui namespace
+} // End of tmns::gui namespace

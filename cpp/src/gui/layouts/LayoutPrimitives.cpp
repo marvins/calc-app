@@ -16,8 +16,8 @@
  */
 #include <terminus/gui/LayoutPrimitives.hpp>
 
-namespace tmns::calc::ui {
+namespace tmns::gui {
 
 
 
-} // End of tmns::calc::ui namespace
+} // End of tmns::gui namespace

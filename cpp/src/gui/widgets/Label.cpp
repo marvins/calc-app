@@ -17,7 +17,7 @@
 // Project Libraries
 #include <terminus/log.hpp>
 
-namespace tmns::calc::ui {
+namespace tmns::gui {
 
 /****************************/
 /*      Get label size      */
@@ -81,4 +81,4 @@ Label::ptr_t Label::from_frame( img::Frame::ptr_t frame )
     return new_lbl;
 }
 
-} // End of tmns::calc::ui namespace
+} // End of tmns::gui namespace

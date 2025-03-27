@@ -19,13 +19,13 @@
 // Project Libraries
 #include <terminus/calc/core/Session.hpp>
 #include <terminus/calc/image/FrameView.hpp>
-#include <terminus/calc/ui/WidgetLayoutItem.hpp>
+#include <terminus/gui/layout/WidgetLayoutItem.hpp>
 
 // C++ Standard Libraries
 #include <memory>
 #include <vector>
 
-namespace tmns::calc::ui {
+namespace tmns::gui {
 
 /**
  * @class LayoutBase
@@ -120,4 +120,4 @@ class LayoutBase
 
 };// End of LayoutBase class
 
-} // End of tmns::calc::ui namespace
+} // End of tmns::gui namespace

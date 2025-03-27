@@ -22,7 +22,7 @@
 #include <terminus/calc/ui/WidgetBase.hpp>
 #include <terminus/math/Size.hpp>
 
-namespace tmns::calc::ui {
+namespace tmns::gui {
 
 class Label : public WidgetBase {
 
@@ -68,4 +68,4 @@ class Label : public WidgetBase {
 
 }; // End of Label Class
 
-} // End of tmns::calc::ui namespace
+} // End of tmns::gui namespace

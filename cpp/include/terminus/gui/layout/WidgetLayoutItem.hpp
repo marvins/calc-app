@@ -20,7 +20,7 @@
 #include <terminus/calc/ui/LayoutPrimitives.hpp>
 #include <terminus/calc/ui/WidgetBase.hpp>
 
-namespace tmns::calc::ui {
+namespace tmns::gui {
 
 struct WidgetLayoutItem {
 
@@ -31,4 +31,4 @@ struct WidgetLayoutItem {
     WidgetLayoutInfo   layout_info;
 };
 
-} // End of tmns::calc::ui namespace
+} // End of tmns::gui namespace

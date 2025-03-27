@@ -20,8 +20,8 @@
 
 // Project Libraries
 #include <terminus/calc/core/Options.hpp>
-#include <terminus/calc/drivers/DriverBase.hpp>
 #include <terminus/calc/image/Frame.hpp>
+#include <terminus/drv/DriverBase.hpp>
 
 namespace tmns::calc::core {
 

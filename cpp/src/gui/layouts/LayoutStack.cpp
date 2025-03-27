@@ -20,7 +20,7 @@
 #include <terminus/log/Logger.hpp>
 
 
-namespace tmns::calc::ui {
+namespace tmns::gui {
 
 /*****************************************/
 /*         Add Layout to Widget List     */
@@ -37,4 +37,4 @@ size_t LayoutStack::append( WidgetBase::ptr_t new_widget ){
     return (m_widgets.size() - 1);
 }
 
-} // End of tmns::calc::ui namespace
+} // End of tmns::gui namespace

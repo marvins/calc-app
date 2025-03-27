@@ -21,7 +21,7 @@
 #include <terminus/calc/ui/WidgetBase.hpp>
 #include <terminus/math/Size.hpp>
 
-namespace tmns::calc::ui {
+namespace tmns::gui {
 
 /**
  * Simple widget object which effectively wraps a layout. 
@@ -71,4 +71,4 @@ class WidgetLayout : public WidgetBase {
 
 }; // End of WidgetLayout Class
 
-} // End of tmns::calc::ui namespace
+} // End of tmns::gui namespace

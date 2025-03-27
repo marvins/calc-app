@@ -14,4 +14,7 @@
  */
 #pragma once
 
-namespace tmns::calc::
+namespace tmns::gui {
+
+
+} // End of tmns::gui Namespace

@@ -17,9 +17,9 @@
 #pragma once
 
 // Project Libraries
-#include <terminus/calc/ui/Label.hpp>
-#include <terminus/calc/ui/LayoutHorizontal.hpp>
-#include <terminus/calc/ui/WidgetLayout.hpp>
+#include <terminus/gui/layout/LayoutHorizontal.hpp>
+#include <terminus/gui/widget/Label.hpp>
+#include <terminus/gui/widget/WidgetLayout.hpp>
 
 namespace tmns::calc::page {
 

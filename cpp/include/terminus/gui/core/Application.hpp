@@ -19,7 +19,7 @@
 #include <terminus/calc/core/Session.hpp>
 #include <terminus/calc/pages/Main_Window.hpp>
 
-namespace tmns::calc::ui {
+namespace tmns::gui {
 
 class Application
 {
@@ -55,4 +55,4 @@ class Application
         
 }; // End Application class
 
-} // End of tmns::calc::ui namespace
+} // End of tmns::gui namespace

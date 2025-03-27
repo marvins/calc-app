@@ -19,7 +19,7 @@
 // C++ Standard Libraries
 #include <string>
 
-namespace tmns::calc::ui {
+namespace tmns::gui {
 
 enum class EventType {
     KEYBOARD_DOWN  =  1,
@@ -33,4 +33,4 @@ enum class EventType {
  */
 std::string to_string( EventType tp );
 
-} // End of tmns::calc::ui namespace
+} // End of tmns::gui namespace
