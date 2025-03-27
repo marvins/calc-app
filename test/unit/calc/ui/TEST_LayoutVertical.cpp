@@ -17,22 +17,22 @@
 #include <gtest/gtest.h>
 
 // Project Libraries
-#include <terminus/calc/ui/Label.hpp>
-#include <terminus/calc/ui/LayoutVertical.hpp>
+#include <terminus/gui/layout/LayoutVertical.hpp>
+#include <terminus/gui/widget/Label.hpp>
 #include <terminus/log.hpp>
 
 using namespace tmns;
 
-class calc_ui_LayoutVertical : public testing::Test 
+class gui_LayoutVertical : public testing::Test 
 {
     protected:
 
         void SetUp() override {
 
             // Build 3 sample frames for creating labels with
-            test_frames.push_back( std::make_shared<calc::img::Frame>( calc::img::Dimensions( 300, 200, 4 ) ) );
-            test_frames.push_back( std::make_shared<calc::img::Frame>( calc::img::Dimensions( 300, 200, 4 ) ) );
-            test_frames.push_back( std::make_shared<calc::img::Frame>( calc::img::Dimensions( 300, 200, 4 ) ) );
+            test_frames.push_back( std::make_shared<img::Frame>( img::Dimensions( 300, 200, 4 ) ) );
+            test_frames.push_back( std::make_shared<img::Frame>( img::Dimensions( 300, 200, 4 ) ) );
+            test_frames.push_back( std::make_shared<img::Frame>( img::Dimensions( 300, 200, 4 ) ) );
         }
 
         void TearDown() override {
@@ -40,7 +40,7 @@ class calc_ui_LayoutVertical : public testing::Test
         }
 
         /// Internal Frames for test use
-        std::vector<calc::img::Frame::ptr_t> test_frames;
+        std::vector<img::Frame::ptr_t> test_frames;
 
 }; // End of calc_ui_LayoutVertical class
 
@@ -49,10 +49,10 @@ class calc_ui_LayoutVertical : public testing::Test
  * 
  * A good example of a basic Vertical Layout is the Splash screen (Splash.hpp/cpp)
  */
-TEST_F( calc_ui_LayoutVertical, allocate_bbox_test1 )
+TEST_F( gui_LayoutVertical, allocate_bbox_test1 )
 {
     // Create a Vertical Layout
-    auto layout = std::make_shared<calc::ui::LayoutVertical>();
+    auto layout = std::make_shared<gui::LayoutVertical>();
 
     // Set padding
     int y_top_pad = 100;
@@ -62,17 +62,17 @@ TEST_F( calc_ui_LayoutVertical, allocate_bbox_test1 )
     layout->set_layout_size( math::Size2i( { 800, 1000 } ) );
 
     // Demo alignment policy
-    std::set<calc::ui::AlignmentPolicy> alignment { { calc::ui::AlignmentPolicy::CENTER_HORIZONTAL, 
-                                                      calc::ui::AlignmentPolicy::TOP } };
+    std::set<gui::AlignmentPolicy> alignment { { gui::AlignmentPolicy::CENTER_HORIZONTAL, 
+                                                 gui::AlignmentPolicy::TOP } };
 
     // This gives us a working window of 300 x 800 starting at 100, 100
-    auto label1 = calc::ui::Label::from_frame( test_frames[0] );
+    auto label1 = gui::Label::from_frame( test_frames[0] );
     layout->append( label1, alignment, 0.6 );
 
-    auto label2 = calc::ui::Label::from_frame( test_frames[1] );
+    auto label2 = gui::Label::from_frame( test_frames[1] );
     layout->append( label2, alignment, 0.8 );
 
-    auto label3 = calc::ui::Label::from_frame( test_frames[2] );
+    auto label3 = gui::Label::from_frame( test_frames[2] );
     layout->append( label3, alignment, std::optional<double>() );
 
     // Get the BBOX Assignments

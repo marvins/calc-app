@@ -17,7 +17,7 @@
 #include <gtest/gtest.h>
 
 // Project Libraries
-#include <terminus/calc/ui/LayoutBase.hpp>
+#include <terminus/gui/layout/LayoutBase.hpp>
 #include <terminus/log.hpp>
 
 using namespace tmns;
@@ -25,7 +25,7 @@ using namespace tmns;
 /**
  * Verify the "Align Widget" method
  */
-TEST( calc_ui_LayoutBase, align_widget )
+TEST( gui_LayoutBase, align_widget )
 {
     // Say we have the following example
     math::Rect2i allocated_bbox( math::ToPoint2(100, 100),
@@ -35,11 +35,11 @@ TEST( calc_ui_LayoutBase, align_widget )
     math::Size2i widget_size( { 300, 200 } );
 
     // If we align from the center (horizontally) and the top vertically, ....
-    std::set<calc::ui::AlignmentPolicy> alignment_top { { calc::ui::AlignmentPolicy::CENTER_HORIZONTAL,
-                                                          calc::ui::AlignmentPolicy::TOP } };
-    auto test1_res = calc::ui::LayoutBase::align_widget( allocated_bbox,
-                                                         widget_size,
-                                                         alignment_top );
+    std::set<gui::AlignmentPolicy> alignment_top { { gui::AlignmentPolicy::CENTER_HORIZONTAL,
+                                                     gui::AlignmentPolicy::TOP } };
+    auto test1_res = gui::LayoutBase::align_widget( allocated_bbox,
+                                                    widget_size,
+                                                    alignment_top );
 
     ASSERT_EQ( test1_res.min().x(), 250 );
     ASSERT_EQ( test1_res.min().y(), 100 );

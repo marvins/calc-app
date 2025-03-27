@@ -15,17 +15,19 @@
 #pragma once
 
 // Project Libraries
-#include <terminus/calc/core/Options.hpp>
-#include <terminus/calc/core/Session.hpp>
 #include <terminus/calc/pages/HeaderWidget.hpp>
 #include <terminus/calc/pages/FooterWidget.hpp>
 #include <terminus/calc/pages/Main_Menu.hpp>
-#include <terminus/calc/ui/LayoutStack.hpp>
-#include <terminus/calc/ui/LayoutVertical.hpp>
+#include <terminus/core/Options.hpp>
+#include <terminus/gui/core/Session.hpp>
+#include <terminus/gui/layout/LayoutStack.hpp>
+#include <terminus/gui/layout/LayoutVertical.hpp>
+#include <terminus/gui/I_Main_Window.hpp>
 
 namespace tmns::calc::page {
 
-class Main_Window : public ui::LayoutVertical
+class Main_Window : public gui::LayoutVertical,
+                    public gui::I_Main_Window
 {
     public:
 
@@ -36,13 +38,13 @@ class Main_Window : public ui::LayoutVertical
          * Show the screen for a bit, then exit
          */
         void render( core::Options& config,
-                     core::Session& session );
+                     gui::Session&  session ) override;
 
         /**
          * Create a new Splash Screen
          */
-        static Main_Window::ptr_t create( const core::Options& config,
-                                          core::Session&       session );
+        static Main_Window::ptr_t create( core::Options& config,
+                                          gui::Session&  session );
         
     private:
 
@@ -50,7 +52,7 @@ class Main_Window : public ui::LayoutVertical
         Header_Widget::ptr_t m_header;
 
         /// Stacked Widget holding all app pages
-        ui::LayoutStack::ptr_t m_stack_layout;
+        gui::LayoutStack::ptr_t m_stack_layout;
 
         /// Main Menu (Stored inside the stacked widget)
         Main_Menu::ptr_t m_main_app_menu;

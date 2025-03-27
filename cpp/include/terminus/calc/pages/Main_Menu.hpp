@@ -15,12 +15,12 @@
 #pragma once
 
 // Project Libraries
-#include <terminus/calc/ui/LayoutVertical.hpp>
-#include <terminus/calc/ui/WidgetLayout.hpp>
+#include <terminus/gui/layout/LayoutVertical.hpp>
+#include <terminus/gui/widget/WidgetLayout.hpp>
 
 namespace tmns::calc::page {
 
-class Main_Menu : public ui::WidgetLayout {
+class Main_Menu : public gui::WidgetLayout {
 
     public:
 
@@ -30,15 +30,15 @@ class Main_Menu : public ui::WidgetLayout {
         /**
          * Construct Main Menu
          */
-        static Main_Menu::ptr_t create( const core::Options& config,
-                                        core::Session&       session );
+        static Main_Menu::ptr_t create( core::Options& config,
+                                        gui::Session&  session );
     
     private:
 
         Main_Menu() = default;
 
         /// Layout used to store widgets
-        ui::LayoutVertical::ptr_t m_main_layout;
+        gui::LayoutVertical::ptr_t m_main_layout;
         
         /// List of Application Labels
         

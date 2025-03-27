@@ -17,8 +17,8 @@
 #pragma once
 
 // Project Libraries
-#include <terminus/calc/ui/LayoutPrimitives.hpp>
-#include <terminus/calc/ui/WidgetBase.hpp>
+#include <terminus/gui/layout/LayoutPrimitives.hpp>
+#include <terminus/gui/widget/WidgetBase.hpp>
 
 namespace tmns::gui {
 

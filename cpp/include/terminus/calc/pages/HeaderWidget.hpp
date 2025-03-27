@@ -18,8 +18,8 @@
 
 // Terminus Libraries
 #include <terminus/gui/layout/LayoutHorizontal.hpp>
-#include <terminus/gui/layout/WidgetLayout.hpp>
 #include <terminus/gui/widget/Label.hpp>
+#include <terminus/gui/widget/WidgetLayout.hpp>
 
 namespace tmns::calc::page {
 
@@ -37,7 +37,7 @@ class Header_Widget : public gui::WidgetLayout
          * Create the widget
          */
         static Header_Widget::ptr_t create( const core::Options& config,
-                                            core::Session&       session );
+                                            gui::Session&        session );
 
     private:
 

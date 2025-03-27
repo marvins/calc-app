@@ -17,9 +17,9 @@
 #pragma once
 
 // Project Libraries
-#include <terminus/calc/drivers/DriverBase.hpp>
-#include <terminus/calc/image/Frame.hpp>
-#include <terminus/calc/ui/WidgetBase.hpp>
+#include <terminus/driver/DriverBase.hpp>
+#include <terminus/gui/widget/WidgetBase.hpp>
+#include <terminus/image/Frame.hpp>
 #include <terminus/math/Size.hpp>
 
 namespace tmns::gui {
@@ -41,7 +41,7 @@ class Label : public WidgetBase {
         /**
          * Show the label
          */
-        bool render( core::Session&  session,
+        bool render( Session&        session,
                      img::FrameView& image ) override;
 
         /**

@@ -26,7 +26,7 @@ namespace tmns::calc::page {
 /**
  * @class Footer_Widget
  */
-class Footer_Widget : public ui::WidgetLayout
+class Footer_Widget : public gui::WidgetLayout
 {
     public:
 
@@ -37,16 +37,16 @@ class Footer_Widget : public ui::WidgetLayout
          * Create the widget
          */
         static Footer_Widget::ptr_t create( const core::Options& config,
-                                            core::Session&       session );
+                                            gui::Session&        session );
 
     private:
 
         Footer_Widget() = default;
 
-        Footer_Widget( ui::LayoutBase::ptr_t layout );
+        Footer_Widget( gui::LayoutBase::ptr_t layout );
 
         /// Label storing command information
-        ui::Label::ptr_t m_command_data;
+        gui::Label::ptr_t m_command_data;
 
 };// End of Footer_Widget class
 

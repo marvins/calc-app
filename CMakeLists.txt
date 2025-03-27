@@ -107,10 +107,10 @@ elseif( ${RENDER_DRIVER} STREQUAL "raylib" )
     message( "OpenCV_LIBRARIES: ${OpenCV_LIBRARIES}" )
     set( EXTRA_LIBS ${EXTRA_LIBS} ${OpenCV_LIBRARIES} )
 
-    set( EXTRA_SOURCES cpp/include/terminus/drv/DriverRaylib.hpp
-                       cpp/include/terminus/drv/Raylib_Utilities.hpp
-                       cpp/src/drv/DriverRaylib.cpp
-                       cpp/src/drv/Raylib_Utilities.cpp )
+    set( EXTRA_SOURCES cpp/include/terminus/driver/DriverRaylib.hpp
+                       cpp/include/terminus/driver/Raylib_Utilities.hpp
+                       cpp/src/driver/DriverRaylib.cpp
+                       cpp/src/driver/Raylib_Utilities.cpp )
 
 else()
 
@@ -127,80 +127,77 @@ include_directories( cpp/include )
 #-       Build Application      -#
 #--------------------------------#
 add_executable( ${PROJECT_NAME}
-    cpp/include/terminus/log.hpp
-    cpp/include/terminus/version.hpp
-    cpp/include/terminus/math/Point_Utilities.hpp
-    cpp/include/terminus/math/Point.hpp
-    cpp/include/terminus/math/Rectangle.hpp
-    cpp/include/terminus/math/Size.hpp
-    cpp/include/terminus/math/Enums.hpp
-    cpp/include/terminus/math/Vector.hpp
-    cpp/include/terminus/math/VectorN.hpp
-    cpp/include/terminus/math/Vector_Base.hpp
-    cpp/include/terminus/math/Fundamental_Types.hpp
-    cpp/include/terminus/log/Logger.hpp
-    cpp/include/terminus/log/Level.hpp
-    cpp/include/terminus/log/HandlerBase.hpp
-    cpp/include/terminus/log/HandlerFile.hpp
-    cpp/include/terminus/log/HandlerConsole.hpp
-    cpp/include/terminus/calc/core/Options.hpp
-    cpp/include/terminus/calc/core/Session.hpp
-    cpp/include/terminus/calc/core/ConfigParser.hpp
-    cpp/include/terminus/calc/utils/StringUtilities.hpp
-    cpp/include/terminus/calc/pages/Splash.hpp
-    cpp/include/terminus/calc/pages/Main_Window.hpp
-    cpp/include/terminus/calc/pages/HeaderWidget.hpp
-    cpp/include/terminus/calc/pages/FooterWidget.hpp
-    cpp/include/terminus/calc/pages/Main_Menu.hpp
-    cpp/include/terminus/calc/pages/Config_Menu.hpp
-    cpp/include/terminus/calc/image/Frame.hpp
-    cpp/include/terminus/calc/image/Primitives.hpp
-    cpp/include/terminus/calc/image/FrameView.hpp
-    cpp/include/terminus/calc/apps/coord_convert/app.hpp
     cpp/include/terminus/calc/apps/coord_convert/app.cpp
-    cpp/include/terminus/gui/core/Exit_Code.hpp
-    cpp/include/terminus/gui/core/I_Main_Window.hpp
+    cpp/include/terminus/calc/apps/coord_convert/app.hpp
+    cpp/include/terminus/calc/pages/Config_Menu.hpp
+    cpp/include/terminus/calc/pages/FooterWidget.hpp
+    cpp/include/terminus/calc/pages/HeaderWidget.hpp
+    cpp/include/terminus/calc/pages/Main_Menu.hpp
+    cpp/include/terminus/calc/pages/Main_Window.hpp
+    cpp/include/terminus/calc/pages/Splash.hpp
+    cpp/include/terminus/core/ConfigParser.hpp
+    cpp/include/terminus/core/Options.hpp
+    cpp/include/terminus/core/StringUtilities.hpp
+    cpp/include/terminus/driver/DriverBase.hpp
+    cpp/include/terminus/image/Frame.hpp
+    cpp/include/terminus/image/FrameView.hpp
+    cpp/include/terminus/image/Primitives.hpp
     cpp/include/terminus/gui/core/Application.hpp
+    cpp/include/terminus/gui/core/Exit_Code.hpp
+    cpp/include/terminus/gui/core/Session.hpp
+    cpp/include/terminus/gui/event/EventType.hpp
     cpp/include/terminus/gui/layout/LayoutBase.hpp
     cpp/include/terminus/gui/layout/LayoutHorizontal.hpp
     cpp/include/terminus/gui/layout/LayoutPrimitives.hpp
     cpp/include/terminus/gui/layout/LayoutStack.hpp
     cpp/include/terminus/gui/layout/LayoutVertical.hpp
     cpp/include/terminus/gui/layout/WidgetLayoutItem.hpp
-    cpp/include/terminus/gui/widget/WidgetLayout.hpp
-    cpp/include/terminus/gui/widget/WidgetBase.hpp
     cpp/include/terminus/gui/widget/Label.hpp
-    cpp/include/terminus/gui/event/EventType.hpp
-    cpp/include/terminus/drv/DriverAllegro.hpp
-    cpp/include/terminus/drv/DriverBase.hpp
-    cpp/include/terminus/drv/DriverRaylib.hpp
-    cpp/include/terminus/drv/Raylib_Utilities.hpp
-    cpp/src/main.cpp
+    cpp/include/terminus/gui/widget/WidgetBase.hpp
+    cpp/include/terminus/gui/widget/WidgetLayout.hpp
+    cpp/include/terminus/gui/I_Main_Window.hpp
+    cpp/include/terminus/log.hpp
+    cpp/include/terminus/log/HandlerBase.hpp
+    cpp/include/terminus/log/HandlerConsole.hpp
+    cpp/include/terminus/log/HandlerFile.hpp
+    cpp/include/terminus/log/Level.hpp
+    cpp/include/terminus/log/Logger.hpp
+    cpp/include/terminus/math/Enums.hpp
+    cpp/include/terminus/math/Fundamental_Types.hpp
+    cpp/include/terminus/math/Point.hpp
+    cpp/include/terminus/math/Point_Utilities.hpp
+    cpp/include/terminus/math/Rectangle.hpp
+    cpp/include/terminus/math/Size.hpp
+    cpp/include/terminus/math/Vector.hpp
+    cpp/include/terminus/math/VectorN.hpp
+    cpp/include/terminus/math/Vector_Base.hpp
+    cpp/include/terminus/version.hpp
+    cpp/src/calc/pages/Config_Menu.cpp
+    cpp/src/calc/pages/FooterWidget.cpp
+    cpp/src/calc/pages/HeaderWidget.cpp
+    cpp/src/calc/pages/Main_Menu.cpp
+    cpp/src/calc/pages/Main_Window.cpp
+    cpp/src/calc/pages/Splash.cpp
+    cpp/src/core/ConfigParser.cpp
+    cpp/src/core/Options.cpp
+    cpp/src/core/StringUtilities.cpp
+    cpp/src/gui/core/Session.cpp
+    cpp/src/gui/event/EventType.cpp
+    cpp/src/gui/layout/LayoutBase.cpp
+    cpp/src/gui/layout/LayoutHorizontal.cpp
+    cpp/src/gui/layout/LayoutPrimitives.cpp
+    cpp/src/gui/layout/LayoutStack.cpp
+    cpp/src/gui/layout/LayoutVertical.cpp
+    cpp/src/gui/widget/Label.cpp
+    cpp/src/gui/widget/WidgetLayout.cpp
+    cpp/src/image/Frame.cpp
+    cpp/src/image/FrameView.cpp
+    cpp/src/image/Image.cpp
+    cpp/src/image/Primitives.cpp
+    cpp/src/log/HandlerConsole.cpp
     cpp/src/log/Level.cpp
     cpp/src/log/Logger.cpp
-    cpp/src/log/HandlerConsole.cpp
-    cpp/src/calc/core/Options.cpp
-    cpp/src/calc/core/Session.cpp
-    cpp/src/calc/core/ConfigParser.cpp
-    cpp/src/calc/image/Frame.cpp
-    cpp/src/calc/image/Primitives.cpp
-    cpp/src/calc/image/FrameView.cpp
-    cpp/src/calc/pages/Splash.cpp
-    cpp/src/calc/pages/Main_Window.cpp
-    cpp/src/calc/pages/HeaderWidget.cpp
-    cpp/src/calc/pages/FooterWidget.cpp
-    cpp/src/calc/pages/Main_Menu.cpp
-    cpp/src/calc/pages/Config_Menu.cpp
-    cpp/src/calc/utils/StringUtilities.cpp
-    cpp/src/gui/widgets/Label.cpp
-    cpp/src/gui/widgets/WidgetLayout.cpp
-    cpp/src/gui/layouts/LayoutBase.cpp
-    cpp/src/gui/layouts/LayoutHorizontal.cpp
-    cpp/src/gui/layouts/LayoutPrimitives.cpp
-    cpp/src/gui/layouts/LayoutStack.cpp
-    cpp/src/gui/layouts/LayoutVertical.cpp
-    cpp/src/gui/event/EventType.cpp
-    cpp/src/img/Image.cpp
+    cpp/src/main.cpp
     ${EXTRA_SOURCES}
 )
 

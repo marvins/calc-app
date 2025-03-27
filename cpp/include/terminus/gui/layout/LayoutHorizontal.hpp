@@ -63,7 +63,7 @@ class LayoutHorizontal : public LayoutBase
         /**
          * Show the contents of the layout
          */
-        bool render( core::Session&  session,
+        bool render( Session&        session,
                      img::FrameView& image ) override;
 
         /**

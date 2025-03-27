@@ -15,13 +15,13 @@
  * @author  Marvin Smith
  * @date    3/21/2025
 */
-#include <terminus/calc/core/Session.hpp>
+#include <terminus/gui/core/Session.hpp>
 
 // Project Libraries
 #if RENDER_DRIVER == 2
-#include <terminus/calc/drivers/DriverAllegro.hpp>
+#include <terminus/driver/DriverAllegro.hpp>
 #elif RENDER_DRIVER == 3
-#include <terminus/calc/drivers/DriverRaylib.hpp>
+#include <terminus/driver/DriverRaylib.hpp>
 #endif
 
 // C++ Standard Libraries
@@ -29,7 +29,7 @@
 #include <sstream>
 #include <thread>
 
-namespace tmns::calc::core {
+namespace tmns::gui {
 
 /****************************************/
 /*          Get Copy of Driver          */
@@ -78,7 +78,7 @@ std::string Session::to_log_string( size_t offset ) const
 /****************************************************/
 /*          Create a Session API Instance           */
 /****************************************************/
-Session Session::create( Options config )
+Session Session::create( core::Options config )
 {
     Session new_session;
     
@@ -99,4 +99,4 @@ Session Session::create( Options config )
     return new_session;
 }
 
-} // End of tmns::calc::core namespace
+} // End of tmns::gui namespace

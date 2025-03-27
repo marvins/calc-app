@@ -18,5 +18,10 @@
 
 namespace tmns::calc::page {
 
+Main_Menu::ptr_t Main_Menu::create( core::Options& config,
+                                    gui::Session&  session)
+{
+    return nullptr;
+}
 
 } // End of tmns::calc::page namespace

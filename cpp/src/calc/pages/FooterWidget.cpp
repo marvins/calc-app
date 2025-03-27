@@ -17,9 +17,9 @@
 #include <terminus/calc/pages/FooterWidget.hpp>
 
 // Project Libraries
-#include <terminus/calc/ui/Label.hpp>
-#include <terminus/calc/ui/LayoutHorizontal.hpp>
-#include <terminus/calc/ui/WidgetLayout.hpp>
+#include <terminus/gui/layout/LayoutHorizontal.hpp>
+#include <terminus/gui/widget/Label.hpp>
+#include <terminus/gui/widget/WidgetLayout.hpp>
 
 namespace tmns::calc::page {
 
@@ -27,9 +27,9 @@ namespace tmns::calc::page {
 /*          Create Header Widget          */
 /******************************************/
 Footer_Widget::ptr_t Footer_Widget::create( const core::Options& config,
-                                            core::Session&       session )
+                                            gui::Session&        session )
 {
-    auto layout = std::make_shared<ui::LayoutHorizontal>();
+    auto layout = std::make_shared<gui::LayoutHorizontal>();
 
 
     // Commands for the footer will be provided by the context manager
@@ -38,9 +38,9 @@ Footer_Widget::ptr_t Footer_Widget::create( const core::Options& config,
 
     ///////////////////////////////////
     // Create the title label
-    auto command_label = ui::Label::from_text( commands, session.driver() );
-    std::set<ui::AlignmentPolicy> alignment { { ui::AlignmentPolicy::CENTER_HORIZONTAL,
-                                                ui::AlignmentPolicy::CENTER_VERTICAL } };
+    auto command_label = gui::Label::from_text( commands, session.driver() );
+    std::set<gui::AlignmentPolicy> alignment { { gui::AlignmentPolicy::CENTER_HORIZONTAL,
+                                                 gui::AlignmentPolicy::CENTER_VERTICAL } };
     layout->append( command_label, alignment, {} );
 
     // Create instance
@@ -54,7 +54,7 @@ Footer_Widget::ptr_t Footer_Widget::create( const core::Options& config,
 /********************************************/
 /*          Parameterized Constructor       */
 /********************************************/
-Footer_Widget::Footer_Widget( ui::LayoutBase::ptr_t layout )
-: ui::WidgetLayout( layout ){}
+Footer_Widget::Footer_Widget( gui::LayoutBase::ptr_t layout )
+: gui::WidgetLayout( layout ){}
 
 } // End of tmns::calc::page namespace

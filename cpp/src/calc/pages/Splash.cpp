@@ -15,8 +15,8 @@
 #include <terminus/calc/pages/Splash.hpp>
 
 // Project Libraries
-#include <terminus/calc/image/FrameView.hpp>
-#include <terminus/calc/ui/Label.hpp>
+#include <terminus/image/FrameView.hpp>
+#include <terminus/gui/widget/Label.hpp>
 #include <terminus/version.hpp>
 
 // C++ Standard Libraries
@@ -28,7 +28,7 @@ namespace tmns::calc::page {
 /*          Show Splash Screen        */
 /**************************************/
 void Splash::show( core::Options& config,
-                   core::Session& session )
+                   gui::Session&  session )
 {
     img::FrameView frame_view( session.active_frame() );
     
@@ -55,7 +55,7 @@ void Splash::show( core::Options& config,
 /*          Build Instance          */
 /************************************/
 Splash::ptr_t Splash::create( const core::Options& config,
-                              core::Session&       session )
+                              gui::Session&        session )
 {
     // Build the new instance
     auto splash = std::make_shared<Splash>();
@@ -65,14 +65,14 @@ Splash::ptr_t Splash::create( const core::Options& config,
     splash->set_layout_size( session.driver()->get_screen_dimensions().size() );
     
     // Load the icon first
-    auto icon_label = ui::Label::from_image( config.setting<std::filesystem::path>("menu","splash_icon_path"),
-                                             session.driver() );
+    auto icon_label = gui::Label::from_image( config.setting<std::filesystem::path>("menu","splash_icon_path"),
+                                              session.driver() );
     splash->append( icon_label );
 
 
     // Add a text label
-    auto text_label = ui::Label::from_text( "Terminus Converter",
-                                            session.driver() );
+    auto text_label = gui::Label::from_text( "Terminus Converter",
+                                             session.driver() );
     splash->append( text_label );
 
 
@@ -81,11 +81,11 @@ Splash::ptr_t Splash::create( const core::Options& config,
         std::stringstream sout;
         sout << "Version: " << VERSION() << ", Build Date: " << BUILD_DATE();
 
-        auto version_label = ui::Label::from_text( sout.str(),
-                                                   session.driver() );
+        auto version_label = gui::Label::from_text( sout.str(),
+                                                    session.driver() );
 
-        std::set<ui::AlignmentPolicy> alignment( { ui::AlignmentPolicy::CENTER_HORIZONTAL,
-                                                   ui::AlignmentPolicy::BOTTOM } );
+        std::set<gui::AlignmentPolicy> alignment( { gui::AlignmentPolicy::CENTER_HORIZONTAL,
+                                                    gui::AlignmentPolicy::BOTTOM } );
         splash->append( version_label, alignment, std::optional<double>() );
     }
 

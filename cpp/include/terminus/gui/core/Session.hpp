@@ -19,11 +19,11 @@
 #include <filesystem>
 
 // Project Libraries
-#include <terminus/calc/core/Options.hpp>
-#include <terminus/calc/image/Frame.hpp>
-#include <terminus/drv/DriverBase.hpp>
+#include <terminus/core/Options.hpp>
+#include <terminus/image/Frame.hpp>
+#include <terminus/driver/DriverBase.hpp>
 
-namespace tmns::calc::core {
+namespace tmns::gui {
 
 class Session final {
 
@@ -57,7 +57,7 @@ class Session final {
         /**
          * Generate a session given command-line instructions
          */
-        static Session create( Options config );
+        static Session create( core::Options config );
 
     private:
 
@@ -70,4 +70,4 @@ class Session final {
 
 }; // End of Session class
 
-} // End of tmns::core namespace
+} // End of tmns::gui namespace

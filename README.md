@@ -56,6 +56,14 @@ prior to rebuilding (`.hpp`).  I therefore recommend you always provide both hea
 
 Then copy and paste this variable to the global `CMakeLists.txt` file and compare. Note that driver files are in `${EXTRA_SOURCES}`, so transfer them to those areas.
 
+**Extra Note:**
+
+I'm super lazy, so if you run this with `--is-test`, it will prepend the `${CMAKE_SOURCE_DIR}` for `test/unit/CMakeLists.txt`. 
+
+    ./tools/cmake-build-file-list.py -d cpp/ --is-test
+
+
+
 ## References / Citations
 
 All icons in this project are free / Open-Source icons from Icon8.

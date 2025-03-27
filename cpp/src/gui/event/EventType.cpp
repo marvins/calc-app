@@ -14,7 +14,7 @@
  *
  * @details Represent Events from the UI.
  */
-#include <terminus/gui/EventType.hpp>
+#include <terminus/gui/event/EventType.hpp>
 
 // C++ Standard Libraries
 #include <string>

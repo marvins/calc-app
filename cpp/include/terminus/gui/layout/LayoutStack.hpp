@@ -20,8 +20,8 @@
 #include <memory>
 
 // Project Libraries
-#include <terminus/calc/ui/LayoutBase.hpp>
-#include <terminus/calc/ui/WidgetBase.hpp>
+#include <terminus/gui/layout/LayoutBase.hpp>
+#include <terminus/gui/widget/WidgetBase.hpp>
 
 namespace tmns::gui {
 
@@ -51,7 +51,7 @@ class LayoutStack : public LayoutBase
         /**
          * Show the contents of the layout
          */
-        bool render( core::Session&  session,
+        bool render( Session&        session,
                      img::FrameView& image ) override;
 
         /**

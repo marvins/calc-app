@@ -20,8 +20,8 @@
 #include <memory>
 
 // Project Libraries
-#include <terminus/calc/core/Session.hpp>
-#include <terminus/calc/image/FrameView.hpp>
+#include <terminus/gui/core/Session.hpp>
+#include <terminus/image/FrameView.hpp>
 #include <terminus/math/Size.hpp>
 
 namespace tmns::gui {
@@ -44,8 +44,8 @@ class WidgetBase
         /**
          * @brief Render the image to the desired screen instance
          */
-        virtual bool render( core::Session&   session,
-                             img::FrameView&  image ) = 0;
+        virtual bool render( Session&        session,
+                             img::FrameView& image ) = 0;
 
     private:
 

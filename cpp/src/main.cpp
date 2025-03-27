@@ -14,17 +14,18 @@
  */
 
 // Project Libraries
-#include <terminus/calc/core/Options.hpp>
-#include <terminus/calc/core/Session.hpp>
 #include <terminus/calc/pages/Main_Window.hpp>
 #include <terminus/calc/pages/Splash.hpp>
+#include <terminus/core/Options.hpp>
+#include <terminus/gui/core/Application.hpp>
+#include <terminus/gui/core/Session.hpp>
 #include <terminus/log/HandlerConsole.hpp>
 #include <terminus/log/Logger.hpp>
 
 int main( int argc, char* argv[] ){
 
     // Parse Command-Line and Configuration-File Options
-    auto config = tmns::calc::core::Options::parse( argc, argv );
+    auto config = tmns::core::Options::parse( argc, argv );
 
     // Setup the console logger
     {
@@ -34,7 +35,7 @@ int main( int argc, char* argv[] ){
     LOG_DEBUG( config.to_log_string() );
 
     // Create the primary session
-    auto session = tmns::calc::core::Session::create( config );
+    auto session = tmns::gui::Session::create( config );
 
     LOG_DEBUG( session.to_log_string() );
 
@@ -44,7 +45,8 @@ int main( int argc, char* argv[] ){
 
     // Generate the main window
     auto main_window = tmns::calc::page::Main_Window::create( config, session );
-    main_window->run( config, session );
 
-    return 0;
+    // Build application
+    auto app = tmns::gui::Application::create( config, session, main_window );
+    return app->run();
 }

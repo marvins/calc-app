@@ -15,13 +15,14 @@
 #pragma once
 
 // Project Libraries
-#include <terminus/calc/core/Options.hpp>
-#include <terminus/calc/core/Session.hpp>
-#include <terminus/calc/ui/LayoutVertical.hpp>
+#include <terminus/core/Options.hpp>
+#include <terminus/gui/core/Session.hpp>
+#include <terminus/gui/layout/LayoutVertical.hpp>
+
 
 namespace tmns::calc::page {
 
-class Splash : public ui::LayoutVertical
+class Splash : public gui::LayoutVertical
 {
     public:
 
@@ -32,13 +33,13 @@ class Splash : public ui::LayoutVertical
          * Show the screen for a bit, then exit
          */
         void show( core::Options& config,
-                   core::Session& session );
+                   gui::Session&  session );
 
         /**
          * Create a new Splash Screen
          */
         static Splash::ptr_t create( const core::Options& config,
-                                     core::Session&       session );
+                                     gui::Session&        session );
         
         
 }; // End Splash class

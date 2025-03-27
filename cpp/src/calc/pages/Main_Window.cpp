@@ -15,16 +15,15 @@
 #include <terminus/calc/pages/Main_Window.hpp>
 
 // Project Libraries
-#include <terminus/calc/ui/WidgetLayout.hpp>
+#include <terminus/gui/widget/WidgetLayout.hpp>
 
 namespace tmns::calc::page {
 
-/*          Run the Application         */
 /****************************************/
 /*          Create new Window           */
 /****************************************/
-Main_Window::ptr_t Main_Window::create( const core::Options& config,
-                                        core::Session&       session )
+Main_Window::ptr_t Main_Window::create( core::Options& config,
+                                        gui::Session&  session )
 {
     /// Create window instance
     auto window = std::make_shared<Main_Window>();
@@ -34,7 +33,7 @@ Main_Window::ptr_t Main_Window::create( const core::Options& config,
     window->append( window->m_header );
 
     // Create the primary app stack
-    window->m_stack_layout = std::make_shared<ui::LayoutStack>();
+    window->m_stack_layout = std::make_shared<gui::LayoutStack>();
 
     // Add our main menu
     window->m_main_app_menu = Main_Menu::create( config, session );
@@ -43,7 +42,7 @@ Main_Window::ptr_t Main_Window::create( const core::Options& config,
     // Add subsequent apps here!
 
     // Add the stack layout to the main window layout
-    window->append( ui::WidgetLayout::from_layout( window->m_stack_layout ) );
+    window->append( gui::WidgetLayout::from_layout( window->m_stack_layout ) );
 
     /// Create the footer
     window->m_footer = Footer_Widget::create( config, session );

@@ -27,80 +27,77 @@ set( TEST ${PROJECT_NAME}_test )
 #  Until I learn how to make shared or static libraries with the RPI Pico, 
 #  I need to re-add the source files
 set( PROJECT_SOURCES
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/version.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/Point_Utilities.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/Point.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/Rectangle.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/Size.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/Enums.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/Vector.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/VectorN.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/Vector_Base.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/Fundamental_Types.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log/Logger.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log/Level.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log/HandlerBase.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log/HandlerFile.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log/HandlerConsole.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/utils/StringUtilities.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/pages/Splash.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/pages/Main_Window.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/pages/HeaderWidget.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/pages/FooterWidget.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/pages/Main_Menu.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/pages/Config_Menu.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/image/Frame.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/image/Primitives.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/image/FrameView.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/apps/coord_convert/app.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/apps/coord_convert/app.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/Options.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/Session.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/ConfigParser.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/Exit_Code.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/I_Main_Window.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/apps/coord_convert/app.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/pages/Config_Menu.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/pages/FooterWidget.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/pages/HeaderWidget.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/pages/Main_Menu.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/pages/Main_Window.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/pages/Splash.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/core/ConfigParser.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/core/Options.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/core/StringUtilities.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/driver/Raylib_Utilities.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/Frame.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/FrameView.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/Primitives.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/Application.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/Exit_Code.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/Session.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/event/EventType.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/layout/LayoutBase.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/layout/LayoutHorizontal.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/layout/LayoutPrimitives.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/layout/LayoutStack.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/layout/LayoutVertical.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/layout/WidgetLayoutItem.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/widget/WidgetLayout.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/widget/WidgetBase.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/widget/Label.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/event/EventType.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/drv/DriverAllegro.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/drv/DriverBase.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/drv/DriverRaylib.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/drv/Raylib_Utilities.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/main.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/widget/WidgetBase.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/widget/WidgetLayout.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/I_Main_Window.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log/HandlerBase.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log/HandlerConsole.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log/HandlerFile.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log/Level.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log/Logger.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/Enums.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/Fundamental_Types.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/Point.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/Point_Utilities.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/Rectangle.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/Size.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/Vector.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/VectorN.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/Vector_Base.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/version.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/calc/pages/Config_Menu.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/calc/pages/FooterWidget.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/calc/pages/HeaderWidget.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/calc/pages/Main_Menu.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/calc/pages/Main_Window.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/calc/pages/Splash.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/core/ConfigParser.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/core/Options.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/core/StringUtilities.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/gui/core/Application.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/gui/core/Session.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/gui/event/EventType.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/gui/layout/LayoutBase.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/gui/layout/LayoutHorizontal.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/gui/layout/LayoutPrimitives.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/gui/layout/LayoutStack.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/gui/layout/LayoutVertical.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/gui/widget/Label.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/gui/widget/WidgetLayout.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/image/Frame.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/image/FrameView.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/image/Image.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/image/Primitives.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/log/HandlerConsole.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/log/Level.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/log/Logger.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/log/HandlerConsole.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/calc/core/Options.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/calc/core/Session.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/calc/core/ConfigParser.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/calc/image/Frame.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/calc/image/Primitives.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/calc/image/FrameView.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/calc/pages/Splash.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/calc/pages/Main_Window.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/calc/pages/HeaderWidget.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/calc/pages/FooterWidget.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/calc/pages/Main_Menu.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/calc/pages/Config_Menu.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/calc/utils/StringUtilities.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/gui/widgets/Label.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/gui/widgets/WidgetLayout.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/gui/layouts/LayoutBase.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/gui/layouts/LayoutHorizontal.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/gui/layouts/LayoutPrimitives.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/gui/layouts/LayoutStack.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/gui/layouts/LayoutVertical.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/gui/event/EventType.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/img/Image.cpp
 )
 
 #  Here are the list of actual unit-tests

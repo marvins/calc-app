@@ -118,6 +118,9 @@ def main():
                     logging.debug( f'Adjusted to: {fpath_rel}' )
                     main_list.append( fpath_rel )
 
+    #  Sort paths
+    main_list.sort()
+    
     #  Construct final variable
     varname = 'set( SET_NAME_HERE\n' 
     for entry in main_list:

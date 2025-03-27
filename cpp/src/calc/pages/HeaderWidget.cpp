@@ -17,8 +17,8 @@
 #include <terminus/calc/pages/HeaderWidget.hpp>
 
 // Project Libraries
-#include <terminus/calc/ui/LayoutHorizontal.hpp>
-#include <terminus/calc/ui/LayoutPrimitives.hpp>
+#include <terminus/gui/layout/LayoutHorizontal.hpp>
+#include <terminus/gui/layout/LayoutPrimitives.hpp>
 
 // C++ Standard Libraries
 #include <chrono>
@@ -31,15 +31,15 @@ namespace tmns::calc::page {
 /*          Create Header Widget          */
 /******************************************/
 Header_Widget::ptr_t Header_Widget::create( const core::Options& config,
-                                            core::Session&       session )
+                                            gui::Session&        session )
 {
-    auto layout = std::make_shared<ui::LayoutHorizontal>();
+    auto layout = std::make_shared<gui::LayoutHorizontal>();
 
     ///////////////////////////////////
     // Create the title label
-    auto title_data = ui::Label::from_text( "Main Menu", session.driver() );
-    std::set<ui::AlignmentPolicy> alignment { { ui::AlignmentPolicy::CENTER_HORIZONTAL,
-                                                ui::AlignmentPolicy::CENTER_VERTICAL } };
+    auto title_data = gui::Label::from_text( "Main Menu", session.driver() );
+    std::set<gui::AlignmentPolicy> alignment { { gui::AlignmentPolicy::CENTER_HORIZONTAL,
+                                                 gui::AlignmentPolicy::CENTER_VERTICAL } };
     layout->append( title_data, alignment, {} );
 
 
@@ -53,9 +53,9 @@ Header_Widget::ptr_t Header_Widget::create( const core::Options& config,
         sout << std::chrono::current_zone()->to_local(cur_time);
     }
 
-    auto time_data = ui::Label::from_text( time_info, session.driver() );
-    alignment = std::set<ui::AlignmentPolicy>( { { ui::AlignmentPolicy::LEFT,
-                                                   ui::AlignmentPolicy::CENTER_VERTICAL } } );
+    auto time_data = gui::Label::from_text( time_info, session.driver() );
+    alignment = std::set<gui::AlignmentPolicy>( { { gui::AlignmentPolicy::LEFT,
+                                                    gui::AlignmentPolicy::CENTER_VERTICAL } } );
     layout->append( time_data, alignment, {} );  
 
     // Create instance
@@ -70,8 +70,8 @@ Header_Widget::ptr_t Header_Widget::create( const core::Options& config,
 /********************************************/
 /*          Parameterized Constructor       */
 /********************************************/
-Header_Widget::Header_Widget( ui::LayoutBase::ptr_t layout )
-    : ui::WidgetLayout( layout ){}
+Header_Widget::Header_Widget( gui::LayoutBase::ptr_t layout )
+    : gui::WidgetLayout( layout ){}
 
 
 } // End of tmns::calc::page namespace

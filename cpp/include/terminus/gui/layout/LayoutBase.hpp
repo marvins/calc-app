@@ -17,9 +17,9 @@
 #pragma once
 
 // Project Libraries
-#include <terminus/calc/core/Session.hpp>
-#include <terminus/calc/image/FrameView.hpp>
+#include <terminus/gui/core/Session.hpp>
 #include <terminus/gui/layout/WidgetLayoutItem.hpp>
+#include <terminus/image/FrameView.hpp>
 
 // C++ Standard Libraries
 #include <memory>
@@ -43,7 +43,7 @@ class LayoutBase
         /**
          * Show the contents of the layout on the screen
          */
-        virtual bool render( core::Session&  session,
+        virtual bool render( Session&        session,
                              img::FrameView& image ) = 0;
 
         /**
