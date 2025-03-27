@@ -36,7 +36,7 @@ Run the following script to create a file at `./sample.options.cfg'.  This file 
 
 ### Run Application
 
-Run the following script to launch and run `terminus-calculator` on any `desktop` compiled system. 
+Run the following script to launch and run `terminus_toolbox` on any `desktop` compiled system. 
 
 ```bash
 ./scripts/cpp-run-app.sh
