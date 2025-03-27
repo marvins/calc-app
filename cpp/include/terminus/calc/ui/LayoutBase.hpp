@@ -22,6 +22,7 @@
 #include <terminus/calc/ui/WidgetLayoutItem.hpp>
 
 // C++ Standard Libraries
+#include <memory>
 #include <vector>
 
 namespace tmns::calc::ui {
@@ -32,6 +33,12 @@ namespace tmns::calc::ui {
 class LayoutBase
 {
     public:
+
+        /// Pointer Type
+        using ptr_t = std::shared_ptr<LayoutBase>;
+
+        /// @brief Destructor
+        virtual ~LayoutBase() = default;
 
         /**
          * Show the contents of the layout on the screen

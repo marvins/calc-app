@@ -20,6 +20,13 @@
 
 namespace tmns::calc::utils {
 
+namespace unicode {
+    static constexpr wchar_t LEFT_ARROW  { L'\u2190' };
+    static constexpr wchar_t UP_ARROW    { L'\u2191' };
+    static constexpr wchar_t RIGHT_ARROW { L'\u2192' };
+    static constexpr wchar_t DOWN_ARROW  { L'\u2193' };
+}
+
 /**
  * Make the string lower-case
  */

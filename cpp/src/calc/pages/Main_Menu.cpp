@@ -8,24 +8,15 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    version.hpp
+ * @file    Main_Menu.cpp
  * @author  Marvin Smith
- * @date    03/25/2025
- *
- * @details Terminus Auto-Generated Version File
+ * @date    3/27/2025
  */
-#pragma once
+#include <terminus/calc/pages/Main_Menu.hpp>
 
-namespace tmns {
+// Project Libraries
 
-static constexpr std::string BUILD_DATE() { return "2025-03-26 23:20:15"; }
+namespace tmns::calc::page {
 
-static constexpr std::string VERSION() { return "0.0.2"; }
 
-static constexpr std::string VERSION_MAJOR() { return "0"; }
-
-static constexpr std::string VERSION_MINOR() { return "0"; }
-
-static constexpr std::string VERSION_PATCH() { return "2"; }
-
-}
+} // End of tmns::calc::page namespace

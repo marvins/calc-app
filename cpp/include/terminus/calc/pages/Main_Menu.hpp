@@ -8,24 +8,41 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    version.hpp
+ * @file    Main_Menu.hpp
  * @author  Marvin Smith
- * @date    03/25/2025
- *
- * @details Terminus Auto-Generated Version File
+ * @date    3/27/2025
  */
 #pragma once
 
-namespace tmns {
+// Project Libraries
+#include <terminus/calc/ui/LayoutVertical.hpp>
+#include <terminus/calc/ui/WidgetLayout.hpp>
 
-static constexpr std::string BUILD_DATE() { return "2025-03-26 23:20:15"; }
+namespace tmns::calc::page {
 
-static constexpr std::string VERSION() { return "0.0.2"; }
+class Main_Menu : public ui::WidgetLayout {
 
-static constexpr std::string VERSION_MAJOR() { return "0"; }
+    public:
 
-static constexpr std::string VERSION_MINOR() { return "0"; }
+        /// Pointer Type
+        using ptr_t = std::shared_ptr<Main_Menu>;
 
-static constexpr std::string VERSION_PATCH() { return "2"; }
+        /**
+         * Construct Main Menu
+         */
+        static Main_Menu::ptr_t create( const core::Options& config,
+                                        core::Session&       session );
+    
+    private:
 
-}
+        Main_Menu() = default;
+
+        /// Layout used to store widgets
+        ui::LayoutVertical::ptr_t m_main_layout;
+        
+        /// List of Application Labels
+        
+
+}; // End of Main_Menu class
+
+} // End of tmns::calc::page namespace

@@ -8,47 +8,51 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    WidgetBase.hpp
+ * @file    Application.hpp
  * @author  Marvin Smith
- * @date    03/21/2025
- *
- * @details Base Widget API
+ * @date    3/27/2025
  */
 #pragma once
 
-// C++ Libraries
-#include <memory>
-
 // Project Libraries
+#include <terminus/calc/core/Options.hpp>
 #include <terminus/calc/core/Session.hpp>
-#include <terminus/calc/image/FrameView.hpp>
-#include <terminus/math/Size.hpp>
+#include <terminus/calc/pages/Main_Window.hpp>
 
 namespace tmns::calc::ui {
 
-/**
- * @class WidgetBase
- */
-class WidgetBase
+class Application
 {
     public:
 
-        /// @brief  Pointer Type
-        using ptr_t = std::shared_ptr<WidgetBase>;
+        /// Pointer Type
+        using ptr_t = std::shared_ptr<Application>;
 
         /**
-         * @brief Get the size of the widget, in pixels
+         * Run the application
+         * 
+         * @return Exit code.
          */
-        virtual math::Size2i size_pixels() const = 0;
+        int run( core::Options& config,
+                 core::Session& session );
+
+        /**
+         * Create a new Splash Screen
+         */
+        static Application::ptr_t create( const core::Options& config,
+                                          core::Session&       session );
         
-        /**
-         * @brief Render the image to the desired screen instance
-         */
-        virtual bool render( core::Session&   session,
-                             img::FrameView&  image ) = 0;
-
     private:
 
-};// End of WidgetBase class
+        /// @brief Application Configuration
+        core::Options& m_config;
+
+        /// @brief Application session data
+        core::Session& m_session;
+
+        // Main Window context
+        page::I_Main_Window::ptr_t m_main_window { nullptr };
+        
+}; // End Application class
 
 } // End of tmns::calc::ui namespace

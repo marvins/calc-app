@@ -8,24 +8,33 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    version.hpp
+ * @file    LayoutStack.cpp
  * @author  Marvin Smith
- * @date    03/25/2025
+ * @date    03/27/2025
  *
- * @details Terminus Auto-Generated Version File
+ * @details Stack Layout API
  */
-#pragma once
+#include <terminus/calc/ui/LayoutStack.hpp>
 
-namespace tmns {
+// Terminus Libraries
+#include <terminus/log/Logger.hpp>
 
-static constexpr std::string BUILD_DATE() { return "2025-03-26 23:20:15"; }
 
-static constexpr std::string VERSION() { return "0.0.2"; }
+namespace tmns::calc::ui {
 
-static constexpr std::string VERSION_MAJOR() { return "0"; }
+/*****************************************/
+/*         Add Layout to Widget List     */
+/*****************************************/
+size_t LayoutStack::append( WidgetBase::ptr_t new_widget ){
 
-static constexpr std::string VERSION_MINOR() { return "0"; }
+    // Wrap with new layout item
+    WidgetLayoutItem new_layout_item;
+    new_layout_item.widget = new_widget;
 
-static constexpr std::string VERSION_PATCH() { return "2"; }
+    // Add to layout
+    m_widgets.push_back( new_layout_item );
 
+    return (m_widgets.size() - 1);
 }
+
+} // End of tmns::calc::ui namespace

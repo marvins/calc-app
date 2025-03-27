@@ -16,6 +16,7 @@
 // Project Libraries
 #include <terminus/calc/core/Options.hpp>
 #include <terminus/calc/core/Session.hpp>
+#include <terminus/calc/pages/Main_Window.hpp>
 #include <terminus/calc/pages/Splash.hpp>
 #include <terminus/log/HandlerConsole.hpp>
 #include <terminus/log/Logger.hpp>
@@ -40,6 +41,10 @@ int main( int argc, char* argv[] ){
     // Launch the Splash Screen
     auto splash = tmns::calc::page::Splash::create( config, session );
     splash->show( config, session );
+
+    // Generate the main window
+    auto main_window = tmns::calc::page::Main_Window::create( config, session );
+    main_window->run( config, session );
 
     return 0;
 }

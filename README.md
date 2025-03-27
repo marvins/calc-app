@@ -42,3 +42,10 @@ Run the following script to launch and run `terminus-calculator` on any `desktop
 ./scripts/cpp-run-app.sh
 ```
 
+## References / Citations
+
+All icons in this project are free / Open-Source icons from Icon8.
+
+### Icons Used
+- <a target="_blank" href="https://icons8.com/icon/12784/settings">Settings</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+

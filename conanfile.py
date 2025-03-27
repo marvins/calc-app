@@ -18,8 +18,8 @@ from conan.tools.files import copy
 
 class ConanProject(ConanFile):
 
-    name = "terminus_calculator"
-    version = "0.0.1"
+    name = "terminus_toolbox"
+    version = "0.0.2"
 
     license = "MIT"
     author  = "Marvin Smith <marvin.smith@terminus.com>"

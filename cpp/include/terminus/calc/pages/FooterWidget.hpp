@@ -8,47 +8,46 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    WidgetBase.hpp
+ * @file    FooterWidget.hpp
  * @author  Marvin Smith
- * @date    03/21/2025
+ * @date    03/26/2025
  *
- * @details Base Widget API
+ * @details Represent data shown in the footer
  */
 #pragma once
 
-// C++ Libraries
-#include <memory>
-
 // Project Libraries
-#include <terminus/calc/core/Session.hpp>
-#include <terminus/calc/image/FrameView.hpp>
-#include <terminus/math/Size.hpp>
+#include <terminus/calc/ui/Label.hpp>
+#include <terminus/calc/ui/LayoutHorizontal.hpp>
+#include <terminus/calc/ui/WidgetLayout.hpp>
 
-namespace tmns::calc::ui {
+namespace tmns::calc::page {
 
 /**
- * @class WidgetBase
+ * @class Footer_Widget
  */
-class WidgetBase
+class Footer_Widget : public ui::WidgetLayout
 {
     public:
 
-        /// @brief  Pointer Type
-        using ptr_t = std::shared_ptr<WidgetBase>;
+        /// Pointer Type
+        using ptr_t = std::shared_ptr<Footer_Widget>;
 
         /**
-         * @brief Get the size of the widget, in pixels
+         * Create the widget
          */
-        virtual math::Size2i size_pixels() const = 0;
-        
-        /**
-         * @brief Render the image to the desired screen instance
-         */
-        virtual bool render( core::Session&   session,
-                             img::FrameView&  image ) = 0;
+        static Footer_Widget::ptr_t create( const core::Options& config,
+                                            core::Session&       session );
 
     private:
 
-};// End of WidgetBase class
+        Footer_Widget() = default;
 
-} // End of tmns::calc::ui namespace
+        Footer_Widget( ui::LayoutBase::ptr_t layout );
+
+        /// Label storing command information
+        ui::Label::ptr_t m_command_data;
+
+};// End of Footer_Widget class
+
+} // End of tmns::calc::page namespace

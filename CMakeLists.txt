@@ -10,7 +10,7 @@
 #    Author:  Marvin Smith
 #    Date:    March 21, 2025
 #
-#    Purpose:  Build Terminus Calculator App
+#    Purpose:  Build Terminus Geospatial Toolbox App
 
 #  Set CMake Version
 cmake_minimum_required( VERSION 3.22 FATAL_ERROR )
@@ -126,7 +126,7 @@ include_directories( cpp/include )
 #--------------------------------#
 #-       Build Application      -#
 #--------------------------------#
-add_executable( terminus-calculator
+add_executable( ${PROJECT}
     cpp/include/terminus/calc/core/ConfigParser.hpp
     cpp/include/terminus/calc/core/Options.hpp
     cpp/include/terminus/calc/core/Session.hpp
@@ -135,10 +135,16 @@ add_executable( terminus-calculator
     cpp/include/terminus/calc/image/Frame.hpp
     cpp/include/terminus/calc/image/FrameView.hpp
     cpp/include/terminus/calc/image/Primitives.hpp
+    cpp/include/terminus/calc/pages/FooterWidget.hpp
+    cpp/include/terminus/calc/pages/HeaderWidget.hpp
+    cpp/include/terminus/calc/pages/Main_Menu.hpp
+    cpp/include/terminus/calc/pages/Main_Window.hpp
     cpp/include/terminus/calc/pages/Splash.hpp
     cpp/include/terminus/calc/ui/EventType.hpp
     cpp/include/terminus/calc/ui/Label.hpp
     cpp/include/terminus/calc/ui/LayoutBase.hpp
+    cpp/include/terminus/calc/ui/LayoutHorizontal.hpp
+    cpp/include/terminus/calc/ui/LayoutStack.hpp
     cpp/include/terminus/calc/ui/LayoutVertical.hpp
     cpp/include/terminus/calc/ui/WidgetBase.hpp
     cpp/include/terminus/calc/ui/WidgetLayoutItem.hpp
@@ -156,12 +162,19 @@ add_executable( terminus-calculator
     cpp/src/calc/image/Frame.cpp
     cpp/src/calc/image/FrameView.cpp
     cpp/src/calc/image/Primitives.cpp
+    cpp/src/calc/pages/FooterWidget.cpp
+    cpp/src/calc/pages/HeaderWidget.cpp
+    cpp/src/calc/pages/Main_Menu.cpp
+    cpp/src/calc/pages/Main_Window.cpp
     cpp/src/calc/pages/Splash.cpp
     cpp/src/calc/ui/EventType.cpp
     cpp/src/calc/ui/Label.cpp
     cpp/src/calc/ui/LayoutBase.cpp
     cpp/src/calc/ui/LayoutPrimitives.cpp
+    cpp/src/calc/ui/LayoutHorizontal.cpp
+    cpp/src/calc/ui/LayoutStack.cpp
     cpp/src/calc/ui/LayoutVertical.cpp
+    cpp/src/calc/ui/WidgetLayout.cpp
     cpp/src/calc/utils/StringUtilities.cpp
     cpp/src/log/HandlerConsole.cpp
     cpp/src/log/Level.cpp
@@ -170,7 +183,7 @@ add_executable( terminus-calculator
     ${EXTRA_SOURCES}
 )
 
-target_link_libraries( terminus-calculator 
+target_link_libraries( ${PROJECT}
                        ${EXTRA_LIBS} )
 
 if( TERMINUS_CALC_ENABLE_TESTS )
