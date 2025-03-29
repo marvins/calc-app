@@ -20,21 +20,28 @@
 #include <terminus/gui/layout/LayoutHorizontal.hpp>
 #include <terminus/gui/widget/Label.hpp>
 #include <terminus/gui/widget/WidgetLayout.hpp>
+#include <terminus/log.hpp>
 
 namespace tmns::calc::page {
 
 /******************************************/
-/*          Create Header Widget          */
+/*          Create Footer Widget          */
 /******************************************/
 Footer_Widget::ptr_t Footer_Widget::create( const core::Options& config,
                                             gui::Session&        session )
 {
+    // Construct the layout.
+    int footer_width  = session.driver()->get_screen_dimensions().cols(); 
+    int footer_height = config.setting<int>("display","footer_height");
+
+    LOG_TRACE( "Setting Footer Size: " + std::to_string(footer_width) + " x " + std::to_string(footer_height) );
     auto layout = std::make_shared<gui::LayoutHorizontal>();
+    layout->set_layout_size( math::Size2i( { footer_width,
+                                             footer_height } ) );
 
 
     // Commands for the footer will be provided by the context manager
     std::string commands = "some-text to be solved later.";
-
 
     ///////////////////////////////////
     // Create the title label

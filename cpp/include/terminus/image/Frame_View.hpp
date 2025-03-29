@@ -109,6 +109,11 @@ struct Frame_View {
         bool copy( const Frame& frame,
                    CopyPolicy   copy_policy );
 
+        /**
+         * Print information to log-friendly string
+         */
+        std::string to_log_string( size_t offset = 0 ) const;
+
 
     private:
 

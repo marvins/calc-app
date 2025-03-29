@@ -24,7 +24,7 @@ namespace tmns::gui {
 /**
  * Pure-Virtual Abstract interface for Main-Windows.
  */
-class I_Main_Window 
+class I_Main_Window : public I_Renderable
 {
     public:
 
@@ -32,11 +32,10 @@ class I_Main_Window
         using ptr_t = std::shared_ptr<I_Main_Window>;
 
         /**
-         * Render the Main-Window
+         * Check for updates to the main window.
          */
-        virtual void render( core::Options&          config,
-                             drv::Driver_Base::ptr_t driver,
-                             img::Frame_View&        frame_view ) = 0;
+        virtual void update( core::Options& config,
+                             gui::Session&  session ) = 0;
 
 }; // End of Main-Window Class
 

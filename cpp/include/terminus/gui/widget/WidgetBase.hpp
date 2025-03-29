@@ -21,6 +21,7 @@
 
 // Project Libraries
 #include <terminus/gui/core/Session.hpp>
+#include <terminus/gui/I_Renderable.hpp>
 #include <terminus/image/Frame_View.hpp>
 #include <terminus/math/Size.hpp>
 
@@ -29,7 +30,7 @@ namespace tmns::gui {
 /**
  * @class WidgetBase
  */
-class WidgetBase
+class WidgetBase : public I_Renderable
 {
     public:
 
@@ -40,12 +41,6 @@ class WidgetBase
          * @brief Get the size of the widget, in pixels
          */
         virtual math::Size2i size_pixels() const = 0;
-        
-        /**
-         * @brief Render the image to the desired screen instance
-         */
-        virtual bool render( Session&         session,
-                             img::Frame_View& image ) = 0;
 
     private:
 

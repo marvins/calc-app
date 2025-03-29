@@ -25,7 +25,7 @@ namespace tmns::gui {
 /*****************************************/
 /*         Add Layout to Widget List     */
 /*****************************************/
-void LayoutVertical::append( WidgetBase::ptr_t new_widget ){
+int LayoutVertical::append( WidgetBase::ptr_t new_widget ){
 
     // Wrap with new layout item
     WidgetLayoutItem new_layout_item;
@@ -35,14 +35,16 @@ void LayoutVertical::append( WidgetBase::ptr_t new_widget ){
 
     // Add to layout
     m_widgets.push_back( new_layout_item );
+
+    return (m_widgets.size()-1);
 }
 
 /*****************************************/
 /*         Add Layout to Widget List     */
 /*****************************************/
-void LayoutVertical::append( WidgetBase::ptr_t          new_widget,
-                             std::set<AlignmentPolicy>  alignment,
-                             std::optional<double>      ratio ){
+int LayoutVertical::append( WidgetBase::ptr_t          new_widget,
+                            std::set<AlignmentPolicy>  alignment,
+                            std::optional<double>      ratio ){
 
     // Wrap with new layout item
     WidgetLayoutItem new_layout_item;
@@ -52,6 +54,8 @@ void LayoutVertical::append( WidgetBase::ptr_t          new_widget,
 
     // Add to layout
     m_widgets.push_back( new_layout_item );
+
+    return (m_widgets.size()-1);
 }
 
 /********************************************/

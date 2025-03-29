@@ -26,6 +26,13 @@
 #include <mutex>
 #include <vector>
 
+#define LOG_TRACE( message ) tmns::log::Logger::log( tmns::log::Level::TRACE, \
+                                                     std::chrono::system_clock::now(), \
+                                                     __FILE__, \
+                                                     __func__, \
+                                                     __LINE__, \
+                                                     message )
+
 #define LOG_DEBUG( message ) tmns::log::Logger::log( tmns::log::Level::DEBUG, \
                                                      std::chrono::system_clock::now(), \
                                                      __FILE__, \
@@ -33,6 +40,26 @@
                                                      __LINE__, \
                                                      message )
 
+#define LOG_INFO( message ) tmns::log::Logger::log( tmns::log::Level::INFO, \
+                                                    std::chrono::system_clock::now(), \
+                                                    __FILE__, \
+                                                    __func__, \
+                                                    __LINE__, \
+                                                    message )
+
+#define LOG_WARNING( message ) tmns::log::Logger::log( tmns::log::Level::WARNING, \
+                                                       std::chrono::system_clock::now(), \
+                                                       __FILE__, \
+                                                       __func__, \
+                                                       __LINE__, \
+                                                       message )
+
+#define LOG_ERROR( message ) tmns::log::Logger::log( tmns::log::Level::ERROR, \
+                                                     std::chrono::system_clock::now(), \
+                                                     __FILE__, \
+                                                     __func__, \
+                                                     __LINE__, \
+                                                     message )                                                       
 namespace tmns::log {
 
 /**

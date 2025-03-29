@@ -77,6 +77,12 @@ class LayoutBase
          * Get access to widgets
          */
         std::vector<WidgetLayoutItem>& widgets();
+
+        /**
+         * Add widget to the layout.
+         * @returns ID or index of the newly added widget
+         */
+        virtual int append( WidgetBase::ptr_t new_widget ) = 0;
     
         /**
          * Get allocated region for widgets

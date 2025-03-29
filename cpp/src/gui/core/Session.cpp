@@ -45,6 +45,21 @@ img::Frame& Session::active_frame(){
     return m_active_frame;
 }
 
+/********************************************/
+/*          Check if we should exit         */
+/********************************************/
+bool Session::okay_to_run(){
+    return m_driver->okay_to_run();
+}
+
+/****************************************/
+/*      Close up session and exit       */
+/****************************************/
+int Session::finalize()
+{
+    return m_driver->finalize();
+}
+
 /************************************************/
 /*          Sleep for Designated Amount         */
 /************************************************/

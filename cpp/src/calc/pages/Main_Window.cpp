@@ -16,17 +16,26 @@
 
 // Project Libraries
 #include <terminus/gui/widget/WidgetLayout.hpp>
+#include <terminus/log.hpp>
 
 namespace tmns::calc::page {
 
 /****************************************/
-/*          Render the Window           */
+/*          Update Main Window          */
 /****************************************/
-void Main_Window::render( core::Options&          config,
-                          drv::Driver_Base::ptr_t driver,
-                          img::Frame_View&        frame_view )
+void Main_Window::update( core::Options& config,
+                          gui::Session&  session )
 {
+    LOG_DEBUG( "Updating Main Window" );
+}
 
+/************************************/
+/*          Render Widget           */
+/************************************/
+bool Main_Window::render( gui::Session&    session,
+                          img::Frame_View& image )
+{
+    return m_base_widget->render( session, image );
 }
 
 /****************************************/
@@ -35,12 +44,16 @@ void Main_Window::render( core::Options&          config,
 Main_Window::ptr_t Main_Window::create( core::Options& config,
                                         gui::Session&  session )
 {
+    // Create the master layout
+    auto master_layout = std::make_shared<gui::LayoutVertical>();
+    master_layout->set_layout_size( session.driver()->get_screen_dimensions().size() );
+
     /// Create window instance
-    auto window = std::make_shared<Main_Window>();
+    auto window = std::shared_ptr<Main_Window>( new Main_Window( master_layout ) );
 
     /// Create the header
     window->m_header = Header_Widget::create( config, session );
-    window->append( window->m_header );
+    window->m_base_widget->layout()->append( window->m_header );
 
     // Create the primary app stack
     window->m_stack_layout = std::make_shared<gui::LayoutStack>();
@@ -52,13 +65,20 @@ Main_Window::ptr_t Main_Window::create( core::Options& config,
     // Add subsequent apps here!
 
     // Add the stack layout to the main window layout
-    window->append( gui::WidgetLayout::from_layout( window->m_stack_layout ) );
+    window->m_base_widget->layout()->append( gui::WidgetLayout::from_layout( window->m_stack_layout ) );
 
     /// Create the footer
     window->m_footer = Footer_Widget::create( config, session );
-    window->append( window->m_footer );
+    window->m_base_widget->layout()->append( window->m_footer );
 
     return window;
 }
+
+/********************************/
+/*          Constructor         */
+/********************************/
+Main_Window::Main_Window( gui::LayoutBase::ptr_t layout )
+    : m_base_widget( gui::WidgetLayout::from_layout( layout ) )
+{}
 
 } // End of tmns::calc::page namespace

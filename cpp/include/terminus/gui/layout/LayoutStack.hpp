@@ -46,7 +46,7 @@ class LayoutStack : public LayoutBase
          * 
          * @returns ID of the widget to use for referencing
          */
-        size_t append( WidgetBase::ptr_t new_widget );
+        int append( WidgetBase::ptr_t new_widget ) override;
 
         /**
          * Show the contents of the layout
@@ -64,8 +64,8 @@ class LayoutStack : public LayoutBase
 
     private:
 
-        /// Index of current frame to show
-        size_t m_current_frame { 0 };
+        /// Index of current frame to show.  Optional since it's invalid until used.
+        std::optional<size_t> m_current_frame { 0 };
 
 };// End of LayoutStack class
 

@@ -22,12 +22,12 @@
 #include <terminus/gui/core/Session.hpp>
 #include <terminus/gui/layout/LayoutStack.hpp>
 #include <terminus/gui/layout/LayoutVertical.hpp>
+#include <terminus/gui/widget/WidgetLayout.hpp>
 #include <terminus/gui/I_Main_Window.hpp>
 
 namespace tmns::calc::page {
 
-class Main_Window : public gui::LayoutVertical,
-                    public gui::I_Main_Window
+class Main_Window : public gui::I_Main_Window
 {
     public:
 
@@ -35,19 +35,37 @@ class Main_Window : public gui::LayoutVertical,
         using ptr_t = std::shared_ptr<Main_Window>;
 
         /**
-         * Show the screen for a bit, then exit
+         * Update the main window
          */
-        void render( core::Options&          config,
-                     drv::Driver_Base::ptr_t driver,
-                     img::Frame_View&        frame_view ) override;
+        void update( core::Options& config,
+                     gui::Session&  session ) override;
+
+        /**
+         * Render the main window onto the image.
+         */
+        bool render( gui::Session&    session,
+                     img::Frame_View& image ) override;
 
         /**
          * Create a new Splash Screen
          */
         static Main_Window::ptr_t create( core::Options& config,
                                           gui::Session&  session );
-        
+    
+    protected:
+
+        /// Deleted Default Constructor
+        Main_Window() = delete;
+
+        /**
+         * Parameterized Constructor
+         */
+        Main_Window( gui::LayoutBase::ptr_t layout );
+
     private:
+
+        /// Underlying base widget
+        gui::WidgetLayout::ptr_t m_base_widget;
 
         /// Header Widget
         Header_Widget::ptr_t m_header;

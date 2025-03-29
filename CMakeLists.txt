@@ -144,6 +144,7 @@ add_executable( ${PROJECT_NAME}
     cpp/include/terminus/image/Primitives.hpp
     cpp/include/terminus/gui/core/Application.hpp
     cpp/include/terminus/gui/core/Exit_Code.hpp
+    cpp/include/terminus/gui/core/Resource_Manager.hpp
     cpp/include/terminus/gui/core/Session.hpp
     cpp/include/terminus/gui/event/EventType.hpp
     cpp/include/terminus/gui/layout/LayoutBase.hpp
@@ -156,6 +157,7 @@ add_executable( ${PROJECT_NAME}
     cpp/include/terminus/gui/widget/WidgetBase.hpp
     cpp/include/terminus/gui/widget/WidgetLayout.hpp
     cpp/include/terminus/gui/I_Main_Window.hpp
+    cpp/include/terminus/gui/I_Renderable.hpp
     cpp/include/terminus/log.hpp
     cpp/include/terminus/log/HandlerBase.hpp
     cpp/include/terminus/log/HandlerConsole.hpp
@@ -182,6 +184,7 @@ add_executable( ${PROJECT_NAME}
     cpp/src/core/Options.cpp
     cpp/src/core/StringUtilities.cpp
     cpp/src/gui/core/Application.cpp
+    cpp/src/gui/core/Resource_Manager.cpp
     cpp/src/gui/core/Session.cpp
     cpp/src/gui/event/EventType.cpp
     cpp/src/gui/layout/LayoutBase.cpp

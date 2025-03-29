@@ -40,7 +40,11 @@ LayoutBase::ptr_t WidgetLayout::layout()
 bool WidgetLayout::render( gui::Session&    session,
                            img::Frame_View& image )
 {
-    return false;
+
+    // Render the internal layout on top of the image
+    m_layout->render( session, image );
+    
+    return true;
 }
 
 /*****************************************/

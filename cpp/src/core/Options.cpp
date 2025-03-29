@@ -199,6 +199,14 @@ void Options::generate_config_file( const std::filesystem::path& pathname )
     fout << "screen_height=780" << std::endl;
     fout << std::endl;
 
+    fout << "#  Set the Header's height.  Eventually we should make this more dynamic" << std::endl;
+    fout << "header_height=80" << std::endl;
+    fout << std::endl;
+
+    fout << "#  Set the Footers's height.  Eventually we should make this more dynamic" << std::endl;
+    fout << "footer_height=80" << std::endl;
+    fout << std::endl;
+
     fout << "#  Section for the Primary Menu" << std::endl;
     fout << "[menu]" << std::endl;
     fout << std::endl;
@@ -206,8 +214,10 @@ void Options::generate_config_file( const std::filesystem::path& pathname )
     fout << "splash_icon_path=./cpp/resources/logo.png" << std::endl;
     fout << std::endl;
     fout << "#  Sleep time in ms for splash screen" << std::endl;
-    fout << "splash_time_sleep_ms=50000" << std::endl;
+    fout << "splash_time_sleep_ms=5000" << std::endl;
     fout << std::endl;
+
+
     
 
 }

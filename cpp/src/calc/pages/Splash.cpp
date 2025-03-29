@@ -30,6 +30,8 @@ namespace tmns::calc::page {
 void Splash::show( core::Options& config,
                    gui::Session&  session )
 {
+    int sleep_time_ms = config.setting<int>("menu","splash_time_sleep_ms");
+
     img::Frame_View frame_view( session.active_frame() );
     
     // Render the internal layout on top of the view
@@ -42,12 +44,11 @@ void Splash::show( core::Options& config,
     while( std::chrono::duration_cast<std::chrono::seconds>( std::chrono::system_clock::now() - start_time ) < std::chrono::seconds(5) )
     {
         session.show();
-        std::this_thread::sleep_for( std::chrono::milliseconds(500) );
     }
     
 
     // Sleep for a bit
-    std::this_thread::sleep_for( std::chrono::milliseconds( 5000 ) );
+    std::this_thread::sleep_for( std::chrono::milliseconds( sleep_time_ms ) );
 
 }
 
@@ -59,7 +60,7 @@ Splash::ptr_t Splash::create( const core::Options& config,
 {
     // Build the new instance
     auto splash = std::make_shared<Splash>();
-    splash->set_padding( 100, 100, 100, 100 );
+    splash->set_padding( 0, 0, 50, 50 );
     
     // Set the dimensions to screen size
     splash->set_layout_size( session.driver()->get_screen_dimensions().size() );
@@ -71,7 +72,7 @@ Splash::ptr_t Splash::create( const core::Options& config,
 
 
     // Add a text label
-    auto text_label = gui::Label::from_text( "Terminus Converter",
+    auto text_label = gui::Label::from_text( "Terminus Geospatial Toolbox",
                                              session.driver() );
     splash->append( text_label );
 
@@ -79,7 +80,7 @@ Splash::ptr_t Splash::create( const core::Options& config,
     // Add Build Information
     {
         std::stringstream sout;
-        sout << "Version: " << VERSION() << ", Build Date: " << BUILD_DATE();
+        sout << "Version: " << VERSION() << "\nBuild Date: " << BUILD_DATE();
 
         auto version_label = gui::Label::from_text( sout.str(),
                                                     session.driver() );

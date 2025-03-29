@@ -190,4 +190,19 @@ bool Frame_View::copy( const Frame_View& frame,
     return true;    
 }
 
+/************************************************/
+/*          Print Log-Friendly String           */
+/************************************************/
+std::string Frame_View::to_log_string( size_t offset ) const
+{
+    std::string gap( offset, ' ' );
+
+    std::stringstream sout;
+    sout << gap << "Frame_View:" << std::endl;
+    sout << gap << "  - Frame Information: " << std::endl;
+    sout << m_frame.to_log_string( offset + 4 );
+    sout << gap << "  - Bounding Box: " << m_bbox.to_string() << std::endl;
+    return sout.str();
+}
+
 } // End of tmns::img namespace

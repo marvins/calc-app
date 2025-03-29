@@ -35,7 +35,13 @@ class Driver_Base {
         /**
          * Finalize / Destroy the driver
          */
-        virtual void finalize() = 0;
+        virtual int finalize() = 0;
+
+        /**
+         * Check if we have any exit conditions.
+         * @returns True if good to keep running, false if we should exit.
+         */
+        virtual bool okay_to_run() = 0;
 
         /**
          * Display the current image.

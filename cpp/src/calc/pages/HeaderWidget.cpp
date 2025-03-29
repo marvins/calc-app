@@ -19,6 +19,7 @@
 // Project Libraries
 #include <terminus/gui/layout/LayoutHorizontal.hpp>
 #include <terminus/gui/layout/LayoutPrimitives.hpp>
+#include <terminus/log.hpp>
 
 // C++ Standard Libraries
 #include <chrono>
@@ -33,7 +34,14 @@ namespace tmns::calc::page {
 Header_Widget::ptr_t Header_Widget::create( const core::Options& config,
                                             gui::Session&        session )
 {
+    // Construct the layout.
+    int header_width  = session.driver()->get_screen_dimensions().cols(); 
+    int header_height = config.setting<int>("display","header_height");
+
+    LOG_TRACE( "Setting Header Size: " + std::to_string(header_width) + " x " + std::to_string(header_height) );
     auto layout = std::make_shared<gui::LayoutHorizontal>();
+    layout->set_layout_size( math::Size2i( { header_width,
+                                             header_height } ) );
 
     ///////////////////////////////////
     // Create the title label
@@ -51,6 +59,7 @@ Header_Widget::ptr_t Header_Widget::create( const core::Options& config,
         
         std::stringstream sout;
         sout << std::chrono::current_zone()->to_local(cur_time);
+        time_info = sout.str();
     }
 
     auto time_data = gui::Label::from_text( time_info, session.driver() );

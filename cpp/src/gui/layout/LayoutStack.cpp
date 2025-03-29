@@ -25,7 +25,7 @@ namespace tmns::gui {
 /*****************************************/
 /*         Add Layout to Widget List     */
 /*****************************************/
-size_t LayoutStack::append( WidgetBase::ptr_t new_widget ){
+int LayoutStack::append( WidgetBase::ptr_t new_widget ){
 
     // Wrap with new layout item
     WidgetLayoutItem new_layout_item;
@@ -33,6 +33,13 @@ size_t LayoutStack::append( WidgetBase::ptr_t new_widget ){
 
     // Add to layout
     m_widgets.push_back( new_layout_item );
+
+    // If the first item, initialize the current-frame index
+    if( !m_current_frame.has_value() ){
+        m_current_frame = 0;
+    } else {
+        m_current_frame.value()++;
+    }
 
     return (m_widgets.size() - 1);
 }
@@ -48,9 +55,14 @@ bool LayoutStack::render( Session&         session,
         throw std::runtime_error( "LayoutStack instance has no widgets added." );
     }
 
-    return m_widgets[m_current_frame].widget->render( session, image );
+    // If the current frame is invalid, say so
+    if( !m_current_frame.has_value() ){
+        throw std::runtime_error( "No widgets inside layout" );
+    }
+
+    return m_widgets[m_current_frame.value()].widget->render( session, image );
     
-    return false;
+    return true;
 }
 
 /****************************************/

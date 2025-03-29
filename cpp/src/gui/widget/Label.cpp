@@ -32,6 +32,10 @@ math::Size2i Label::size_pixels() const {
 bool Label::render( gui::Session&     session,
                     img::Frame_View&  image )
 {
+    std::stringstream sout;
+    sout << "Label Info: " << m_image->to_log_string() << ", View Size: " << image.to_log_string();
+    LOG_DEBUG( sout.str() );
+    
     // Copy our label onto the frame image
     image.copy( *m_image, img::CopyPolicy::FLEXIBILE );
 
@@ -45,6 +49,7 @@ Label::ptr_t Label::from_image( const std::filesystem::path& image_path,
                                 drv::Driver_Base::ptr_t      driver )
 {
     // Load the image
+    LOG_DEBUG( "Loading Image: " + image_path.native() );
     auto frame = driver->load_image( image_path );
 
     auto new_lbl = std::make_shared<Label>();

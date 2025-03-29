@@ -46,9 +46,24 @@ bool Driver_Raylib::initialize( core::Options& config )
 /****************************************/
 /*            Finalize Driver           */
 /****************************************/
-void Driver_Raylib::finalize()
+int Driver_Raylib::finalize()
 {
     CloseWindow();  
+
+    return 0;
+}
+
+/********************************************/
+/*          Check if we should exit         */
+/********************************************/
+bool Driver_Raylib::okay_to_run()
+{
+    bool okay_to_run = true;
+
+    // Check if raylib encountered any abort conditions
+    okay_to_run &= !WindowShouldClose();
+
+    return okay_to_run;
 }
 
 /********************************************************/
@@ -74,6 +89,8 @@ void Driver_Raylib::show( img::Frame& image )
     ClearBackground(RAYWHITE);
     DrawTexture(texture, 0, 0, WHITE);
     EndDrawing();
+
+    UnloadTexture( texture );
 }
 
 /******************************************/
@@ -113,6 +130,12 @@ img::Frame::ptr_t Driver_Raylib::load_image( const std::filesystem::path& pathna
 /************************************/
 img::Frame::ptr_t Driver_Raylib::rasterize_text( const std::string& message )
 {
+    // If the message is empty, then return empty frame
+    if( message.empty() ){
+        LOG_WARNING( "Message is empty" );
+        return std::make_shared<img::Frame>();
+    }
+
     // Create image from text
     auto text_image = ImageText( message.c_str(), 16, DARKBLUE );
 

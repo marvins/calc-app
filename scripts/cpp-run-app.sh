@@ -2,10 +2,20 @@
 
 PRE_CMD=''
 
+CONFIG_PATH='./data/options.picocalc.cfg'
+
 for ARG in "$@"; do
     case $ARG in
         --gdb)
             PRE_CMD="gdb --args"
+            ;;
+        
+        --uconsole)
+            CONFIG_PATH='./data/options.uconsole.cfg'
+            ;;
+
+        --pico)
+            CONFIG_PATH='./data/options.picocalc.cfg'
             ;;
         *)
             echo "error: Unsupported argument (${ARG})"
@@ -15,4 +25,4 @@ for ARG in "$@"; do
 done
 
 #  Launch with standard flags
-${PRE_CMD} ./build/bin/terminus_toolbox -c data/options.uconsole.cfg -v 
+${PRE_CMD} ./build/bin/terminus_toolbox -c ${CONFIG_PATH} -vv

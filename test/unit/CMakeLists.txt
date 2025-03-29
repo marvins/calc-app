@@ -50,6 +50,7 @@ set( PROJECT_SOURCES
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/Primitives.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/Application.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/Exit_Code.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/Resource_Manager.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/Session.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/event/EventType.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/layout/LayoutBase.hpp
@@ -62,6 +63,7 @@ set( PROJECT_SOURCES
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/widget/WidgetBase.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/widget/WidgetLayout.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/I_Main_Window.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/I_Renderable.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log/HandlerBase.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log/HandlerConsole.hpp
@@ -88,6 +90,7 @@ set( PROJECT_SOURCES
     ${CMAKE_SOURCE_DIR}/cpp/src/core/Options.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/core/StringUtilities.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/gui/core/Application.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/gui/core/Resource_Manager.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/gui/core/Session.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/gui/event/EventType.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/gui/layout/LayoutBase.cpp
@@ -110,7 +113,8 @@ set( PROJECT_SOURCES
 #  Here are the list of actual unit-tests
 set( PROJECT_TESTS 
     calc/ui/TEST_LayoutBase.cpp
-    calc/ui/TEST_LayoutVertical.cpp 
+    calc/ui/TEST_LayoutHorizontal.cpp
+    calc/ui/TEST_LayoutVertical.cpp
 )
 
 #  Compile the Executable

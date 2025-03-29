@@ -44,7 +44,12 @@ class Driver_Raylib : public Driver_Base {
         /**
          * Close / Finalize
          */
-        void finalize() override;
+        int finalize() override;
+
+        /**
+         * Check if any exit conditions exist
+         */
+        bool okay_to_run() override;
 
         /**
          * Display the current image.

@@ -24,20 +24,30 @@ namespace tmns::gui {
 /****************************************/
 int Application::run()
 {
-    // Build view of the "active" frame to render
-    img::Frame_View view( m_session.active_frame() );
-
+    
     while( m_okay_to_run )
     {
+        // Check if we should close
+        if( !m_session.okay_to_run() ){
+            m_okay_to_run = false;
+            continue;
+        }
+
+        // Update the main window data
+        m_main_window->update( m_config, m_session );
+
+        // Build view of the "active" frame to render
+        img::Frame_View view( m_session.active_frame() );
+
         // Render the main window
-        m_main_window->render( m_config,
-                               m_session.driver(),
-                               view );
-
-
+        m_main_window->render( m_session, view );
+        
+        // Show the session
+        m_session.show();
     }
 
-    return 0;
+    // Finalize session
+    return m_session.finalize();
 }
 
 /********************************/

@@ -40,6 +40,18 @@ class Session final {
         img::Frame& active_frame();
 
         /**
+         * Check if we should close window
+         */
+        bool okay_to_run();
+
+        /**
+         * Finalize and close session
+         * 
+         * @returns Exit code to apply
+         */
+        int finalize();
+
+        /**
          * Sleep for a designated amount
          */
         void sleep_for( std::chrono::milliseconds sleep_time );

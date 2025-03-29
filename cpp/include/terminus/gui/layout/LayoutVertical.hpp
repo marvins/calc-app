@@ -51,14 +51,14 @@ class LayoutVertical : public LayoutBase
         /**
          * Add Widget to Lyout
          */
-        void append( WidgetBase::ptr_t new_widget );
+        int append( WidgetBase::ptr_t new_widget ) override;
 
         /**
          * Add Widget to Lyout
          */
-        void append( WidgetBase::ptr_t          new_widget,
-                     std::set<AlignmentPolicy>  alignment,
-                     std::optional<double>      ratio );
+        int append( WidgetBase::ptr_t          new_widget,
+                    std::set<AlignmentPolicy>  alignment,
+                    std::optional<double>      ratio );
 
         /**
          * Show the contents of the layout

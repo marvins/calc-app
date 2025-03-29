@@ -45,7 +45,8 @@ class WidgetLayout : public WidgetBase {
         LayoutBase::ptr_t layout();
 
         /**
-         * Show the label
+         * Render the contents of the underlying layout
+         * onto the input frame.
          */
         bool render( gui::Session&    session,
                      img::Frame_View& image ) override;

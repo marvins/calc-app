@@ -14,6 +14,6 @@
 #    Purpose:  Create a configuration file using the Terminus Toolbox app.
 
 #  Launch the build with the --gen-config flag
-./build/bin/terminus-toolbox --gen-config -c sample.options.cfg
+./build/bin/terminus_toolbox --gen-config -c sample.options.cfg
 
 

@@ -8,24 +8,35 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    version.hpp
+ * @file    I_Main_Window.hpp
  * @author  Marvin Smith
- * @date    03/25/2025
- *
- * @details Terminus Auto-Generated Version File
+ * @date    3/27/2025
  */
 #pragma once
 
-namespace tmns {
+// Terminus Libraries
+#include <terminus/core/Options.hpp>
+#include <terminus/gui/core/Session.hpp>
+#include <terminus/image/Frame_View.hpp>
 
-static constexpr std::string BUILD_DATE() { return "2025-03-28 21:57:42"; }
+namespace tmns::gui {
 
-static constexpr std::string VERSION() { return "0.0.2"; }
+/**
+ * Pure-Virtual Abstract interface for anything with a "Render" call
+ */
+class I_Renderable 
+{
+    public:
 
-static constexpr std::string VERSION_MAJOR() { return "0"; }
+        /// Pointer Type
+        using ptr_t = std::shared_ptr<I_Renderable>;
 
-static constexpr std::string VERSION_MINOR() { return "0"; }
+        /**
+         * @brief Render the image to the desired screen instance
+         */
+        virtual bool render( Session&         session,
+                             img::Frame_View& image ) = 0;
 
-static constexpr std::string VERSION_PATCH() { return "2"; }
+}; // End of Main-Window Class
 
-}
+} // End of tmns::gui Namespace
