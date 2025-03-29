@@ -23,6 +23,7 @@ namespace tmns::img {
 
 static constexpr math::Vector4u PIXEL_BLACK( uint8_t alpha = 255 ){ return math::Vector4u( {   0,   0,   0, alpha } ); };
 static constexpr math::Vector4u PIXEL_GREEN( uint8_t alpha = 255 ){ return math::Vector4u( {   0, 255,   0, alpha } ); };
+static constexpr math::Vector4u PIXEL_GREY(  uint8_t alpha = 255 ){ return math::Vector4u( {  126, 126,126, alpha } ); };
 static constexpr math::Vector4u PIXEL_BLUE(  uint8_t alpha = 255 ){ return math::Vector4u( {   0,   0, 255, alpha } ); };
 static constexpr math::Vector4u PIXEL_RED(   uint8_t alpha = 255 ){ return math::Vector4u( { 255,   0,   0, alpha } ); };
 static constexpr math::Vector4u PIXEL_WHITE( uint8_t alpha = 255 ){ return math::Vector4u( { 255, 255, 255, alpha } ); };

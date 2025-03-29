@@ -79,6 +79,9 @@ bool LayoutStack::render( Session&         session,
     // First render the padding
     render_padding( session, image );
 
+    // Create subview
+    auto sub_view = image.subview( get_bbox_with_padding( image.bbox() ) );
+
     if( m_widgets.size() <= 0 ){
         throw std::runtime_error( "LayoutStack instance has no widgets added." );
     }
@@ -97,7 +100,7 @@ bool LayoutStack::render( Session&         session,
         sout << "Widget Info: " << m_widgets[m_current_frame.value()].widget->to_log_string();
         LOG_DEBUG(sout.str() );
     }
-    return m_widgets[m_current_frame.value()].widget->render( session, image );
+    return m_widgets[m_current_frame.value()].widget->render( session, sub_view );
     
     return true;
 }

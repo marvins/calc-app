@@ -129,6 +129,12 @@ class LayoutBase
         virtual std::vector<math::Rect2i> allocate_bboxes() const = 0;
 
         /**
+         * Get a new subview accounting for the widget layout padding
+         * 
+         */
+        math::Rect2i get_bbox_with_padding( math::Rect2i bbox ) const;
+
+        /**
          * Print Log-Friendly String
          */
         virtual std::string to_log_string( size_t offset ) const = 0;
@@ -139,7 +145,7 @@ class LayoutBase
         static math::Rect2i align_widget( math::Rect2i              bbox_allocated,
                                           math::Size2i              widget_size,
                                           std::set<AlignmentPolicy> alignment );
-
+        
     protected:
 
         /// List of widgets

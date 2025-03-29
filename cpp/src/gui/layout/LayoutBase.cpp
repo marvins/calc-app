@@ -214,4 +214,20 @@ math::Rect2i LayoutBase::align_widget( math::Rect2i              bbox_allocated,
     return output;
 }
 
+/************************************/
+/*      Get the padding bbox        */
+/************************************/
+math::Rect2i LayoutBase::get_bbox_with_padding( math::Rect2i bbox ) const{
+
+    math::Rect2i output = bbox;
+
+    bbox.min().x() += padding()[0];
+    bbox.min().y() += padding()[2];
+
+    bbox.width()  -= (padding()[0] + padding()[1]);
+    bbox.height() -= (padding()[2] + padding()[3]);
+
+    return bbox;
+}
+
 } // End of tmns::gui namespace

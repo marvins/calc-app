@@ -15,7 +15,7 @@
 #include <terminus/calc/pages/Splash.hpp>
 
 // Project Libraries
-#include <terminus/image/Frame_View.hpp>
+#include <terminus/image.hpp>
 #include <terminus/gui/widget/Label.hpp>
 #include <terminus/version.hpp>
 
@@ -56,7 +56,8 @@ Splash::ptr_t Splash::create( const core::Options& config,
 {
     // Build the new instance
     auto splash = std::make_shared<Splash>();
-    splash->set_padding( 0, 0, 50, 50 );
+    splash->set_padding( 10, 10, 10, 10 );
+    splash->set_padding_color( img::PIXEL_GREY() );
     
     // Set the dimensions to screen size
     splash->set_layout_size( session.driver()->get_screen_dimensions().size() );

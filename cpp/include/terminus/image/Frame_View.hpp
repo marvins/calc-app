@@ -60,6 +60,11 @@ struct Frame_View {
         inline int channels() const { return 4; }
 
         /**
+         * Return bounding box
+         */
+        inline math::Rect2i bbox() const { return m_bbox; }
+
+        /**
          * Get a specific pixel value
          */
         uint8_t& get_pixel( int col, int row, int channel );

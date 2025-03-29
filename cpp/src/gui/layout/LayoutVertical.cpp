@@ -133,8 +133,8 @@ std::vector<math::Rect2i> LayoutVertical::allocate_bboxes() const
     // Shrink from padding
     auto pad = padding();
     full_bbox.min() += math::Vector2i( { pad[0], pad[2] } );
-    full_bbox.width()  -= pad[0] + pad[1];
-    full_bbox.height() -= pad[2] + pad[3];
+    full_bbox.width()  -= (pad[0] + pad[1]);
+    full_bbox.height() -= (pad[2] + pad[3]);
 
     // If a ratio is supplied, sum up the total ratio values. 
     double ratio_sum = 0;
