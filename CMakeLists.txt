@@ -195,6 +195,7 @@ add_executable( ${PROJECT_NAME}
     cpp/src/gui/layout/LayoutStack.cpp
     cpp/src/gui/layout/LayoutVertical.cpp
     cpp/src/gui/widget/Label.cpp
+    cpp/src/gui/widget/WidgetBase.cpp
     cpp/src/gui/widget/WidgetLayout.cpp
     cpp/src/image/Frame.cpp
     cpp/src/image/Frame_View.cpp

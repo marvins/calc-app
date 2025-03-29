@@ -16,6 +16,9 @@
  */
 #include <terminus/gui/widget/WidgetLayout.hpp>
 
+// Terminus Libraries
+#include <terminus/log.hpp>
+
 namespace tmns::gui {
 
 /****************************************/
@@ -40,6 +43,18 @@ LayoutBase::ptr_t WidgetLayout::layout()
 bool WidgetLayout::render( gui::Session&    session,
                            img::Frame_View& image )
 {
+    // Render the border
+    {
+        std::stringstream sout;
+        sout << "Rendering Widget.\n";
+        if( !log_tag().empty() ){
+            sout << " - " << log_tag() << std::endl;
+        }
+        sout << " - Widget size: " << size_pixels().to_string() << std::endl;
+        sout << " - Image: " << image.to_log_string() << std::endl;
+        LOG_TRACE( sout.str() );
+    }
+    render_border( session, image );
 
     // Render the internal layout on top of the image
     m_layout->render( session, image );

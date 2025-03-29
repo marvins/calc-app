@@ -37,7 +37,8 @@ class Header_Widget : public gui::WidgetLayout
          * Create the widget
          */
         static Header_Widget::ptr_t create( const core::Options& config,
-                                            gui::Session&        session );
+                                            gui::Session&        session,
+                                            math::Size2i         parent_size );
 
     private:
 

@@ -50,7 +50,7 @@ class WidgetLayout : public WidgetBase {
          */
         bool render( gui::Session&    session,
                      img::Frame_View& image ) override;
-        
+
         /**
          * Print to Log-Friendly String
          */
@@ -74,6 +74,9 @@ class WidgetLayout : public WidgetBase {
 
         /// Layout
         LayoutBase::ptr_t m_layout;
+
+        /// Flag if we want to render a border
+        std::optional<math::Vector4u> m_border {};
 
 }; // End of WidgetLayout Class
 

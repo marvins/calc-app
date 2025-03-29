@@ -32,13 +32,16 @@ namespace tmns::calc::page {
 /*          Create Header Widget          */
 /******************************************/
 Header_Widget::ptr_t Header_Widget::create( const core::Options& config,
-                                            gui::Session&        session )
+                                            gui::Session&        session,
+                                            math::Size2i         parent_size )
 {
     // Construct the layout.
-    int header_width  = session.driver()->get_screen_dimensions().cols(); 
-    int header_height = config.setting<int>("display","header_height");
+    int header_width  = parent_size.width();
+    int header_height = std::min( config.setting<int>("display","header_height"),
+                                  parent_size.height() );
 
     LOG_TRACE( "Setting Header Size: " + std::to_string(header_width) + " x " + std::to_string(header_height) );
+    LOG_TRACE( "Parent Size: " + parent_size.to_string() );
     auto layout = std::make_shared<gui::LayoutHorizontal>();
     layout->set_layout_size( math::Size2i( { header_width,
                                              header_height } ) );
@@ -80,7 +83,9 @@ Header_Widget::ptr_t Header_Widget::create( const core::Options& config,
 /*          Parameterized Constructor       */
 /********************************************/
 Header_Widget::Header_Widget( gui::LayoutBase::ptr_t layout )
-    : gui::WidgetLayout( layout ){}
+    : gui::WidgetLayout( layout ){
+        set_log_tag( "Header_Widget" );
+    }
 
 
 } // End of tmns::calc::page namespace

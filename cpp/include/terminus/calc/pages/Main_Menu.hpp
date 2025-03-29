@@ -36,7 +36,8 @@ class Main_Menu : public gui::WidgetLayout {
          * Construct Main Menu
          */
         static Main_Menu::ptr_t create( core::Options& config,
-                                        gui::Session&  session );
+                                        gui::Session&  session,
+                                        math::Size2i   parent_size );
     
     private:
 

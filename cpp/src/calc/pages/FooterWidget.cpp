@@ -28,13 +28,16 @@ namespace tmns::calc::page {
 /*          Create Footer Widget          */
 /******************************************/
 Footer_Widget::ptr_t Footer_Widget::create( const core::Options& config,
-                                            gui::Session&        session )
+                                            gui::Session&        session,
+                                            math::Size2i         parent_size )
 {
     // Construct the layout.
-    int footer_width  = session.driver()->get_screen_dimensions().cols(); 
-    int footer_height = config.setting<int>("display","footer_height");
+    int footer_width  = parent_size.width();
+    int footer_height = std::min( parent_size.height(),
+                                  config.setting<int>("display","footer_height") );
 
     LOG_TRACE( "Setting Footer Size: " + std::to_string(footer_width) + " x " + std::to_string(footer_height) );
+    LOG_TRACE( "Parent Size: " + parent_size.to_string() );
     auto layout = std::make_shared<gui::LayoutHorizontal>();
     layout->set_layout_size( math::Size2i( { footer_width,
                                              footer_height } ) );
@@ -62,6 +65,8 @@ Footer_Widget::ptr_t Footer_Widget::create( const core::Options& config,
 /*          Parameterized Constructor       */
 /********************************************/
 Footer_Widget::Footer_Widget( gui::LayoutBase::ptr_t layout )
-: gui::WidgetLayout( layout ){}
+: gui::WidgetLayout( layout ){
+    set_log_tag( "Footer_Widget" );
+}
 
 } // End of tmns::calc::page namespace

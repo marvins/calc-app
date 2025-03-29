@@ -48,12 +48,20 @@ Main_Window::ptr_t Main_Window::create( core::Options& config,
     // Create the master layout
     auto master_layout = std::make_shared<gui::LayoutVertical>();
     master_layout->set_layout_size( session.driver()->get_screen_dimensions().size() );
+    master_layout->set_padding( 10, 10, 10, 10 );
+    master_layout->set_padding_color( img::PIXEL_PINK() );
+
+    // Get the area inside the bbox without padding
+    auto master_bbox = master_layout->get_bbox_with_padding( math::Rect2i( { math::Vector2i({0,0}),
+                                                                             master_layout->layout_size() }));
+    math::Size2i master_render_size( { master_bbox.width(), master_bbox.height() } );
 
     /// Create window instance
     auto window = std::shared_ptr<Main_Window>( new Main_Window( master_layout ) );
 
     /// Create the header
-    window->m_header = Header_Widget::create( config, session );
+    window->m_header = Header_Widget::create( config, session, master_render_size );
+    window->m_header->set_border( img::PIXEL_BLACK() );
     window->m_base_widget->layout()->append( window->m_header, gui::ALIGN_TOP_CENTER(), {} );
 
     // Create the primary app stack
@@ -62,7 +70,7 @@ Main_Window::ptr_t Main_Window::create( core::Options& config,
     window->m_stack_layout->set_padding_color( img::PIXEL_GREEN() );
 
     // Add our main menu
-    window->m_main_app_menu = Main_Menu::create( config, session );
+    window->m_main_app_menu = Main_Menu::create( config, session, master_render_size );
     window->m_stack_layout->append( window->m_main_app_menu );
 
     // Add subsequent apps here!
@@ -71,17 +79,20 @@ Main_Window::ptr_t Main_Window::create( core::Options& config,
     window->m_base_widget->layout()->append( gui::WidgetLayout::from_layout( window->m_stack_layout ) );
 
     /// Create the footer
-    window->m_footer = Footer_Widget::create( config, session );
+    window->m_footer = Footer_Widget::create( config, session, master_render_size );
+    window->m_footer->set_border( img::PIXEL_BLACK() );
     window->m_base_widget->layout()->append( window->m_footer, gui::ALIGN_BOTTOM_CENTER(), {} );
 
     /// Get the stack layout size
-    int stack_width  = window->m_header->layout()->layout_size().width();
-    int stack_height = master_layout->layout_size().height()
+    /*
+    auto stack_view_size = window->m_header->layout()->get_bbox_with_padding();
+
+    int stack_width  = stack_view_size.width();
+    int stack_height = stack_view_size.height()
                        - window->m_header->layout()->layout_size().height()
                        - window->m_footer->layout()->layout_size().height();
     window->m_stack_layout->set_layout_size( math::Size2i( { stack_width, stack_height } ) );
-
-    window->m_main_app_menu->set_layout_size( math::Size2i( { stack_width, stack_height } ) );
+    */
 
     return window;
 }

@@ -44,11 +44,37 @@ class WidgetBase : public I_Renderable
         virtual math::Size2i size_pixels() const = 0;
 
         /**
+         * Primarily a troubleshooting tool to draw a border around the label
+         */
+        void set_border( math::Vector4u color );
+
+        /**
+         * Get the log tag
+         */
+        std::string log_tag() const;
+        
+        /**
+         * Set the log-friendly tag string
+         */
+        void set_log_tag( std::string log_tag );
+
+        /**
          * Print Log-Friendly Information
          */
         virtual std::string to_log_string( size_t offset = 0 ) const = 0;
 
+    protected:
+
+        virtual bool render_border( Session&         session,
+                                    img::Frame_View& image );
+
     private:
+
+        /// Flag if we want to render a border
+        std::optional<math::Vector4u> m_border {};
+
+        /// Log-Friendly String
+        std::string m_log_tag;
 
 };// End of WidgetBase class
 

@@ -36,6 +36,9 @@ bool Label::render( gui::Session&     session,
     sout << "Label Info: " << m_image->to_log_string() << ", View Size: " << image.to_log_string();
     LOG_DEBUG( sout.str() );
     
+    // Render the border
+    render_border( session, image );
+    
     // Copy our label onto the frame image
     image.copy( *m_image, img::CopyPolicy::FLEXIBILE );
 

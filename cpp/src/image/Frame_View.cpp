@@ -80,8 +80,8 @@ math::Vector4u Frame_View::get_pixel( int col, int row ) const
 /****************************************/
 void Frame_View::set_pixel( int col, int row, int channel, uint8_t value )
 {
-    int act_col = col - m_bbox.bl().x();
-    int act_row = row - m_bbox.bl().y();
+    int act_col = col + m_bbox.bl().x();
+    int act_row = row + m_bbox.bl().y();
     m_frame.set_pixel( act_col, act_row, channel, value  );
 }
 
@@ -90,8 +90,8 @@ void Frame_View::set_pixel( int col, int row, int channel, uint8_t value )
 /****************************************/
 void Frame_View::set_pixel( int col, int row, math::Vector4u value )
 {
-    int act_col = col - m_bbox.bl().x();
-    int act_row = row - m_bbox.bl().y();
+    int act_col = col + m_bbox.bl().x();
+    int act_row = row + m_bbox.bl().y();
     m_frame.set_pixel( act_col, act_row, value  );
 }
 

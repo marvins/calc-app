@@ -31,6 +31,7 @@ class Label : public WidgetBase {
         /// Pointer Type
         using ptr_t = std::shared_ptr<Label>;
 
+        /// @brief Default Constructor
         Label() = default;
         
         /**

@@ -83,13 +83,13 @@ struct Frame_View {
          * Set a specific pixel
          *
          */
-        void set_pixel( int row, int col, int channel, uint8_t value );
+        void set_pixel( int col, int row, int channel, uint8_t value );
 
         /**
          * Set a specific pixel
          *
          */
-        void set_pixel( int row, int col, math::Vector4u value );
+        void set_pixel( int col, int row, math::Vector4u value );
         
         /**
          * @brief Return another view of the frame, given a smaller window.

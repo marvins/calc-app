@@ -101,6 +101,7 @@ set( PROJECT_SOURCES
     ${CMAKE_SOURCE_DIR}/cpp/src/gui/layout/LayoutStack.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/gui/layout/LayoutVertical.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/gui/widget/Label.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/gui/widget/WidgetBase.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/gui/widget/WidgetLayout.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/image/Frame.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/image/Frame_View.cpp
