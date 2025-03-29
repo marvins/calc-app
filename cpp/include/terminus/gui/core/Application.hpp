@@ -62,6 +62,9 @@ class Application
 
         // Main Window context
         I_Main_Window::ptr_t m_main_window { nullptr };
+
+        /// Flag to keep running
+        bool m_okay_to_run { true };
         
 }; // End Application class
 

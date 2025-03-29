@@ -71,8 +71,8 @@ void LayoutHorizontal::set_horizontal_stretch_policy( StretchPolicy policy ){
 /****************************************/
 /*          Show the Contents           */
 /****************************************/
-bool LayoutHorizontal::render( gui::Session&  session,
-                              img::FrameView& image )
+bool LayoutHorizontal::render( gui::Session&   session,
+                              img::Frame_View& image )
 {
     // @todo:  Keep track of "rendered" vs "full" view
     //         Add support for sub-views

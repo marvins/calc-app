@@ -16,7 +16,8 @@
 
 // Terminus Libraries
 #include <terminus/core/Options.hpp>
-#include <terminus/gui/core/Session.hpp>
+#include <terminus/driver/DriverBase.hpp>
+#include <terminus/image/Frame_View.hpp>
 
 namespace tmns::gui {
 
@@ -31,10 +32,11 @@ class I_Main_Window
         using ptr_t = std::shared_ptr<I_Main_Window>;
 
         /**
-         * Show the screen for a bit, then exit
+         * Render the Main-Window
          */
-        virtual void render( core::Options& config,
-                             Session&       session ) = 0;
+        virtual void render( core::Options&          config,
+                             drv::Driver_Base::ptr_t driver,
+                             img::Frame_View&        frame_view ) = 0;
 
 }; // End of Main-Window Class
 

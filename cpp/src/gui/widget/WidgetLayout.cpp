@@ -37,8 +37,8 @@ LayoutBase::ptr_t WidgetLayout::layout()
 /************************************/
 /*          Render Widget           */
 /************************************/
-bool WidgetLayout::render( gui::Session&   session,
-                           img::FrameView& image )
+bool WidgetLayout::render( gui::Session&    session,
+                           img::Frame_View& image )
 {
     return false;
 }

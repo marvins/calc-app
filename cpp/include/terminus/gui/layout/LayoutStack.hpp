@@ -51,8 +51,8 @@ class LayoutStack : public LayoutBase
         /**
          * Show the contents of the layout
          */
-        bool render( Session&        session,
-                     img::FrameView& image ) override;
+        bool render( Session&         session,
+                     img::Frame_View& image ) override;
 
         /**
          * Get allocated region for widgets
@@ -62,6 +62,11 @@ class LayoutStack : public LayoutBase
          */
         std::vector<math::Rect2i> allocate_bboxes() const override;
 
-};// End of LayoutStretch class
+    private:
+
+        /// Index of current frame to show
+        size_t m_current_frame { 0 };
+
+};// End of LayoutStack class
 
 } // End of tmns::gui namespace

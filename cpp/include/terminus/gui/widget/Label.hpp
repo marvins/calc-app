@@ -41,8 +41,8 @@ class Label : public WidgetBase {
         /**
          * Show the label
          */
-        bool render( Session&        session,
-                     img::FrameView& image ) override;
+        bool render( Session&         session,
+                     img::Frame_View& image ) override;
 
         /**
          * Load an image and store in the label

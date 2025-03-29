@@ -140,7 +140,7 @@ add_executable( ${PROJECT_NAME}
     cpp/include/terminus/core/StringUtilities.hpp
     cpp/include/terminus/driver/DriverBase.hpp
     cpp/include/terminus/image/Frame.hpp
-    cpp/include/terminus/image/FrameView.hpp
+    cpp/include/terminus/image/Frame_View.hpp
     cpp/include/terminus/image/Primitives.hpp
     cpp/include/terminus/gui/core/Application.hpp
     cpp/include/terminus/gui/core/Exit_Code.hpp
@@ -181,6 +181,7 @@ add_executable( ${PROJECT_NAME}
     cpp/src/core/ConfigParser.cpp
     cpp/src/core/Options.cpp
     cpp/src/core/StringUtilities.cpp
+    cpp/src/gui/core/Application.cpp
     cpp/src/gui/core/Session.cpp
     cpp/src/gui/event/EventType.cpp
     cpp/src/gui/layout/LayoutBase.cpp
@@ -191,7 +192,7 @@ add_executable( ${PROJECT_NAME}
     cpp/src/gui/widget/Label.cpp
     cpp/src/gui/widget/WidgetLayout.cpp
     cpp/src/image/Frame.cpp
-    cpp/src/image/FrameView.cpp
+    cpp/src/image/Frame_View.cpp
     cpp/src/image/Image.cpp
     cpp/src/image/Primitives.cpp
     cpp/src/log/HandlerConsole.cpp

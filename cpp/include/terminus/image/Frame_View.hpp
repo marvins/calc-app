@@ -8,7 +8,7 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    FrameView.hpp
+ * @file    Frame_View.hpp
  * @author  Marvin Smith
  * @date    03/23/2025
  *
@@ -24,25 +24,25 @@
 namespace tmns::img {
 
 /**
- * @class FrameView
+ * @class Frame_View
  */
-struct FrameView {
+struct Frame_View {
 
     public:
 
         /// @brief Deleted Default Constructor
-        FrameView() = delete;
+        Frame_View() = delete;
 
         /**
          * Pass in an entire frame image.
          */
-        FrameView( Frame& frame );
+        Frame_View( Frame& frame );
 
         /**
          * Pass in a subview of the input.
          */
-        FrameView( Frame&              frame, 
-                   const math::Rect2i& bbox );
+        Frame_View( Frame&              frame, 
+                    const math::Rect2i& bbox );
 
         /**
          * Return image cols
@@ -91,15 +91,15 @@ struct FrameView {
          * @note  Window input is in this view's perspective, but the resulting
          *        view will be kept in the perspective of the original frame.
          */
-        FrameView subview( const math::Rect2i& bbox );
+        Frame_View subview( const math::Rect2i& bbox );
 
         /**
          * Copy the input frame into this view.  
          * @param frame Input image to copy
          * @param copy_policy  Rules for copying imagery.
          */
-        bool copy( const FrameView& frame,
-                   CopyPolicy       copy_policy );
+        bool copy( const Frame_View& frame,
+                   CopyPolicy        copy_policy );
         
         /**
          * Copy the input frame into this view.  
@@ -118,6 +118,6 @@ struct FrameView {
         /// Bounding box (Original frame's view)
         math::Rect2i m_bbox;
     
-};// End of FrameView class
+};// End of Frame_View class
 
 } // End of tmns::img namespace

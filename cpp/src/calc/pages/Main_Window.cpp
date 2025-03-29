@@ -20,6 +20,16 @@
 namespace tmns::calc::page {
 
 /****************************************/
+/*          Render the Window           */
+/****************************************/
+void Main_Window::render( core::Options&          config,
+                          drv::Driver_Base::ptr_t driver,
+                          img::Frame_View&        frame_view )
+{
+
+}
+
+/****************************************/
 /*          Create new Window           */
 /****************************************/
 Main_Window::ptr_t Main_Window::create( core::Options& config,

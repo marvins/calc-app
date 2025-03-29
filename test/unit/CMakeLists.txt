@@ -24,6 +24,13 @@ include_directories( ${CMAKE_SOURCE_DIR}/cpp/include )
 #  Setup Executable
 set( TEST ${PROJECT_NAME}_test )
 
+if( ${RENDER_DRIVER} STREQUAL "raylib" )
+    set( EXTRA_SOURCES ${CMAKE_SOURCE_DIR}/cpp/include/terminus/driver/DriverRaylib.hpp
+                       ${CMAKE_SOURCE_DIR}/cpp/include/terminus/driver/Raylib_Utilities.hpp
+                       ${CMAKE_SOURCE_DIR}/cpp/src/driver/DriverRaylib.cpp
+                       ${CMAKE_SOURCE_DIR}/cpp/src/driver/Raylib_Utilities.cpp )
+endif()
+
 #  Until I learn how to make shared or static libraries with the RPI Pico, 
 #  I need to re-add the source files
 set( PROJECT_SOURCES
@@ -38,9 +45,8 @@ set( PROJECT_SOURCES
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/core/ConfigParser.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/core/Options.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/core/StringUtilities.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/driver/Raylib_Utilities.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/Frame.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/FrameView.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/Frame_View.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/Primitives.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/Application.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/Exit_Code.hpp
@@ -92,12 +98,13 @@ set( PROJECT_SOURCES
     ${CMAKE_SOURCE_DIR}/cpp/src/gui/widget/Label.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/gui/widget/WidgetLayout.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/image/Frame.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/src/image/FrameView.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/image/Frame_View.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/image/Image.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/image/Primitives.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/log/HandlerConsole.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/log/Level.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/log/Logger.cpp
+    ${EXTRA_SOURCES}
 )
 
 #  Here are the list of actual unit-tests
@@ -116,4 +123,5 @@ add_executable( ${TEST}
 #  Link in googletest
 target_link_libraries( ${TEST} PRIVATE
     GTest::gtest
+    ${EXTRA_LIBS}
 )

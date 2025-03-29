@@ -63,8 +63,8 @@ class LayoutHorizontal : public LayoutBase
         /**
          * Show the contents of the layout
          */
-        bool render( Session&        session,
-                     img::FrameView& image ) override;
+        bool render( Session&         session,
+                     img::Frame_View& image ) override;
 
         /**
          * Get allocated region for widgets

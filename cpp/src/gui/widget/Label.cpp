@@ -29,8 +29,8 @@ math::Size2i Label::size_pixels() const {
 /********************************/
 /*      Render the Image        */
 /********************************/
-bool Label::render( gui::Session&    session,
-                    img::FrameView&  image )
+bool Label::render( gui::Session&     session,
+                    img::Frame_View&  image )
 {
     // Copy our label onto the frame image
     image.copy( *m_image, img::CopyPolicy::FLEXIBILE );

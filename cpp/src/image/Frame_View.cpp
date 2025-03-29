@@ -8,13 +8,13 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    FrameView.hpp
+ * @file    Frame_View.hpp
  * @author  Marvin Smith
  * @date    03/23/2025
  *
  * @details Image Frame View
  */
-#include <terminus/image/FrameView.hpp>
+#include <terminus/image/Frame_View.hpp>
 
 /// Terminus Libraries
 #include <terminus/log/Logger.hpp>
@@ -26,7 +26,7 @@ namespace tmns::img {
 /****************************/
 /*      Constructor         */
 /****************************/
-FrameView::FrameView( Frame& frame )
+Frame_View::Frame_View( Frame& frame )
     : m_frame { frame }
 {
     m_bbox = math::Rect2i( math::ToPoint2<int>( 0, 0 ),
@@ -36,8 +36,8 @@ FrameView::FrameView( Frame& frame )
 /****************************/
 /*      Constructor         */
 /****************************/
-FrameView::FrameView( Frame&              frame,
-                      const math::Rect2i& bbox )
+Frame_View::Frame_View( Frame&              frame,
+                        const math::Rect2i& bbox )
     : m_frame { frame },
       m_bbox { bbox }
 {}
@@ -45,7 +45,7 @@ FrameView::FrameView( Frame&              frame,
 /****************************************/
 /*          Get Specific Pixel          */
 /****************************************/
-uint8_t& FrameView::get_pixel( int col, int row, int channel )
+uint8_t& Frame_View::get_pixel( int col, int row, int channel )
 {
     int act_col = col - m_bbox.bl().x();
     int act_row = row - m_bbox.bl().y();
@@ -56,7 +56,7 @@ uint8_t& FrameView::get_pixel( int col, int row, int channel )
 /****************************************/
 /*          Get Specific Pixel          */
 /****************************************/
-uint8_t FrameView::get_pixel( int col, int row, int channel ) const
+uint8_t Frame_View::get_pixel( int col, int row, int channel ) const
 {
     int act_col = col - m_bbox.bl().x();
     int act_row = row - m_bbox.bl().y();
@@ -67,7 +67,7 @@ uint8_t FrameView::get_pixel( int col, int row, int channel ) const
 /****************************************/
 /*          Get Specific Pixel          */
 /****************************************/
-math::Vector4u FrameView::get_pixel( int col, int row ) const
+math::Vector4u Frame_View::get_pixel( int col, int row ) const
 {
     int act_col = col - m_bbox.bl().x();
     int act_row = row - m_bbox.bl().y();
@@ -78,7 +78,7 @@ math::Vector4u FrameView::get_pixel( int col, int row ) const
 /****************************************/
 /*          Set Specific Pixel          */
 /****************************************/
-void FrameView::set_pixel( int col, int row, int channel, uint8_t value )
+void Frame_View::set_pixel( int col, int row, int channel, uint8_t value )
 {
     int act_col = col - m_bbox.bl().x();
     int act_row = row - m_bbox.bl().y();
@@ -88,7 +88,7 @@ void FrameView::set_pixel( int col, int row, int channel, uint8_t value )
 /****************************************/
 /*          Set Specific Pixel          */
 /****************************************/
-void FrameView::set_pixel( int col, int row, math::Vector4u value )
+void Frame_View::set_pixel( int col, int row, math::Vector4u value )
 {
     int act_col = col - m_bbox.bl().x();
     int act_row = row - m_bbox.bl().y();
@@ -98,7 +98,7 @@ void FrameView::set_pixel( int col, int row, math::Vector4u value )
 /**************************************************/
 /*      Return a subview of this current image    */
 /**************************************************/
-FrameView FrameView::subview( const math::Rect2i& bbox )
+Frame_View Frame_View::subview( const math::Rect2i& bbox )
 {
     LOG_DEBUG( "This BBOX: " + m_bbox.to_string() + " that bbox: " + bbox.to_string() );
     // Adjust bottom left corner (Not by actual values, but by DELTA!)
@@ -112,13 +112,13 @@ FrameView FrameView::subview( const math::Rect2i& bbox )
     // The new size of the scene
     auto new_bbox = math::Rect2i( new_bl, new_size );
     
-    return FrameView( m_frame, new_bbox );
+    return Frame_View( m_frame, new_bbox );
 }
 
 /**************************************************/
 /*       Copy from one image onto this image      */
 /**************************************************/
-bool FrameView::copy( const Frame& frame,
+bool Frame_View::copy( const Frame& frame,
                       CopyPolicy   copy_policy )
 {
     // @todo:  Think about other policies
@@ -157,8 +157,8 @@ bool FrameView::copy( const Frame& frame,
 /**************************************************/
 /*       Copy from one image onto this image      */
 /**************************************************/
-bool FrameView::copy( const FrameView& frame,
-                      CopyPolicy   copy_policy )
+bool Frame_View::copy( const Frame_View& frame,
+                       CopyPolicy        copy_policy )
 {
     // @todo:  Think about other policies
     if( copy_policy != CopyPolicy::FLEXIBILE ){

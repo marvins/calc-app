@@ -47,8 +47,8 @@ class WidgetLayout : public WidgetBase {
         /**
          * Show the label
          */
-        bool render( gui::Session&   session,
-                     img::FrameView& image ) override;
+        bool render( gui::Session&    session,
+                     img::Frame_View& image ) override;
 
         /**
          * Load an image and store in the label

@@ -19,7 +19,7 @@
 // Project Libraries
 #include <terminus/gui/core/Session.hpp>
 #include <terminus/gui/layout/WidgetLayoutItem.hpp>
-#include <terminus/image/FrameView.hpp>
+#include <terminus/image/Frame_View.hpp>
 
 // C++ Standard Libraries
 #include <memory>
@@ -43,8 +43,8 @@ class LayoutBase
         /**
          * Show the contents of the layout on the screen
          */
-        virtual bool render( Session&        session,
-                             img::FrameView& image ) = 0;
+        virtual bool render( Session&         session,
+                             img::Frame_View& image ) = 0;
 
         /**
          * Get the layout dimensions

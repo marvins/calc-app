@@ -37,8 +37,9 @@ class Main_Window : public gui::LayoutVertical,
         /**
          * Show the screen for a bit, then exit
          */
-        void render( core::Options& config,
-                     gui::Session&  session ) override;
+        void render( core::Options&          config,
+                     drv::Driver_Base::ptr_t driver,
+                     img::Frame_View&        frame_view ) override;
 
         /**
          * Create a new Splash Screen

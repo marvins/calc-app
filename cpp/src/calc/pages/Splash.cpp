@@ -15,7 +15,7 @@
 #include <terminus/calc/pages/Splash.hpp>
 
 // Project Libraries
-#include <terminus/image/FrameView.hpp>
+#include <terminus/image/Frame_View.hpp>
 #include <terminus/gui/widget/Label.hpp>
 #include <terminus/version.hpp>
 
@@ -30,7 +30,7 @@ namespace tmns::calc::page {
 void Splash::show( core::Options& config,
                    gui::Session&  session )
 {
-    img::FrameView frame_view( session.active_frame() );
+    img::Frame_View frame_view( session.active_frame() );
     
     // Render the internal layout on top of the view
     LayoutVertical::render( session,

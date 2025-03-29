@@ -37,4 +37,34 @@ size_t LayoutStack::append( WidgetBase::ptr_t new_widget ){
     return (m_widgets.size() - 1);
 }
 
+/****************************************/
+/*          Render the Frame            */
+/****************************************/
+bool LayoutStack::render( Session&         session,
+                          img::Frame_View& image )
+{
+
+    if( m_widgets.size() <= 0 ){
+        throw std::runtime_error( "LayoutStack instance has no widgets added." );
+    }
+
+    return m_widgets[m_current_frame].widget->render( session, image );
+    
+    return false;
+}
+
+/****************************************/
+/*      Get allocated bounding box      */
+/****************************************/
+std::vector<math::Rect2i> LayoutStack::allocate_bboxes() const
+{
+    std::vector<math::Rect2i> bboxes;
+    
+    for( const auto& widget : m_widgets ){
+        bboxes.push_back( math::Rect2i( math::Point2i( { 0, 0 } ),
+                                        widget.widget->size_pixels() ) );
+    }
+    return bboxes;
+}
+
 } // End of tmns::gui namespace

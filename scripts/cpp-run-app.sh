@@ -15,4 +15,4 @@ for ARG in "$@"; do
 done
 
 #  Launch with standard flags
-${PRE_CMD} ./build/bin/terminus-calculator -c data/options.uconsole.cfg -v 
+${PRE_CMD} ./build/bin/terminus_toolbox -c data/options.uconsole.cfg -v 

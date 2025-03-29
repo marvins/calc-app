@@ -71,8 +71,8 @@ void LayoutVertical::set_vertical_stretch_policy( StretchPolicy policy ){
 /****************************************/
 /*          Show the Contents           */
 /****************************************/
-bool LayoutVertical::render( gui::Session&   session,
-                             img::FrameView& image )
+bool LayoutVertical::render( gui::Session&    session,
+                             img::Frame_View& image )
 {
     // @todo:  Keep track of "rendered" vs "full" view
     //         Add support for sub-views
