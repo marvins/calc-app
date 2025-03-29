@@ -130,6 +130,11 @@ struct Frame {
         void set_pixel( int col, int row, math::Vector4u value );
 
         /**
+         * Set a specific value to all pixels
+         */
+        void set_all_pixels( math::Vector4u value );
+
+        /**
          * Print information about frame data
          */
         std::string to_log_string( size_t offset = 0 ) const;

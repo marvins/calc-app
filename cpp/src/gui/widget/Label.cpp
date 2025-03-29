@@ -42,6 +42,21 @@ bool Label::render( gui::Session&     session,
     return true;
 }
 
+/************************************************/
+/*          Create Log-Friendly String          */
+/************************************************/
+std::string Label::to_log_string( size_t offset ) const
+{
+    std::stringstream sout;
+
+    std::string gap( offset, ' ' );
+
+    sout << gap << " - Label:" << std::endl;
+    sout << gap << "     - Frame Information:" << std::endl;
+    sout << m_image->to_log_string( offset + 6 );
+    return sout.str();
+}
+
 /************************************/
 /*      Construct from image        */
 /************************************/

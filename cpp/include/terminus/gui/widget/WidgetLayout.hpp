@@ -50,6 +50,11 @@ class WidgetLayout : public WidgetBase {
          */
         bool render( gui::Session&    session,
                      img::Frame_View& image ) override;
+        
+        /**
+         * Print to Log-Friendly String
+         */
+        std::string to_log_string( size_t offset = 0 ) const override;
 
         /**
          * Load an image and store in the label

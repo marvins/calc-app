@@ -8,24 +8,24 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    version.hpp
+ * @file    Pixels.hpp
  * @author  Marvin Smith
- * @date    03/25/2025
+ * @date    03/29/2025
  *
- * @details Terminus Auto-Generated Version File
+ * @details Handy Pixel APIs.
  */
 #pragma once
 
-namespace tmns {
+// Terminus Libraries
+#include <terminus/math/Vector.hpp>
 
-static constexpr std::string BUILD_DATE() { return "2025-03-28 23:30:09"; }
+namespace tmns::img {
 
-static constexpr std::string VERSION() { return "0.0.2"; }
+static constexpr math::Vector4u PIXEL_BLACK( uint8_t alpha = 255 ){ return math::Vector4u( {   0,   0,   0, alpha } ); };
+static constexpr math::Vector4u PIXEL_GREEN( uint8_t alpha = 255 ){ return math::Vector4u( {   0, 255,   0, alpha } ); };
+static constexpr math::Vector4u PIXEL_BLUE(  uint8_t alpha = 255 ){ return math::Vector4u( {   0,   0, 255, alpha } ); };
+static constexpr math::Vector4u PIXEL_RED(   uint8_t alpha = 255 ){ return math::Vector4u( { 255,   0,   0, alpha } ); };
+static constexpr math::Vector4u PIXEL_WHITE( uint8_t alpha = 255 ){ return math::Vector4u( { 255, 255, 255, alpha } ); };
 
-static constexpr std::string VERSION_MAJOR() { return "0"; }
 
-static constexpr std::string VERSION_MINOR() { return "0"; }
-
-static constexpr std::string VERSION_PATCH() { return "2"; }
-
-}
+} // End of tmns::image namespace

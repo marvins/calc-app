@@ -47,7 +47,9 @@ set( PROJECT_SOURCES
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/core/StringUtilities.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/Frame.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/Frame_View.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/Pixels.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/Primitives.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/Application.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/Exit_Code.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/Resource_Manager.hpp

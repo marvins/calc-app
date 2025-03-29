@@ -78,6 +78,9 @@ void LayoutVertical::set_vertical_stretch_policy( StretchPolicy policy ){
 bool LayoutVertical::render( gui::Session&    session,
                              img::Frame_View& image )
 {
+    // First render the padding
+    render_padding( session, image );
+
     // @todo:  Keep track of "rendered" vs "full" view
     //         Add support for sub-views
     //         Add support for padding
@@ -182,7 +185,22 @@ std::vector<math::Rect2i> LayoutVertical::allocate_bboxes() const
     }
 
     return bboxes;
+}
 
+/************************************************/
+/*          Create Log-Friendly String          */
+/************************************************/
+std::string LayoutVertical::to_log_string( size_t offset ) const
+{
+    std::stringstream sout;
+
+    std::string gap( offset, ' ' );
+
+    sout << gap << " - LayoutVertical:" << std::endl;
+    sout << gap << "    - Size: " << layout_size().to_string() << std::endl;
+    sout << gap << "    - Padding: " << padding().to_log_string() << std::endl;
+    sout << gap << "    - Number Widgets: " << m_widgets.size() << std::endl;
+    return sout.str();
 }
 
 } // End of tmns::gui namespace

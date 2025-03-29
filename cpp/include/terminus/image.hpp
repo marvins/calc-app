@@ -8,24 +8,15 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    version.hpp
+ * @file    image.hpp
  * @author  Marvin Smith
- * @date    03/25/2025
+ * @date    03/29/2025
  *
- * @details Terminus Auto-Generated Version File
+ * @details Primary Image-Processing Interfaces
  */
 #pragma once
 
-namespace tmns {
-
-static constexpr std::string BUILD_DATE() { return "2025-03-28 23:30:09"; }
-
-static constexpr std::string VERSION() { return "0.0.2"; }
-
-static constexpr std::string VERSION_MAJOR() { return "0"; }
-
-static constexpr std::string VERSION_MINOR() { return "0"; }
-
-static constexpr std::string VERSION_PATCH() { return "2"; }
-
-}
+#include <terminus/image/Frame_View.hpp>
+#include <terminus/image/Frame.hpp>
+#include <terminus/image/Pixels.hpp>
+#include <terminus/image/Primitives.hpp>

@@ -49,6 +49,15 @@ class LayoutStack : public LayoutBase
         int append( WidgetBase::ptr_t new_widget ) override;
 
         /**
+         * Add Widget to Lyout
+         * 
+         * @returns ID of the widget to use for referencing
+         */
+        int append( WidgetBase::ptr_t          new_widget,
+                    std::set<AlignmentPolicy>  alignment,
+                    std::optional<double>      ratio ) override;
+
+        /**
          * Show the contents of the layout
          */
         bool render( Session&         session,
@@ -62,10 +71,15 @@ class LayoutStack : public LayoutBase
          */
         std::vector<math::Rect2i> allocate_bboxes() const override;
 
+        /**
+         * Print to Log-Friendly String
+         */
+        std::string to_log_string( size_t offset = 0 ) const override;
+
     private:
 
         /// Index of current frame to show.  Optional since it's invalid until used.
-        std::optional<size_t> m_current_frame { 0 };
+        std::optional<size_t> m_current_frame {};
 
 };// End of LayoutStack class
 

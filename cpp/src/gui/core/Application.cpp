@@ -15,7 +15,7 @@
 #include <terminus/gui/core/Application.hpp>
 
 // Project Libraries
-#include <terminus/image/Frame_View.hpp>
+#include <terminus/image.hpp>
 
 namespace tmns::gui {
 
@@ -24,6 +24,7 @@ namespace tmns::gui {
 /****************************************/
 int Application::run()
 {
+    m_session.active_frame().set_all_pixels( img::PIXEL_WHITE() );
     
     while( m_okay_to_run )
     {

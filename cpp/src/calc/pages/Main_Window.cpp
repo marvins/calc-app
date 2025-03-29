@@ -16,6 +16,7 @@
 
 // Project Libraries
 #include <terminus/gui/widget/WidgetLayout.hpp>
+#include <terminus/image.hpp>
 #include <terminus/log.hpp>
 
 namespace tmns::calc::page {
@@ -53,10 +54,12 @@ Main_Window::ptr_t Main_Window::create( core::Options& config,
 
     /// Create the header
     window->m_header = Header_Widget::create( config, session );
-    window->m_base_widget->layout()->append( window->m_header );
+    window->m_base_widget->layout()->append( window->m_header, gui::ALIGN_TOP_CENTER(), {} );
 
     // Create the primary app stack
     window->m_stack_layout = std::make_shared<gui::LayoutStack>();
+    window->m_stack_layout->set_padding( 10, 10, 10, 10 );
+    window->m_stack_layout->set_padding_color( img::PIXEL_GREEN() );
 
     // Add our main menu
     window->m_main_app_menu = Main_Menu::create( config, session );
@@ -69,7 +72,16 @@ Main_Window::ptr_t Main_Window::create( core::Options& config,
 
     /// Create the footer
     window->m_footer = Footer_Widget::create( config, session );
-    window->m_base_widget->layout()->append( window->m_footer );
+    window->m_base_widget->layout()->append( window->m_footer, gui::ALIGN_BOTTOM_CENTER(), {} );
+
+    /// Get the stack layout size
+    int stack_width  = window->m_header->layout()->layout_size().width();
+    int stack_height = master_layout->layout_size().height()
+                       - window->m_header->layout()->layout_size().height()
+                       - window->m_footer->layout()->layout_size().height();
+    window->m_stack_layout->set_layout_size( math::Size2i( { stack_width, stack_height } ) );
+
+    window->m_main_app_menu->set_layout_size( math::Size2i( { stack_width, stack_height } ) );
 
     return window;
 }

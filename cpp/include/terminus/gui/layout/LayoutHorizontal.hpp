@@ -58,7 +58,7 @@ class LayoutHorizontal : public LayoutBase
          */
         int append( WidgetBase::ptr_t          new_widget,
                     std::set<AlignmentPolicy>  alignment,
-                    std::optional<double>      ratio );
+                    std::optional<double>      ratio ) override;
 
         /**
          * Show the contents of the layout
@@ -85,6 +85,11 @@ class LayoutHorizontal : public LayoutBase
          * - non-Fixed is unsupported at this time
          */
         std::vector<math::Rect2i> allocate_bboxes() const override;
+
+        /**
+         * Print to Log-Friendly String
+         */
+        std::string to_log_string( size_t offset = 0 ) const override;
 
     protected: 
     

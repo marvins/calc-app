@@ -45,6 +45,12 @@ class LayoutBase
          */
         virtual bool render( Session&         session,
                              img::Frame_View& image ) = 0;
+        
+        /**
+         * Render the padding, if needed
+         */
+        bool render_padding( Session&         session,
+                             img::Frame_View& image );
 
         /**
          * Get the layout dimensions
@@ -74,6 +80,16 @@ class LayoutBase
         void set_padding( int left, int right, int top, int bottom );
 
         /**
+         * Get the padding color
+         */
+        std::optional<math::Vector4u> padding_color() const;
+
+        /**
+         * Set the padding color
+         */
+        void set_padding_color( math::Vector4u color );
+
+        /**
          * Get access to widgets
          */
         std::vector<WidgetLayoutItem>& widgets();
@@ -83,6 +99,14 @@ class LayoutBase
          * @returns ID or index of the newly added widget
          */
         virtual int append( WidgetBase::ptr_t new_widget ) = 0;
+
+        /**
+         * Add widget to the layout.
+         * @returns ID or index of the newly added widget
+         */
+        virtual int append( WidgetBase::ptr_t          new_widget,
+                            std::set<AlignmentPolicy>  alignment,
+                            std::optional<double>      ratio ) = 0;
     
         /**
          * Get allocated region for widgets
@@ -105,6 +129,11 @@ class LayoutBase
         virtual std::vector<math::Rect2i> allocate_bboxes() const = 0;
 
         /**
+         * Print Log-Friendly String
+         */
+        virtual std::string to_log_string( size_t offset ) const = 0;
+
+        /**
          * Align the Widget within the Bounding box.
          */
         static math::Rect2i align_widget( math::Rect2i              bbox_allocated,
@@ -123,6 +152,9 @@ class LayoutBase
 
         /// @brief Padding to use
         math::Vector4i m_padding { { 0, 0, 0, 0 } };
+
+        /// @brief Optional padding color
+        std::optional<math::Vector4u> m_padding_color;
 
 };// End of LayoutBase class
 

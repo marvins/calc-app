@@ -28,6 +28,11 @@ class Main_Menu : public gui::WidgetLayout {
         using ptr_t = std::shared_ptr<Main_Menu>;
 
         /**
+         * Change the layout size
+         */
+        void set_layout_size( math::Size2i layout_size );
+
+        /**
          * Construct Main Menu
          */
         static Main_Menu::ptr_t create( core::Options& config,
@@ -35,10 +40,12 @@ class Main_Menu : public gui::WidgetLayout {
     
     private:
 
-        Main_Menu() = default;
+        Main_Menu() = delete;
 
-        /// Layout used to store widgets
-        gui::LayoutVertical::ptr_t m_main_layout;
+        /**
+         * Parameterized Constructor
+         */
+        Main_Menu( gui::LayoutVertical::ptr_t main_layout );
         
         /// List of Application Labels
         

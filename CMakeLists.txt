@@ -141,7 +141,9 @@ add_executable( ${PROJECT_NAME}
     cpp/include/terminus/driver/DriverBase.hpp
     cpp/include/terminus/image/Frame.hpp
     cpp/include/terminus/image/Frame_View.hpp
+    cpp/include/terminus/image/Pixels.hpp 
     cpp/include/terminus/image/Primitives.hpp
+    cpp/include/terminus/image.hpp
     cpp/include/terminus/gui/core/Application.hpp
     cpp/include/terminus/gui/core/Exit_Code.hpp
     cpp/include/terminus/gui/core/Resource_Manager.hpp

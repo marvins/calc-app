@@ -15,13 +15,46 @@
 #include <terminus/calc/pages/Main_Menu.hpp>
 
 // Project Libraries
+#include <terminus/gui/widget/Label.hpp>
+#include <terminus/image.hpp>
+#include <terminus/log.hpp>
 
 namespace tmns::calc::page {
 
-Main_Menu::ptr_t Main_Menu::create( core::Options& config,
-                                    gui::Session&  session)
+/************************************/
+/*          Set Layout Size         */
+/************************************/
+void Main_Menu::set_layout_size( math::Size2i layout_size )
 {
-    return nullptr;
+    layout()->set_layout_size( layout_size );
 }
+
+/************************************/
+/*          Create the Menu         */
+/************************************/
+Main_Menu::ptr_t Main_Menu::create( core::Options& config,
+                                    gui::Session&  session )
+{
+    // Construct layout
+    auto layout = std::make_shared<gui::LayoutVertical>();
+    layout->set_padding( 10, 10, 10, 10 );
+    layout->set_padding_color( img::PIXEL_RED() );
+
+    // Add temp widget
+    auto label = gui::Label::from_text("HELLO WORLD", session.driver());
+    layout->append( label );
+
+    // Create instance
+    auto inst = std::shared_ptr<Main_Menu>( new Main_Menu( layout ) );
+
+    return inst;
+}
+
+/************************************/
+/*          Constructor             */
+/************************************/
+Main_Menu::Main_Menu( gui::LayoutVertical::ptr_t main_layout )
+    : gui::WidgetLayout( main_layout )
+{}
 
 } // End of tmns::calc::page namespace

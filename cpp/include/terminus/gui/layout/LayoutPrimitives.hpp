@@ -36,6 +36,12 @@ enum class AlignmentPolicy : uint32_t {
 }; // End of AlignmentPolicy Enum
 
 /**
+ * Alignment helper functions
+ */
+static constexpr std::set<AlignmentPolicy> ALIGN_TOP_CENTER(){ return std::set<AlignmentPolicy>( { { AlignmentPolicy::TOP, AlignmentPolicy::CENTER_HORIZONTAL } } ); }
+static constexpr std::set<AlignmentPolicy> ALIGN_BOTTOM_CENTER(){ return std::set<AlignmentPolicy>( { { AlignmentPolicy::BOTTOM, AlignmentPolicy::CENTER_HORIZONTAL } } ); }
+
+/**
  * Set the stretch policy
  */
 enum class StretchPolicy {

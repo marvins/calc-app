@@ -18,6 +18,7 @@
 
 // C++ Libraries
 #include <memory>
+#include <string>
 
 // Project Libraries
 #include <terminus/gui/core/Session.hpp>
@@ -41,6 +42,11 @@ class WidgetBase : public I_Renderable
          * @brief Get the size of the widget, in pixels
          */
         virtual math::Size2i size_pixels() const = 0;
+
+        /**
+         * Print Log-Friendly Information
+         */
+        virtual std::string to_log_string( size_t offset = 0 ) const = 0;
 
     private:
 

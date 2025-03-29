@@ -45,10 +45,6 @@ void Splash::show( core::Options& config,
     {
         session.show();
     }
-    
-
-    // Sleep for a bit
-    std::this_thread::sleep_for( std::chrono::milliseconds( sleep_time_ms ) );
 
 }
 

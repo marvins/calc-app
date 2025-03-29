@@ -43,6 +43,11 @@ class Label : public WidgetBase {
          */
         bool render( Session&         session,
                      img::Frame_View& image ) override;
+        
+        /**
+         * Print Log-Friendly String
+         */
+        std::string to_log_string( size_t offset = 0 ) const override;
 
         /**
          * Load an image and store in the label

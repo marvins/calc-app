@@ -22,6 +22,48 @@
 namespace tmns::gui {
 
 /****************************************/
+/*          Render the padding          */
+/****************************************/
+bool LayoutBase::render_padding( Session&         session,
+                                 img::Frame_View& image )
+{
+    // Skip if there is no padding color set
+    if( !m_padding_color.has_value() ){
+        return true;
+    }
+
+    // Set the top bar of the padding
+    for( int r = 0; r < m_padding[2]; r++ ){
+        for( int c = 0; c < image.cols(); c++ ){
+            image.set_pixel( c, r, m_padding_color.value() );
+        }
+    }
+
+    // Set the bottom bar
+    for( int r = image.rows() - m_padding[3] - 1; r < image.rows(); r++ ){
+        for( int c = 0; c < image.cols(); c++ ){
+            image.set_pixel( c, r, m_padding_color.value() );
+        }
+    }
+
+    // Set the left bar
+    for( int c = 0; c < m_padding[0]; c++ ){
+        for( int r = 0; r < image.rows(); r++ ){
+            image.set_pixel( c, r, m_padding_color.value() );
+        }
+    }
+
+    // Set the right bar
+    for( int c = image.cols() - m_padding[1] - 1; c < image.cols(); c++ ){
+        for( int r = 0; r < image.rows(); r++ ){
+            image.set_pixel( c, r, m_padding_color.value() );
+        }
+    }
+
+    return true;
+}
+
+/****************************************/
 /*          Get Layout Dimensions       */
 /****************************************/
 math::Size2i LayoutBase::layout_size() const {
@@ -55,6 +97,22 @@ void LayoutBase::set_padding( math::Vector4i padding ){
 /************************************/
 void LayoutBase::set_padding( int left, int right, int top, int bottom ){
     set_padding( math::Vector4i( { left, right, top, bottom } ) );
+}
+
+/********************************************/
+/*          Get the padding color           */
+/********************************************/
+std::optional<math::Vector4u> LayoutBase::padding_color() const
+{
+    return m_padding_color;
+}
+
+/********************************************/
+/*          Set the padding color           */
+/********************************************/
+void LayoutBase::set_padding_color( math::Vector4u color )
+{
+    m_padding_color = color;
 }
 
 /********************************************/
