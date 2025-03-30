@@ -7,8 +7,21 @@ The uConsole is a tricky-ish setup due to it's default image having some older d
 ---
 ##  Building Desktop Variant for uConsole
 
-### Step 1 : Clone repo
+### Step 1 : Clone repositories
 
+I usually create a fresh workspace
+
+```bash
+mkdir workspace
+pushd workspace
+```
+
+Next, clone the repos
+
+```bash
+git clone git@github.com:marvins/calc-app.git
+git clone git@github.com:Terminus-Geospatial/terminus-setup.git
+```
 
 ---
 
