@@ -5,9 +5,14 @@ The uConsole is a tricky-ish setup due to it's default image having some older d
 **Note:** I did a bunch of extra stuff here, as I wanted the uConsole to actually compile the release for my <u>PicoCalc</u>. 
 
 ---
-#  Building Desktop Variant for uConsole
+##  Building Desktop Variant for uConsole
 
-Clone 
+### Step 1 : Clone repo
+
+
+---
+
+#  Building Pico Software
 
 ## Step 1:  Setup Pico SDK
 

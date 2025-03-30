@@ -19,7 +19,7 @@ from conan.tools.files import copy
 class ConanProject(ConanFile):
 
     name = "terminus_toolbox"
-    version = "0.0.2"
+    version = "0.0.3"
 
     license = "MIT"
     author  = "Marvin Smith <marvin.smith@terminus.com>"
