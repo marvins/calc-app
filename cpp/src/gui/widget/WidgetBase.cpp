@@ -42,21 +42,21 @@ void WidgetBase::set_log_tag( std::string log_tag ){
 /****************************************/
 /*          Render the border           */
 /****************************************/
-bool WidgetBase::render_border( Session&         session,
-                                img::Frame_View& image )
+bool WidgetBase::render_border( [[maybe_unused]] Session&  session,
+                                img::Frame_View&           image )
 {
     if( !m_border.has_value() ){
         return false;
     }
 
     // Set pixels around edge
-    for( int r = 0; r < image.rows(); r++ ){
+    for( size_t r = 0; r < static_cast<size_t>(image.rows()); r++ ){
         image.set_pixel( 0, r, m_border.value() );
-        image.set_pixel( image.cols()-1, r, m_border.value() );
+        image.set_pixel( static_cast<size_t>(image.cols())-1, r, m_border.value() );
     }
-    for( int c = 1; c < image.cols() - 1; c++ ){
+    for( size_t c = 1; c < static_cast<size_t>(image.cols()) - 1; c++ ){
         image.set_pixel( c, 0, m_border.value() );
-        image.set_pixel( c, image.rows()-1, m_border.value() );
+        image.set_pixel( c, static_cast<size_t>(image.rows())-1, m_border.value() );
     }
 
     return true;

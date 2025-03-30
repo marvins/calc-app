@@ -35,6 +35,11 @@ class WidgetLayout : public WidgetBase {
         using ptr_t = std::shared_ptr<WidgetLayout>;
         
         /**
+         * Destructor
+         */
+        ~WidgetLayout() override = default;
+
+        /**
          * Get the label size
          */
         math::Size2i size_pixels() const override;

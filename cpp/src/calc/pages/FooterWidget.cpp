@@ -34,7 +34,7 @@ Footer_Widget::ptr_t Footer_Widget::create( const core::Options& config,
     // Construct the layout.
     int footer_width  = parent_size.width();
     int footer_height = std::min( parent_size.height(),
-                                  config.setting<int>("display","footer_height") );
+                                  config.check_and_get_setting<int>("display","footer_height") );
 
     LOG_TRACE( "Setting Footer Size: " + std::to_string(footer_width) + " x " + std::to_string(footer_height) );
     LOG_TRACE( "Parent Size: " + parent_size.to_string() );

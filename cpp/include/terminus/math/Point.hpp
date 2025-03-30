@@ -1,3 +1,12 @@
+/**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
+/*                                                                                    */
+/*                           Copyright (c) 2025 Terminus LLC                          */
+/*                                                                                    */
+/*                                All Rights Reserved.                                */
+/*                                                                                    */
+/*          Use of this source code is governed by LICENSE in the repo root.          */
+/*                                                                                    */
+/**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
  * @file    Point.hpp
  * @author  Marvin Smith
@@ -6,8 +15,8 @@
 #pragma once
 
 // Terminus Libraries
-#include "Enums.hpp"
-#include "Vector.hpp"
+#include <terminus/math/Enums.hpp>
+#include <terminus/math/Vector.hpp>
 
 // C++ Libraries
 #include <sstream>
@@ -21,7 +30,8 @@ namespace tmns::math {
  * operations, whereas the vector is more geared towards linear algebra
  * and trigonametric operations.
 */
-template <typename ValueT, int Dims>
+template <typename ValueT, 
+          size_t   Dims>
 class Point_ : public Vector_<ValueT,Dims>
 {
     public:

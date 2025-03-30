@@ -41,7 +41,7 @@ int LayoutStack::append( WidgetBase::ptr_t new_widget ){
         m_current_frame.value()++;
     }
 
-    return (m_widgets.size() - 1);
+    return static_cast<int>(m_widgets.size() - 1);
 }
 
 /*****************************************/
@@ -67,7 +67,7 @@ int LayoutStack::append( WidgetBase::ptr_t         new_widget,
         m_current_frame.value()++;
     }
 
-    return (m_widgets.size() - 1);
+    return static_cast<int>(m_widgets.size() - 1);
 }
 
 /****************************************/

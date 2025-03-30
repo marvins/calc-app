@@ -32,7 +32,7 @@ void Main_Menu::set_layout_size( math::Size2i layout_size )
 /************************************/
 /*          Create the Menu         */
 /************************************/
-Main_Menu::ptr_t Main_Menu::create( core::Options& config,
+Main_Menu::ptr_t Main_Menu::create( [[maybe_unused]] core::Options& config,
                                     gui::Session&  session,
                                     math::Size2i   parent_size )
 {

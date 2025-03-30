@@ -211,14 +211,17 @@ void Options::generate_config_file( const std::filesystem::path& pathname )
     fout << "[menu]" << std::endl;
     fout << std::endl;
     fout << "#  Icon to use for the splash screen" << std::endl;
-    fout << "splash_icon_path=./cpp/resources/logo.png" << std::endl;
+    fout << "splash_icon_path=./cpp/resources/images/logo/logo_360_144.png" << std::endl;
     fout << std::endl;
     fout << "#  Sleep time in ms for splash screen" << std::endl;
     fout << "splash_time_sleep_ms=5000" << std::endl;
     fout << std::endl;
 
-
-    
+    fout << "# Settings for the resource manager" << std::endl;
+    fout << "[resources]" << std::endl;
+    fout << std::endl;
+    fout << "# Base directory for all resource data." << std::endl;
+    fout << "root_dir=./cpp/resources" << std::endl;    
 
 }
 
@@ -247,6 +250,27 @@ bool Options::verify( std::string& error_str ) const {
 
     // If nothing causes us to blow up, then consider it good
     return true;
+}
+
+/****************************************************************/
+/*          Verify if a setting exists and return it            */
+/****************************************************************/
+std::optional<std::string> Options::get_setting( std::string section_name,
+                                                 std::string key_name ) const {
+
+    // Verify Section Exists
+    const auto& sec_iter = m_settings.find( section_name );
+    if( sec_iter == m_settings.end() ){
+        return {};
+    }
+
+    // Verify key exists
+    const auto& key_iter = sec_iter->second.find( key_name );
+    if( key_iter == sec_iter->second.end() ){
+        return {};
+    }
+
+    return key_iter->second;
 }
 
 } // End of tmns::core namespace

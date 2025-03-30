@@ -54,13 +54,13 @@ class Label : public WidgetBase {
          * Load an image and store in the label
          */
         static Label::ptr_t from_image( const std::filesystem::path& image_path,
-                                        drv::Driver_Base::ptr_t      driver );
+                                        drv::Driver_Base&            driver );
 
         /**
          * Render as text
          */
-        static Label::ptr_t from_text( const std::string&       message,
-                                       drv::Driver_Base::ptr_t  driver );
+        static Label::ptr_t from_text( const std::string& message,
+                                       drv::Driver_Base&  driver );
 
         /**
          * Provide a pre-initialized frame

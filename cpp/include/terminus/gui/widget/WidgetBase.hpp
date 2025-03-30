@@ -39,6 +39,11 @@ class WidgetBase : public I_Renderable
         using ptr_t = std::shared_ptr<WidgetBase>;
 
         /**
+         * Destructor
+         */
+        virtual ~WidgetBase() = default;
+
+        /**
          * @brief Get the size of the widget, in pixels
          */
         virtual math::Size2i size_pixels() const = 0;

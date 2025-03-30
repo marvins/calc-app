@@ -72,6 +72,7 @@ std::string WidgetLayout::to_log_string( size_t offset ) const
     std::string gap( offset, ' ' );
 
     sout << gap << " - WidgetLayout:" << std::endl;
+    sout << gap << "     - Tag: [" << log_tag() << "]" << std::endl;
     sout << gap << "     - Layout Information:" << std::endl;
     sout << m_layout->to_log_string( offset + 6 );
     return sout.str();

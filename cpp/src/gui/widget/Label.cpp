@@ -55,6 +55,7 @@ std::string Label::to_log_string( size_t offset ) const
     std::string gap( offset, ' ' );
 
     sout << gap << " - Label:" << std::endl;
+    sout << gap << "     - Tag: [" << log_tag() << "]" << std::endl;
     sout << gap << "     - Frame Information:" << std::endl;
     sout << m_image->to_log_string( offset + 6 );
     return sout.str();
@@ -64,11 +65,11 @@ std::string Label::to_log_string( size_t offset ) const
 /*      Construct from image        */
 /************************************/
 Label::ptr_t Label::from_image( const std::filesystem::path& image_path,
-                                drv::Driver_Base::ptr_t      driver )
+                                drv::Driver_Base&            driver )
 {
     // Load the image
     LOG_DEBUG( "Loading Image: " + image_path.native() );
-    auto frame = driver->load_image( image_path );
+    auto frame = driver.load_image( image_path );
 
     auto new_lbl = std::make_shared<Label>();
 
@@ -80,10 +81,10 @@ Label::ptr_t Label::from_image( const std::filesystem::path& image_path,
 /************************************/
 /*      Construct from text         */
 /************************************/
-Label::ptr_t Label::from_text( const std::string&      message,
-                               drv::Driver_Base::ptr_t driver )
+Label::ptr_t Label::from_text( const std::string& message,
+                               drv::Driver_Base&  driver )
 {
-    auto frame = driver->rasterize_text( message );
+    auto frame = driver.rasterize_text( message );
 
     auto new_lbl = std::make_shared<Label>();
 

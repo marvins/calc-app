@@ -114,13 +114,13 @@ img::Frame::ptr_t Driver_Raylib::load_image( const std::filesystem::path& pathna
     //cv::waitKey(0);
     
     std::span<char> image_span( reinterpret_cast<char*>(img.data),
-                                img.cols * img.rows * img.channels() );
+                                static_cast<size_t>(img.cols) * static_cast<size_t>(img.rows) * static_cast<size_t>(img.channels()) );
 
     // build new frame instance
     auto frame = std::make_shared<img::Frame>( image_span, 
-                                               img::Dimensions( img.cols, 
-                                                                img.rows,
-                                                                img.channels() ) );
+                                               img::Dimensions( static_cast<size_t>(img.cols), 
+                                                                static_cast<size_t>(img.rows),
+                                                                static_cast<size_t>(img.channels()) ) );
 
     return frame;
 }
@@ -139,15 +139,15 @@ img::Frame::ptr_t Driver_Raylib::rasterize_text( const std::string& message )
     // Create image from text
     auto text_image = ImageText( message.c_str(), 16, DARKBLUE );
 
-    int nchannels = raylib_format_to_channels(static_cast<PixelFormat>(text_image.format));
+    size_t nchannels = raylib_format_to_channels(static_cast<PixelFormat>(text_image.format));
     
     std::span<char> image_span( reinterpret_cast<char*>(text_image.data),
-                                text_image.width * text_image.height * nchannels );
+                                static_cast<size_t>(text_image.width) * static_cast<size_t>(text_image.height) * nchannels );
                                     
     // build new frame instance
     auto frame = std::make_shared<img::Frame>( image_span, 
-                                               img::Dimensions( text_image.width, 
-                                                                text_image.height,
+                                               img::Dimensions( static_cast<size_t>(text_image.width), 
+                                                                static_cast<size_t>(text_image.height),
                                                                 nchannels ) );
 
     // Delete image
@@ -176,7 +176,7 @@ std::string Driver_Raylib::to_log_string( size_t offset ) const
 Driver_Raylib::ptr_t Driver_Raylib::create( core::Options& config )
 {
     // Create new driver
-    auto driver = std::make_shared<Driver_Raylib>();
+    auto driver = Driver_Raylib::ptr_t( new Driver_Raylib() );
 
     driver->initialize( config );
     return driver;
@@ -190,8 +190,8 @@ void Driver_Raylib::configure_display( core::Options& config )
     if( config.setting<bool>( "display", "override_screen_size" ) ){
 
         // Get size parameters
-        m_window_cols = config.setting<int>( "display", "screen_width" );
-        m_window_rows = config.setting<int>( "display", "screen_height" );
+        m_window_cols = config.check_and_get_setting<size_t>( "display", "screen_width" );
+        m_window_rows = config.check_and_get_setting<size_t>( "display", "screen_height" );
     }
 
     // Currently not implemented
@@ -199,8 +199,8 @@ void Driver_Raylib::configure_display( core::Options& config )
         throw std::runtime_error( "Unable to get display settings at this time.");
     }
 
-    InitWindow( m_window_cols,
-                m_window_rows,
+    InitWindow( static_cast<int>(m_window_cols),
+                static_cast<int>(m_window_rows),
                 "Terminus Converter Application" );
 }
 

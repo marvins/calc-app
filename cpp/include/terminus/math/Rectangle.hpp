@@ -27,7 +27,7 @@ namespace tmns::math {
  * Rectangle
 */
 template <typename ValueT,
-          int      Dims>
+          size_t   Dims>
 class Rectangle
 {
     public:
@@ -366,7 +366,8 @@ class Rectangle
         /**
          * Set the max corner of the rectangle
          */
-        template<typename PointValueT, int PointDims>
+        template<typename PointValueT, 
+                 size_t   PointDims>
         void set_max( const Point_<PointValueT,PointDims>& new_max )
         {
             // need to compute a new min
@@ -460,8 +461,13 @@ class Rectangle
 
         /**
          * Compute the Rectangle Intersection
+         * 
+         * This will clip as necessary to just the areas which overlap.
+         * If no region is overlapping, an empty rectangle will be returned.
         */
-        template <typename ValueT1, typename ValueT2, int RDims>
+        template <typename ValueT1,
+                  typename ValueT2,
+                  size_t   RDims>
         static Rectangle<ValueT1,Dims> intersection( const Rectangle<ValueT1,RDims>& rect1,
                                                      const Rectangle<ValueT2,RDims>& rect2 )
         {
@@ -476,7 +482,7 @@ class Rectangle
         */
         template <typename ValueT1,
                   typename ValueT2,
-                  int      RDims>
+                  size_t   RDims>
         static Rectangle<ValueT1,RDims> set_union( const Rectangle<ValueT1,RDims>& rect1,
                                                    const Rectangle<ValueT2,RDims>& rect2 )
         {
@@ -487,19 +493,26 @@ class Rectangle
         }
 
         /**
-         * Compute the Rectangle Union
+         * @brief Compute the Union of a rectangle and a point.
+         * 
+         * If the point is outside the union, then the rectangle will expand to capture it.
+         * 
+         * @param rect Input rectangle
+         * @param point Point to compare.
+         * 
+         * @returns Union of the rectangle and point. 
         */
         template <typename ValueT1, 
-                  int      Dims1,
+                  size_t   Dims1,
                   typename ValueT2, 
-                  int      Dims2>
-        static Rectangle<ValueT1,Dims1> set_union( const Rectangle<ValueT1,Dims1>&  rect1,
+                  size_t   Dims2>
+        static Rectangle<ValueT1,Dims1> set_union( const Rectangle<ValueT1,Dims1>&  rect,
                                                    const Point_<ValueT2,Dims2>&     point )
         {
-            auto point_min = Point_<ValueT2,Dims2>::elementwise_min( rect1.min(),
+            auto point_min = Point_<ValueT2,Dims2>::elementwise_min( rect.min(),
                                                                      point );
             
-            auto point_max = Point_<ValueT2,Dims2>::elementwise_max( rect1.max(),
+            auto point_max = Point_<ValueT2,Dims2>::elementwise_max( rect.max(),
                                                                      point );
 
             return Rectangle<ValueT1,Dims1>( point_min,
@@ -537,5 +550,6 @@ class Rectangle
 using Rect2i = Rectangle<int,2>;
 using Rect2f = Rectangle<float,2>;
 using Rect2d = Rectangle<double,2>;
+using Rect2s = Rectangle<size_t,2>;
 
 } // end of tmns::math

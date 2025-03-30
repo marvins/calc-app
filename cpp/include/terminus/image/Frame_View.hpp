@@ -57,7 +57,7 @@ struct Frame_View {
         /**
          * Return image channels
          */
-        inline int channels() const { return 4; }
+        inline size_t channels() const { return 4; }
 
         /**
          * Return bounding box
@@ -67,29 +67,29 @@ struct Frame_View {
         /**
          * Get a specific pixel value
          */
-        uint8_t& get_pixel( int col, int row, int channel );
+        uint8_t& get_pixel( size_t col, size_t row, size_t channel );
 
         /**
          * Get a specific pixel value
          */
-        uint8_t get_pixel( int col, int row, int channel ) const;
+        uint8_t get_pixel( size_t col, size_t row, size_t channel ) const;
 
         /**
          * Get a specific pixel value
          */
-        math::Vector4u get_pixel( int col, int row ) const;
+        math::Vector4u get_pixel( size_t col, size_t row ) const;
 
         /**
          * Set a specific pixel
          *
          */
-        void set_pixel( int col, int row, int channel, uint8_t value );
+        void set_pixel( size_t col, size_t row, size_t channel, uint8_t value );
 
         /**
          * Set a specific pixel
          *
          */
-        void set_pixel( int col, int row, math::Vector4u value );
+        void set_pixel( size_t col, size_t row, math::Vector4u value );
         
         /**
          * @brief Return another view of the frame, given a smaller window.

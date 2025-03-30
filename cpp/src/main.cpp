@@ -14,6 +14,7 @@
  */
 
 // Project Libraries
+#include <terminus/calc/apps/App_Factory.hpp>
 #include <terminus/calc/pages/Main_Window.hpp>
 #include <terminus/calc/pages/Splash.hpp>
 #include <terminus/core/Options.hpp>
@@ -37,16 +38,21 @@ int main( int argc, char* argv[] ){
     // Create the primary session
     auto session = tmns::gui::Session::create( config );
 
-    LOG_DEBUG( session.to_log_string() );
+    LOG_DEBUG( session->to_log_string() );
 
     // Launch the Splash Screen
-    auto splash = tmns::calc::page::Splash::create( config, session );
-    splash->show( config, session );
+    auto splash = tmns::calc::page::Splash::create( config, *session );
+    splash->show( config, *session );
+
+    // Create list of applications
+    auto app_list = tmns::calc::App_Factory::default_apps( config, *session );
 
     // Generate the main window
-    auto main_window = tmns::calc::page::Main_Window::create( config, session );
+    auto main_window = tmns::calc::page::Main_Window::create( config, *session, app_list );
 
     // Build application
-    auto app = tmns::gui::Application::create( config, session, main_window );
+    auto app = tmns::gui::Application::create( config,
+                                               *session,
+                                               main_window );
     return app->run();
 }

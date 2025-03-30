@@ -31,11 +31,19 @@
 
 namespace tmns::gui {
 
+/********************************/
+/*          Destructor          */
+/********************************/
+Session::~Session()
+{
+    finalize();
+}
+
 /****************************************/
 /*          Get Copy of Driver          */
 /****************************************/
-drv::Driver_Base::ptr_t Session::driver() const{
-    return m_driver;
+drv::Driver_Base& Session::driver() const{
+    return (*m_driver);
 }
 
 /****************************************/
@@ -43,6 +51,14 @@ drv::Driver_Base::ptr_t Session::driver() const{
 /****************************************/
 img::Frame& Session::active_frame(){
     return m_active_frame;
+}
+
+/****************************************/
+/*          Get Resource-Manager        */
+/****************************************/
+Resource_Manager& Session::resource_manager()
+{
+    return (*m_resource_manager);
 }
 
 /********************************************/
@@ -57,7 +73,21 @@ bool Session::okay_to_run(){
 /****************************************/
 int Session::finalize()
 {
-    return m_driver->finalize();
+    int ecode = 0;
+
+    // Clean up the driver
+    if( m_driver ){
+        ecode |= m_driver->finalize();
+    }
+    m_driver.reset();
+
+    // Clean up the resource-manager
+    m_resource_manager->finalize();
+
+    // Clean up active frame
+    m_active_frame.clear();
+
+    return ecode;
 }
 
 /************************************************/
@@ -93,25 +123,40 @@ std::string Session::to_log_string( size_t offset ) const
 /****************************************************/
 /*          Create a Session API Instance           */
 /****************************************************/
-Session Session::create( core::Options config )
+Session::ptr_t Session::create( core::Options config )
 {
-    Session new_session;
-    
+    // Grab some relevant config parameters
+    auto resource_root = config.check_and_get_setting<std::filesystem::path>( "resources", "root_dir" );
+
+    // Build the driver depending on how we compiled the app
+    drv::Driver_Base::ptr_t driver;
+
 #if RENDER_DRIVER == 2
-    #warning "Building desktop variant"
-    new_session.m_driver = drv::Driver_Allegro::create( config );
+    driver = drv::Driver_Allegro::create( config );
 #elif RENDER_DRIVER == 3
-    #warning "Building Raylib Variant"
-    new_session.m_driver = drv::Driver_Raylib::create( config );
+    driver = drv::Driver_Raylib::create( config );
 #else
     #error Not supported yet
 #endif
 
+    // Construct new resource manager
+    auto resource_manager = Resource_Manager::create( resource_root, (*driver) );
+
+    // Build the new session
+    return Session::ptr_t( new Session( std::move( driver ), 
+                                        std::move( resource_manager ) ) );
+}
+
+/************************************************/
+/*          Parameterized Constructor           */
+/************************************************/
+Session::Session( drv::Driver_Base::ptr_t driver,
+                  Resource_Manager::ptr_t resource_manager )
+    : m_driver { std::move( driver ) },
+      m_resource_manager { std::move( resource_manager ) }
+{
     // Set the default frame size
-    new_session.m_active_frame.resize( new_session.driver()->get_screen_dimensions(),
-                                       255 );
-    
-    return new_session;
+    m_active_frame.resize( m_driver->get_screen_dimensions(), 255 );
 }
 
 } // End of tmns::gui namespace

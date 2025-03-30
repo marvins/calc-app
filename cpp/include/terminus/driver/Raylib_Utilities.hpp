@@ -27,7 +27,7 @@ namespace tmns::drv {
 /**
  * Convert a Raylib PixelFormat enum into number of channels
  */
-int raylib_format_to_channels( PixelFormat fmt );
+size_t raylib_format_to_channels( PixelFormat fmt );
 
 /**
  * Convert a Raylib PixelFormat to a string

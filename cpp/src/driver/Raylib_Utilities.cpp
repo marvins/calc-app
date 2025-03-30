@@ -25,7 +25,7 @@ namespace tmns::drv {
 /********************************************************************/
 /*      Convert a Raylib format enum into number of channels        */
 /********************************************************************/
-int raylib_format_to_channels( PixelFormat fmt )
+size_t raylib_format_to_channels( PixelFormat fmt )
 {
     switch( fmt ){
         case PIXELFORMAT_UNCOMPRESSED_GRAYSCALE:

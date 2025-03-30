@@ -25,7 +25,7 @@ class Driver_Base {
     public:
 
         /// Pointer Type
-        using ptr_t = std::shared_ptr<Driver_Base>;
+        using ptr_t = std::unique_ptr<Driver_Base>;
 
         /**
          * Initialize the driver

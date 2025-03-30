@@ -17,6 +17,7 @@
 // Terminus Libraries
 #include <terminus/core/Options.hpp>
 #include <terminus/driver/DriverBase.hpp>
+#include <terminus/gui/I_Renderable.hpp>
 #include <terminus/image/Frame_View.hpp>
 
 namespace tmns::gui {

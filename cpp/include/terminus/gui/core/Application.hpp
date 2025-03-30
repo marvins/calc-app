@@ -15,9 +15,9 @@
 #pragma once
 
 // Project Libraries
-#include <terminus/calc/pages/Main_Window.hpp>
 #include <terminus/core/Options.hpp>
 #include <terminus/gui/core/Session.hpp>
+#include <terminus/gui/I_Main_Window.hpp>
 
 namespace tmns::gui {
 

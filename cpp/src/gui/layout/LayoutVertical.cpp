@@ -36,7 +36,7 @@ int LayoutVertical::append( WidgetBase::ptr_t new_widget ){
     // Add to layout
     m_widgets.push_back( new_layout_item );
 
-    return (m_widgets.size()-1);
+    return static_cast<int>(m_widgets.size()-1);
 }
 
 /*****************************************/
@@ -55,7 +55,7 @@ int LayoutVertical::append( WidgetBase::ptr_t          new_widget,
     // Add to layout
     m_widgets.push_back( new_layout_item );
 
-    return (m_widgets.size()-1);
+    return static_cast<int>(m_widgets.size()-1);
 }
 
 /********************************************/
@@ -98,24 +98,30 @@ bool LayoutVertical::render( gui::Session&    session,
         // Get size allocated for widget per this layout
         auto widget_bbox_allocated = widget_bboxes[idx];
 
-        // Align the widget within the bounding box
-        auto bbox_aligned = align_widget( widget_bbox_allocated,
-                                          m_widgets[idx].widget->size_pixels(),
-                                          m_widgets[idx].layout_info.alignment );
-        
-        {
-            std::stringstream sout;
-            sout << "Widget: " << idx << " bbox: " << bbox_aligned.to_string();
-            LOG_DEBUG(sout.str());
+        // If widget is empty, then just skip the region
+        if( widget_size.area() < 1 ){
+            LOG_WARNING( "Widget has empty area.\n" + m_widgets[idx].widget->to_log_string() );
+
+        } else {
+
+            // Align the widget within the bounding box
+            auto bbox_aligned = align_widget( widget_bbox_allocated,
+                                              m_widgets[idx].widget->size_pixels(),
+                                              m_widgets[idx].layout_info.alignment );
+            
+            {
+                std::stringstream sout;
+                sout << "Widget: " << idx << " bbox: " << bbox_aligned.to_string();
+                LOG_TRACE(sout.str());
+            }
+
+            // Crop a section of the input image to apply our rendering to
+            // @todo:  Figure out how the alignment API fits here
+            auto subview = image.subview( bbox_aligned );
+
+            m_widgets[idx].widget->render( session, subview );
         }
-
-        // Crop a section of the input image to apply our rendering to
-        // @todo:  Figure out how the alignment API fits here
-        auto subview = image.subview( bbox_aligned );
-
-        m_widgets[idx].widget->render( session, subview );
-
-        point_tl.y() += widget_size.height();
+        point_tl.y() += widget_bbox_allocated.height();
     }
     
     return false;
@@ -174,10 +180,10 @@ std::vector<math::Rect2i> LayoutVertical::allocate_bboxes() const
     {
         // Compute size 
         int w = full_bbox.width();
-        int h = full_bbox.height() * weights[idx];
+        int h = static_cast<int>(full_bbox.height() * weights[idx]);
 
         auto tl = math::ToPoint2<int>( full_bbox.min().x(),
-                                       tl_height );
+                                       static_cast<int>(tl_height) );
 
         bboxes.push_back( math::Rect2i( tl, math::Size2i( { w, h } ) ) );
 

@@ -45,10 +45,10 @@ Frame_View::Frame_View( Frame&              frame,
 /****************************************/
 /*          Get Specific Pixel          */
 /****************************************/
-uint8_t& Frame_View::get_pixel( int col, int row, int channel )
+uint8_t& Frame_View::get_pixel( size_t col, size_t row, size_t channel )
 {
-    int act_col = col - m_bbox.bl().x();
-    int act_row = row - m_bbox.bl().y();
+    size_t act_col = col - static_cast<size_t>(m_bbox.bl().x());
+    size_t act_row = row - static_cast<size_t>(m_bbox.bl().y());
 
     return m_frame.get_pixel( act_col, act_row, channel );
 }
@@ -56,10 +56,10 @@ uint8_t& Frame_View::get_pixel( int col, int row, int channel )
 /****************************************/
 /*          Get Specific Pixel          */
 /****************************************/
-uint8_t Frame_View::get_pixel( int col, int row, int channel ) const
+uint8_t Frame_View::get_pixel( size_t col, size_t row, size_t channel ) const
 {
-    int act_col = col - m_bbox.bl().x();
-    int act_row = row - m_bbox.bl().y();
+    size_t act_col = col - static_cast<size_t>(m_bbox.bl().x());
+    size_t act_row = row - static_cast<size_t>(m_bbox.bl().y());
 
     return m_frame.get_pixel( act_col, act_row, channel );
 }
@@ -67,10 +67,10 @@ uint8_t Frame_View::get_pixel( int col, int row, int channel ) const
 /****************************************/
 /*          Get Specific Pixel          */
 /****************************************/
-math::Vector4u Frame_View::get_pixel( int col, int row ) const
+math::Vector4u Frame_View::get_pixel( size_t col, size_t row ) const
 {
-    int act_col = col - m_bbox.bl().x();
-    int act_row = row - m_bbox.bl().y();
+    size_t act_col = col - static_cast<size_t>(m_bbox.bl().x());
+    size_t act_row = row - static_cast<size_t>(m_bbox.bl().y());
 
     return m_frame.get_pixel( act_col, act_row );
 }
@@ -78,20 +78,20 @@ math::Vector4u Frame_View::get_pixel( int col, int row ) const
 /****************************************/
 /*          Set Specific Pixel          */
 /****************************************/
-void Frame_View::set_pixel( int col, int row, int channel, uint8_t value )
+void Frame_View::set_pixel( size_t col, size_t row, size_t channel, uint8_t value )
 {
-    int act_col = col + m_bbox.bl().x();
-    int act_row = row + m_bbox.bl().y();
+    size_t act_col = col + static_cast<size_t>(m_bbox.bl().x());
+    size_t act_row = row + static_cast<size_t>(m_bbox.bl().y());
     m_frame.set_pixel( act_col, act_row, channel, value  );
 }
 
 /****************************************/
 /*          Set Specific Pixel          */
 /****************************************/
-void Frame_View::set_pixel( int col, int row, math::Vector4u value )
+void Frame_View::set_pixel( size_t col, size_t row, math::Vector4u value )
 {
-    int act_col = col + m_bbox.bl().x();
-    int act_row = row + m_bbox.bl().y();
+    size_t act_col = col + static_cast<size_t>(m_bbox.bl().x());
+    size_t act_row = row + static_cast<size_t>(m_bbox.bl().y());
     m_frame.set_pixel( act_col, act_row, value  );
 }
 
@@ -138,13 +138,13 @@ bool Frame_View::copy( const Frame& frame,
     for( size_t r = 0; r < frame.rows(); r++ )
     {
         // Get the destination row
-        int dest_row = m_bbox.bl()[1] + r;
+        size_t dest_row = static_cast<size_t>(m_bbox.bl()[1]) + r;
 
         // Iterate over each input column
         for( size_t c = 0; c < frame.cols(); c++ )
         {
             // Get the destination column
-            int dest_col = m_bbox.bl()[0] + c;
+            size_t dest_col = static_cast<size_t>(m_bbox.bl()[0]) + c;
 
             auto pixel = frame.get_pixel( c, r );
             m_frame.set_pixel( dest_col, dest_row, pixel );
@@ -168,17 +168,11 @@ bool Frame_View::copy( const Frame_View& frame,
     }
 
     // Copy the image row  by row
-    for( size_t r = 0; r < frame.rows(); r++ )
+    for( size_t r = 0; r < static_cast<size_t>(frame.rows()); r++ )
     {
-        // Get the destination row
-        int dest_row = m_bbox.bl()[1];
-
         // Iterate over each input column
-        for( size_t c = 0; c < frame.cols(); c++ )
+        for( size_t c = 0; c < static_cast<size_t>(frame.cols()); c++ )
         {
-            // Get the destination column
-            int dest_col = m_bbox.bl()[0];
-
             for( size_t x = 0; x < frame.channels(); x++ )
             {
                 auto pixel = frame.get_pixel( r, c, x );

@@ -5,19 +5,14 @@ This is my attempt to build a nice handy calculator app for the ClockworkPi Pico
 ---
 ## Building the C++ Application
 
-This application expects you have the `terminus-setup` repo setup on your machine.  This can be found [at this link](https://github.com/Terminus-Geospatial/terminus-setup).  This can alternatively be setup using the `conan` build system manually. 
+See [Building Terminus Toolbox](./docs/Building-General.md) for more information on how to compile this repo. 
 
-For those not accustomed to `conan`, use the `terminus-setup` repo to install conan, add conan via `go-conan` command, then use `conan-build.sh -c -r` to compile the application.
+### Supported Platforms
 
-### Building for Fedora Linux
-
-Make sure the required dependencies are installed. 
-
-```bash
-sudo dnf install allegro-devel
-```
-
-Next, build normally using `conan-build.sh -c -r -o platform="desktop"`
+- Linux:
+    - **Tested Configurations:**
+        - ClockworkPi uConsole A06
+        - 
 
 
 ---
@@ -62,12 +57,21 @@ I'm super lazy, so if you run this with `--is-test`, it will prepend the `${CMAK
 
     ./tools/cmake-build-file-list.py -d cpp/ --is-test
 
+## Action Items / Todo
 
+- [ ] Add Boost Libraries
+    - [ ] Boost UUID
+    - [ ] Boost Results
+- [ ] Code Updates
+    - [ ] Make App API auto-generate stack-layout
+        - Note: User just has to define each page.
 
 ## References / Citations
 
 All icons in this project are free / Open-Source icons from Icon8.
 
+
 ### Icons Used
 - <a target="_blank" href="https://icons8.com/icon/12784/settings">Settings</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
-
+- <a target="_blank" href="https://icons8.com/icon/wLptoyIYwLb3/calculator">Calculator</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+- <a target="_blank" href="https://icons8.com/icon/479A9XKbRJ4e/text-editor">Text Editor</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>

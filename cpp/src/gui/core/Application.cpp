@@ -71,6 +71,7 @@ Application::ptr_t Application::create( core::Options&       config,
 {
     // Create new instance
     auto inst = std::shared_ptr<Application>( new Application( config, session, main_window ) );
+
     return inst;
 }
 

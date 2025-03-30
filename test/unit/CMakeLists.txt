@@ -34,8 +34,10 @@ endif()
 #  Until I learn how to make shared or static libraries with the RPI Pico, 
 #  I need to re-add the source files
 set( PROJECT_SOURCES
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/apps/coord_convert/app.cpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/apps/coord_convert/app.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/apps/App_Factory.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/apps/calculator/App_Calculator.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/apps/editor/App_Editor.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/apps/settings/App_Settings.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/pages/Config_Menu.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/pages/FooterWidget.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/calc/pages/HeaderWidget.hpp
@@ -45,11 +47,10 @@ set( PROJECT_SOURCES
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/core/ConfigParser.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/core/Options.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/core/StringUtilities.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/Frame.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/Frame_View.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/Pixels.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/Primitives.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/driver/DriverBase.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/I_Main_Window.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/I_Renderable.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/app/App_Base.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/Application.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/Exit_Code.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/core/Resource_Manager.hpp
@@ -64,8 +65,11 @@ set( PROJECT_SOURCES
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/widget/Label.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/widget/WidgetBase.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/widget/WidgetLayout.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/I_Main_Window.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/gui/I_Renderable.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/Frame.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/Frame_View.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/Pixels.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/include/terminus/image/Primitives.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log/HandlerBase.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/log/HandlerConsole.hpp
@@ -82,6 +86,10 @@ set( PROJECT_SOURCES
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/VectorN.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/math/Vector_Base.hpp
     ${CMAKE_SOURCE_DIR}/cpp/include/terminus/version.hpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/calc/apps/App_Factory.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/calc/apps/calculator/App_Calculator.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/calc/apps/editor/App_Editor.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/calc/apps/settings/App_Settings.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/calc/pages/Config_Menu.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/calc/pages/FooterWidget.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/calc/pages/HeaderWidget.cpp
@@ -91,6 +99,7 @@ set( PROJECT_SOURCES
     ${CMAKE_SOURCE_DIR}/cpp/src/core/ConfigParser.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/core/Options.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/core/StringUtilities.cpp
+    ${CMAKE_SOURCE_DIR}/cpp/src/gui/app/App_Base.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/gui/core/Application.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/gui/core/Resource_Manager.cpp
     ${CMAKE_SOURCE_DIR}/cpp/src/gui/core/Session.cpp

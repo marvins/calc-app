@@ -45,6 +45,10 @@ if( CMAKE_BUILD_TYPE STREQUAL "debug" OR CMAKE_BUILD_TYPE STREQUAL "Debug" )
     endif()
 endif()
 
+#  Set Really Strict Compiler Settings
+set(CMAKE_COMPILE_WARNING_AS_ERROR ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -pedantic-errors -Wall -Wextra -Wconversion -Wsign-conversion")
+
 message( "Application Platform: ${RENDER_DRIVER}" )
 
 #----------------------------------------#
@@ -127,8 +131,10 @@ include_directories( cpp/include )
 #-       Build Application      -#
 #--------------------------------#
 add_executable( ${PROJECT_NAME}
-    cpp/include/terminus/calc/apps/coord_convert/app.cpp
-    cpp/include/terminus/calc/apps/coord_convert/app.hpp
+    cpp/include/terminus/calc/apps/App_Factory.hpp
+    cpp/include/terminus/calc/apps/calculator/App_Calculator.hpp
+    cpp/include/terminus/calc/apps/editor/App_Editor.hpp
+    cpp/include/terminus/calc/apps/settings/App_Settings.hpp
     cpp/include/terminus/calc/pages/Config_Menu.hpp
     cpp/include/terminus/calc/pages/FooterWidget.hpp
     cpp/include/terminus/calc/pages/HeaderWidget.hpp
@@ -139,11 +145,9 @@ add_executable( ${PROJECT_NAME}
     cpp/include/terminus/core/Options.hpp
     cpp/include/terminus/core/StringUtilities.hpp
     cpp/include/terminus/driver/DriverBase.hpp
-    cpp/include/terminus/image/Frame.hpp
-    cpp/include/terminus/image/Frame_View.hpp
-    cpp/include/terminus/image/Pixels.hpp 
-    cpp/include/terminus/image/Primitives.hpp
-    cpp/include/terminus/image.hpp
+    cpp/include/terminus/gui/I_Main_Window.hpp
+    cpp/include/terminus/gui/I_Renderable.hpp
+    cpp/include/terminus/gui/app/App_Base.hpp
     cpp/include/terminus/gui/core/Application.hpp
     cpp/include/terminus/gui/core/Exit_Code.hpp
     cpp/include/terminus/gui/core/Resource_Manager.hpp
@@ -158,8 +162,11 @@ add_executable( ${PROJECT_NAME}
     cpp/include/terminus/gui/widget/Label.hpp
     cpp/include/terminus/gui/widget/WidgetBase.hpp
     cpp/include/terminus/gui/widget/WidgetLayout.hpp
-    cpp/include/terminus/gui/I_Main_Window.hpp
-    cpp/include/terminus/gui/I_Renderable.hpp
+    cpp/include/terminus/image.hpp
+    cpp/include/terminus/image/Frame.hpp
+    cpp/include/terminus/image/Frame_View.hpp
+    cpp/include/terminus/image/Pixels.hpp
+    cpp/include/terminus/image/Primitives.hpp
     cpp/include/terminus/log.hpp
     cpp/include/terminus/log/HandlerBase.hpp
     cpp/include/terminus/log/HandlerConsole.hpp
@@ -176,6 +183,10 @@ add_executable( ${PROJECT_NAME}
     cpp/include/terminus/math/VectorN.hpp
     cpp/include/terminus/math/Vector_Base.hpp
     cpp/include/terminus/version.hpp
+    cpp/src/calc/apps/App_Factory.cpp
+    cpp/src/calc/apps/calculator/App_Calculator.cpp
+    cpp/src/calc/apps/editor/App_Editor.cpp
+    cpp/src/calc/apps/settings/App_Settings.cpp
     cpp/src/calc/pages/Config_Menu.cpp
     cpp/src/calc/pages/FooterWidget.cpp
     cpp/src/calc/pages/HeaderWidget.cpp
@@ -185,6 +196,7 @@ add_executable( ${PROJECT_NAME}
     cpp/src/core/ConfigParser.cpp
     cpp/src/core/Options.cpp
     cpp/src/core/StringUtilities.cpp
+    cpp/src/gui/app/App_Base.cpp
     cpp/src/gui/core/Application.cpp
     cpp/src/gui/core/Resource_Manager.cpp
     cpp/src/gui/core/Session.cpp

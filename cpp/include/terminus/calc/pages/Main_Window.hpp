@@ -19,6 +19,7 @@
 #include <terminus/calc/pages/FooterWidget.hpp>
 #include <terminus/calc/pages/Main_Menu.hpp>
 #include <terminus/core/Options.hpp>
+#include <terminus/gui/app/App_Base.hpp>
 #include <terminus/gui/core/Session.hpp>
 #include <terminus/gui/layout/LayoutStack.hpp>
 #include <terminus/gui/layout/LayoutVertical.hpp>
@@ -49,8 +50,9 @@ class Main_Window : public gui::I_Main_Window
         /**
          * Create a new Splash Screen
          */
-        static Main_Window::ptr_t create( core::Options& config,
-                                          gui::Session&  session );
+        static Main_Window::ptr_t create( core::Options&                    config,
+                                          gui::Session&                     session,
+                                          std::vector<gui::App_Base::ptr_t> apps );
     
     protected:
 
@@ -78,6 +80,9 @@ class Main_Window : public gui::I_Main_Window
 
         /// Footer Widget
         Footer_Widget::ptr_t m_footer;
+
+        /// List of actual apps
+        std::vector<gui::App_Base::ptr_t> m_apps;
         
 }; // End Main_Window class
 

@@ -45,6 +45,15 @@ Frame::Frame( std::span<char>   pixel_data,
 }
 
 /******************************/
+/*         Clear image        */
+/******************************/
+void Frame::clear()
+{
+    m_dims = Dimensions();
+    m_image.clear();
+}
+
+/******************************/
 /*         Resize image       */
 /******************************/
 void Frame::resize( Dimensions new_dims, uint8_t pixel )
@@ -56,21 +65,21 @@ void Frame::resize( Dimensions new_dims, uint8_t pixel )
 /******************************/
 /*      Get Pixel Value       */
 /******************************/
-uint8_t& Frame::get_pixel( int col, int row, int channel ){
+uint8_t& Frame::get_pixel( size_t col, size_t row, size_t channel ){
     return m_image[ row * m_dims.cols() + col * m_dims.channels() + channel];
 }
 
 /******************************/
 /*      Get Pixel Value       */
 /******************************/
-uint8_t Frame::get_pixel( int col, int row, int channel ) const {
+uint8_t Frame::get_pixel( size_t col, size_t row, size_t channel ) const {
     return m_image[ row * m_dims.cols() + col * m_dims.channels() + channel];
 }
 
 /******************************/
 /*      Get Pixel Value       */
 /******************************/
-math::Vector4u Frame::get_pixel( int col, int row ) const {
+math::Vector4u Frame::get_pixel( size_t col, size_t row ) const {
 
     // Get the start position
     size_t pos = row * m_dims.cols() * m_dims.channels() + col * m_dims.channels();
@@ -84,21 +93,21 @@ math::Vector4u Frame::get_pixel( int col, int row ) const {
 /******************************/
 /*      Set Pixel Value       */
 /******************************/
-void Frame::set_pixel( int col, int row, int channel, uint8_t value ){
+void Frame::set_pixel( size_t col, size_t row, size_t channel, uint8_t value ){
     m_image[ row * m_dims.cols() * m_dims.channels() + col * m_dims.channels() + channel] = value;
 }
 
 /******************************/
 /*      Set Pixel Value       */
 /******************************/
-void Frame::set_pixel( int col, int row, math::Vector4u value ){
+void Frame::set_pixel( size_t col, size_t row, math::Vector4u value ){
 
     // Point to the first position
     size_t pos = row * m_dims.cols() * m_dims.channels() + col * m_dims.channels();
 
     std::copy( value.begin(), 
                value.end(),
-               m_image.begin() + pos );
+               m_image.begin() + static_cast<long int>(pos) );
 }
 
 /******************************/

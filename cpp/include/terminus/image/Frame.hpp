@@ -58,17 +58,17 @@ struct Frame {
         /**
          * Return image cols
          */
-        inline int cols() const { return size()[0]; }
+        inline size_t cols() const { return static_cast<size_t>(size()[0]); }
         
         /**
          * Return image rows
          */
-        inline int rows() const { return size()[1]; }
+        inline size_t rows() const { return static_cast<size_t>(size()[1]); }
 
         /**
          * Return image channels
          */
-        inline int channels() const { return dims().channels(); }
+        inline size_t channels() const { return dims().channels(); }
 
         /**
          * Image Size
@@ -95,6 +95,11 @@ struct Frame {
         }
 
         /**
+         * Set to an empty image.
+         */
+        void clear();
+
+        /**
          * Resize the image to new dimensions
          */
         void resize( Dimensions new_dims, uint8_t pixel );
@@ -103,31 +108,31 @@ struct Frame {
          * Get a specific pixel
          *
          */
-        uint8_t& get_pixel( int col, int row, int channel );
+        uint8_t& get_pixel( size_t col, size_t row, size_t channel );
 
         /**
          * Get a specific pixel
          *
          */
-        uint8_t get_pixel( int col, int row, int channel ) const;
+        uint8_t get_pixel( size_t col, size_t row, size_t channel ) const;
 
         /**
          * Get a specific pixel
          *
          */
-        math::Vector4u get_pixel( int col, int row ) const;
+        math::Vector4u get_pixel( size_t col, size_t row ) const;
         
         /**
          * Set a specific pixel
          *
          */
-        void set_pixel( int col, int row, int channel, uint8_t value );
+        void set_pixel( size_t col, size_t row, size_t channel, uint8_t value );
 
         /**
          * Set a specific pixel
          *
          */
-        void set_pixel( int col, int row, math::Vector4u value );
+        void set_pixel( size_t col, size_t row, math::Vector4u value );
 
         /**
          * Set a specific value to all pixels

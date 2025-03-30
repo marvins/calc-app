@@ -30,7 +30,7 @@ namespace tmns::calc::page {
 void Splash::show( core::Options& config,
                    gui::Session&  session )
 {
-    int sleep_time_ms = config.setting<int>("menu","splash_time_sleep_ms");
+    std::chrono::milliseconds sleep_time_ms( config.check_and_get_setting<size_t>("menu","splash_time_sleep_ms") );
 
     img::Frame_View frame_view( session.active_frame() );
     
@@ -60,10 +60,10 @@ Splash::ptr_t Splash::create( const core::Options& config,
     splash->set_padding_color( img::PIXEL_GREY() );
     
     // Set the dimensions to screen size
-    splash->set_layout_size( session.driver()->get_screen_dimensions().size() );
+    splash->set_layout_size( session.driver().get_screen_dimensions().size() );
     
     // Load the icon first
-    auto icon_label = gui::Label::from_image( config.setting<std::filesystem::path>("menu","splash_icon_path"),
+    auto icon_label = gui::Label::from_image( config.check_and_get_setting<std::filesystem::path>("menu","splash_icon_path"),
                                               session.driver() );
     splash->append( icon_label );
 

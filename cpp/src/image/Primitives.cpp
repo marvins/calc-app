@@ -44,7 +44,7 @@ Dimensions::Dimensions( size_t cols, size_t rows, size_t channels )
 /*          Get the size in bytes           */
 /********************************************/
 size_t Dimensions::size_bytes() const {
-    return m_rows * m_cols * m_channels;
+    return static_cast<size_t>(m_rows) * static_cast<size_t>(m_cols) * static_cast<size_t>(m_channels);
 }
 
 /********************************************/

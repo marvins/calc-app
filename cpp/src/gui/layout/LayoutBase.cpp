@@ -24,38 +24,41 @@ namespace tmns::gui {
 /****************************************/
 /*          Render the padding          */
 /****************************************/
-bool LayoutBase::render_padding( Session&         session,
-                                 img::Frame_View& image )
+bool LayoutBase::render_padding( [[maybe_unused]] Session&  session,
+                                 img::Frame_View&           image )
 {
     // Skip if there is no padding color set
     if( !m_padding_color.has_value() ){
         return true;
     }
 
+    size_t img_cols = static_cast<size_t>(image.cols());
+    size_t img_rows = static_cast<size_t>(image.rows());
+
     // Set the top bar of the padding
-    for( int r = 0; r < m_padding[2]; r++ ){
-        for( int c = 0; c < image.cols(); c++ ){
+    for( size_t r = 0; r < static_cast<size_t>(m_padding[2]); r++ ){
+        for( size_t c = 0; c < img_cols; c++ ){
             image.set_pixel( c, r, m_padding_color.value() );
         }
     }
 
     // Set the bottom bar
-    for( int r = image.rows() - m_padding[3] - 1; r < image.rows(); r++ ){
-        for( int c = 0; c < image.cols(); c++ ){
+    for( size_t r = img_rows - static_cast<size_t>(m_padding[3]) - 1; r < img_rows; r++ ){
+        for( size_t c = 0; c < img_cols; c++ ){
             image.set_pixel( c, r, m_padding_color.value() );
         }
     }
 
     // Set the left bar
-    for( int c = 0; c < m_padding[0]; c++ ){
-        for( int r = 0; r < image.rows(); r++ ){
+    for( size_t c = 0; c < static_cast<size_t>(m_padding[0]); c++ ){
+        for( size_t r = 0; r < img_rows; r++ ){
             image.set_pixel( c, r, m_padding_color.value() );
         }
     }
 
     // Set the right bar
-    for( int c = image.cols() - m_padding[1] - 1; c < image.cols(); c++ ){
-        for( int r = 0; r < image.rows(); r++ ){
+    for( size_t c = img_cols - static_cast<size_t>(m_padding[1]) - 1; c < img_cols; c++ ){
+        for( size_t r = 0; r < img_rows; r++ ){
             image.set_pixel( c, r, m_padding_color.value() );
         }
     }
@@ -221,13 +224,13 @@ math::Rect2i LayoutBase::get_bbox_with_padding( math::Rect2i bbox ) const{
 
     math::Rect2i output = bbox;
 
-    bbox.min().x() += padding()[0];
-    bbox.min().y() += padding()[2];
+    output.min().x() += padding()[0];
+    output.min().y() += padding()[2];
 
-    bbox.width()  -= (padding()[0] + padding()[1]);
-    bbox.height() -= (padding()[2] + padding()[3]);
+    output.width()  -= (padding()[0] + padding()[1]);
+    output.height() -= (padding()[2] + padding()[3]);
 
-    return bbox;
+    return output;
 }
 
 } // End of tmns::gui namespace

@@ -23,7 +23,8 @@ namespace tmns::math {
  * Simple data structure for dimensional sizes info without ranges
  * Rectangle is a good class for size, but it has corners.
 */
-template <typename ValueT, int Dims>
+template <typename ValueT,
+          size_t   Dims>
 class Size_
 {
     public:
@@ -97,6 +98,13 @@ class Size_
         }
 
         /**
+         * @brief Compute the area
+         */
+        double area() const {
+            return (width() * height());
+        }
+
+        /**
          * @brief Indexing Operator (Const/Copy)
          */
         const_reference_type operator[]( size_t id ) const
@@ -151,5 +159,9 @@ using Size2f = Size_<float,2>;
 using Size3f = Size_<float,3>;
 using Size2d = Size_<double,2>;
 using Size3d = Size_<double,3>;
+using Size2s = Size_<size_t,2>;
+using Size3s = Size_<size_t,3>;
+using Size2l = Size_<int64_t,2>;
+using Size3l = Size_<int64_t,3>;
 
 } // End of tmns::math namespace

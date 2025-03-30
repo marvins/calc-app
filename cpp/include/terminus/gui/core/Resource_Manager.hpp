@@ -28,13 +28,29 @@ namespace tmns::gui {
 
 /**
  * Stores resource data information
+ * 
+ * This helps when you have little RAM and lots of images and other
+ * things which may be reusable.
+ * 
+ * @todo:  Establish memory limits for preservation
+ * @todo:  Use UUIDs
  */
-class Resource_Manager final {
+class Resource_Manager {
 
     public:
 
         /// Pointer Type
-        using ptr_t = std::shared_ptr<Resource_Manager>;
+        using ptr_t = std::unique_ptr<Resource_Manager>;
+
+        /**
+         * Destructor
+         */
+        virtual ~Resource_Manager();
+
+        /**
+         * Finalize by clearing and deleting all resources stored by this object.
+         */
+        void finalize();
 
         /**
          * Provide an image to the resource-manager to handle.
@@ -66,19 +82,29 @@ class Resource_Manager final {
         /**
          * Create a new instance of the resource-manager
          */
-        Resource_Manager::ptr_t create( const std::filesystem::path& resource_root,
-                                        drv::Driver_Base::ptr_t      driver );
+        static Resource_Manager::ptr_t create( const std::filesystem::path& resource_root,
+                                               drv::Driver_Base&            driver );
 
     private:
 
         /// @brief Make sure users use the create() method.
-        Resource_Manager() = default;
+        Resource_Manager() = delete;
+
+        /// @brief This class must be non-copyable
+        Resource_Manager( const Resource_Manager& ) = delete;
+        Resource_Manager& operator = ( const Resource_Manager& ) = delete;
         
+        /**
+         * Parameterized Constructor
+         */
+        Resource_Manager( const std::filesystem::path& resource_root,
+                          drv::Driver_Base&            driver );
+
         /// @brief Location of base folder for all resources
         std::filesystem::path m_resource_root;
 
         /// @brief Underlying Driver for loading data.
-        drv::Driver_Base::ptr_t m_driver;
+        drv::Driver_Base& m_driver;
 
         /// @brief List of actively loaded images
         std::map<std::string,img::Frame::ptr_t> m_loaded_frames;

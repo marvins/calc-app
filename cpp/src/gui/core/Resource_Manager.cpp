@@ -19,11 +19,27 @@
 
 namespace tmns::gui {
 
+/********************************/
+/*          Destructor          */
+/********************************/
+Resource_Manager::~Resource_Manager()
+{
+    finalize();
+}
+
+/*****************************/
+/*          Finalize         */
+/*****************************/
+void Resource_Manager::finalize()
+{
+    m_loaded_frames.clear();
+}
+
 /********************************************/
 /*          Find and load the image         */
 /********************************************/
-std::optional<img::Frame::ptr_t> Resource_Manager::find_image( std::string   image_name,
-                                                               math::Size2i  max_size )
+std::optional<img::Frame::ptr_t> Resource_Manager::find_image( [[maybe_unused]] std::string   image_name,
+                                                               [[maybe_unused]] math::Size2i  max_size )
 {
     return {};
 }                                                               
@@ -32,14 +48,18 @@ std::optional<img::Frame::ptr_t> Resource_Manager::find_image( std::string   ima
 /*          Create Instance         */
 /************************************/
 Resource_Manager::ptr_t Resource_Manager::create( const std::filesystem::path& resource_root,
-                                                  drv::Driver_Base::ptr_t      driver )
+                                                  drv::Driver_Base&            driver )
 {
-    auto inst = std::shared_ptr<Resource_Manager>( new Resource_Manager() );
-    inst->m_resource_root = resource_root;
-    inst->m_driver = driver;
-
-    return inst;
+    return Resource_Manager::ptr_t( new Resource_Manager( resource_root, driver ) );
 }
 
+/************************************************/
+/*          Parameterized Constructor           */
+/************************************************/
+Resource_Manager::Resource_Manager( const std::filesystem::path& resource_root,
+                                    drv::Driver_Base&            driver )
+    : m_resource_root { resource_root },
+      m_driver { driver }
+{}
 
 } // End of tmns::gui namespace

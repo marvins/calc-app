@@ -37,7 +37,7 @@ Header_Widget::ptr_t Header_Widget::create( const core::Options& config,
 {
     // Construct the layout.
     int header_width  = parent_size.width();
-    int header_height = std::min( config.setting<int>("display","header_height"),
+    int header_height = std::min( config.check_and_get_setting<int>("display","header_height"),
                                   parent_size.height() );
 
     LOG_TRACE( "Setting Header Size: " + std::to_string(header_width) + " x " + std::to_string(header_height) );

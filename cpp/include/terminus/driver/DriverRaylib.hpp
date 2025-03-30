@@ -34,7 +34,7 @@ class Driver_Raylib : public Driver_Base {
     public:
 
         /// Pointer Type
-        using ptr_t = std::shared_ptr<Driver_Raylib>;
+        using ptr_t = std::unique_ptr<Driver_Raylib>;
 
         /**
          * Initialize Library
@@ -88,8 +88,8 @@ class Driver_Raylib : public Driver_Base {
     private:
 
         /// Current Window Size
-        int m_window_cols { 0 };
-        int m_window_rows { 0 };
+        size_t m_window_cols { 0 };
+        size_t m_window_rows { 0 };
 
 
 }; // End of Driver_Raylib class
