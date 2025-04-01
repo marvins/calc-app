@@ -21,7 +21,6 @@
 #include <chrono>
 #include <ctime>
 #include <deque>
-#include <format>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -171,16 +170,16 @@ Options Options::parse( int argc, char* argv[] )
 void Options::generate_config_file( const std::filesystem::path& pathname )
 {
 
-    // Get the current time
-    auto now = std::chrono::system_clock::now();
-
     std::ofstream fout( pathname );
 
     fout << "#" << std::endl;
     fout << "#  Terminus Calculator Application Configuration File" << std::endl;
     fout << "#" << std::endl;
     fout << "#  File: " << pathname.native() << std::endl;
-    fout << "#  Date: " << std::chrono::current_zone()->to_local(now) << std::endl;
+
+    auto t = std::time(nullptr);
+    auto tm = *std::localtime(&t);
+    fout << "#  Date: " << std::put_time(&tm, "%d-%m-%Y %H:%M:%S") << std::endl;
     fout << "#" << std::endl;
     fout << std::endl;
 

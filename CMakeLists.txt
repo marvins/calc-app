@@ -96,6 +96,7 @@ elseif( ${RENDER_DRIVER} STREQUAL "raylib" )
     #  Desktop apps will need a flag to tell them to use allegro rather than any other option
     add_compile_definitions( RENDER_DRIVER=3 )
 
+    
     find_package( raylib REQUIRED )
 
     message( "raylib_FOUND: ${raylib_FOUND}" )

@@ -18,14 +18,14 @@
 
 namespace tmns {
 
-static constexpr std::string BUILD_DATE() { return "2025-03-29 19:52:28"; }
+static constexpr std::string BUILD_DATE() { return "2025-03-30 23:07:02"; }
 
-static constexpr std::string VERSION() { return "0.0.2"; }
+static constexpr std::string VERSION() { return "0.0.3"; }
 
 static constexpr std::string VERSION_MAJOR() { return "0"; }
 
 static constexpr std::string VERSION_MINOR() { return "0"; }
 
-static constexpr std::string VERSION_PATCH() { return "2"; }
+static constexpr std::string VERSION_PATCH() { return "3"; }
 
 }

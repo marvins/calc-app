@@ -43,7 +43,9 @@ void HandlerConsole::log( Level       lvl,
     std::stringstream sout;
     
     // Process log time
-    std::cout << "[" << std::chrono::current_zone()->to_local(log_time) << "] ";
+    auto t = std::chrono::system_clock::to_time_t( log_time );
+    auto tm = *std::localtime(&t);
+    std::cout << "[" << std::put_time(&tm, "%d-%m-%Y %H:%M:%S") << "] ";
 
     // Process severity 
     std::cout << "[" << to_string( lvl ) << "] ";

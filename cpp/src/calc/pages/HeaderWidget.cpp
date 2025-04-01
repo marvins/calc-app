@@ -58,10 +58,10 @@ Header_Widget::ptr_t Header_Widget::create( const core::Options& config,
     // Create the time label
     std::string time_info;
     {
-        auto cur_time = std::chrono::system_clock::now();
-        
         std::stringstream sout;
-        sout << std::chrono::current_zone()->to_local(cur_time);
+        auto t = std::time(nullptr);
+        auto tm = *std::localtime(&t);
+        sout << std::put_time(&tm, "%d-%m-%Y %H:%M:%S");
         time_info = sout.str();
     }
 
