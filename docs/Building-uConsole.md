@@ -168,3 +168,29 @@ popd terminus-toolbox
 
 - <u><b><span style="color:red">Precondition:</b></u></span> Download CMake version 3.13 or later, 
 
+Clone Pico SDK
+
+```bash
+git clone git@github.com:raspberrypi/pico-sdk.git
+```
+
+Next, make sure core dependencies are installed, per their instructions:
+
+```bash
+sudo apt install cmake python3 build-essential gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib
+```
+
+Navigate into the directory and record it's location
+
+```bash
+pushd pico-sdk
+export PICO_SDK_PATH="${PWD}"
+```
+
+Next, navigate to this repo and run
+
+```bash
+popd
+pushd calc-app/
+./scripts/build-with-conan.pico.sh
+```

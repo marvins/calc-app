@@ -19,6 +19,12 @@ cmake_minimum_required( VERSION 3.22 FATAL_ERROR )
 include( "${CMAKE_BINARY_DIR}/conan_toolchain.cmake" )
 set( CMAKE_FIND_PACKAGE_PREFER_CONFIG TRUE )
 
+#  Pull in the Pico SDK if we are using it
+if( ${RENDER_DRIVER} STREQUAL "pico" )
+    message( "Import PICO SDK: ${PICO_SDK_PATH}" )
+    include( "$ENV{PICO_SDK_PATH}/pico_sdk_init.cmake" )
+endif()
+
 #  Set project info
 project( ${NAME_FROM_CONANFILE}
          VERSION ${VERSION_FROM_CONANFILE}
