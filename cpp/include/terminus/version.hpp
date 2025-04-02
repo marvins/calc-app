@@ -18,7 +18,7 @@
 
 namespace tmns {
 
-static constexpr std::string BUILD_DATE() { return "2025-04-01 17:46:17"; }
+static constexpr std::string BUILD_DATE() { return "2025-03-31 00:19:27"; }
 
 static constexpr std::string VERSION() { return "0.0.3"; }
 
